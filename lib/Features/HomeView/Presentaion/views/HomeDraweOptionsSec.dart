@@ -13,7 +13,7 @@ class HomeDraweOptionsSec extends StatefulWidget {
 }
 
 class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
-  int selectedIndex = 2;
+  int selectedIndex = 1;
   @override
   void initState() {
     super.initState();
@@ -21,6 +21,7 @@ class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
   }
 
   List<DrawerOptionsModel> options = [
+    DrawerOptionsModel(title: "الادارة", img: Assets.imagesDashboardIcon),
     DrawerOptionsModel(title: "البيع", img: Assets.imagesSellIcon),
     DrawerOptionsModel(title: "المصاريف", img: Assets.imagesExpnesesIcon),
     DrawerOptionsModel(title: "المخزن", img: Assets.imagesInventory),
@@ -28,9 +29,8 @@ class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
     DrawerOptionsModel(
         title: "فواتير الواردات", img: Assets.imagesImportsBills),
     DrawerOptionsModel(title: "فواتير البيع", img: Assets.imagesExportBills),
-    DrawerOptionsModel(
-        title: "الصادر و الوادر", img: Assets.imagesExportAndImport),
     DrawerOptionsModel(title: "الموظفين", img: Assets.imagesEmployeesIcon),
+    DrawerOptionsModel(title: "العملاء", img: Assets.imagesCustomerIcon),
   ];
   @override
   void dispose() {

@@ -3,6 +3,7 @@ import 'package:el7kma/Core/Utlis/AppStyles.dart';
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Features/HomeView/data/models/DrawerOptionsModel.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class HomeDrawerOptionsCard extends StatelessWidget {
   const HomeDrawerOptionsCard(
@@ -30,13 +31,12 @@ class HomeDrawerOptionsCard extends StatelessWidget {
             color: isActive ? Colors.white : Colors.white.withOpacity(0.05)),
         child: Row(
           children: [
-            Expanded(
-              child: Image.asset(
-                optionsModel.img,
-                height: AppSizes.getHeight(24, context),
-                width: AppSizes.getWidth(24, context),
-                fit: BoxFit.fitHeight,
-              ),
+            const Gap(16),
+            Image.asset(
+              optionsModel.img,
+              height: AppSizes.getHeight(isActive ? 26 : 24, context),
+              width: AppSizes.getWidth(isActive ? 26 : 24, context),
+              fit: BoxFit.fitHeight,
             ),
             const Spacer(),
             FittedBox(

@@ -28,6 +28,14 @@ abstract class Validationmethods {
     return null;
   }
 
+  static String? customerName(BuildContext context, {required String value}) {
+    if (value.isEmpty || value.trim().isEmpty) {
+      return S.of(context).CustomerNameValidation;
+    }
+
+    return null;
+  }
+
   static String? employeePassword(BuildContext context,
       {required String value}) {
     if (value.isEmpty || value.trim().isEmpty) {

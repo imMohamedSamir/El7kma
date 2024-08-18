@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AddCustomer": MessageLookupByLibrary.simpleMessage("Add Customer"),
+        "AddCustomerMsg":
+            MessageLookupByLibrary.simpleMessage("Add Customer details"),
         "AddEmployee": MessageLookupByLibrary.simpleMessage("Add Employee"),
         "AddEmployeeMsg":
             MessageLookupByLibrary.simpleMessage("Add Employee details"),
@@ -31,8 +34,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "BillNo": MessageLookupByLibrary.simpleMessage("Bill Number"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Code": MessageLookupByLibrary.simpleMessage("Code"),
+        "CustomerBills": MessageLookupByLibrary.simpleMessage("Customer Bills"),
         "CustomerName": MessageLookupByLibrary.simpleMessage("Customer Name"),
+        "CustomerNameValidation":
+            MessageLookupByLibrary.simpleMessage("Enter Customer\'s name"),
+        "Date": MessageLookupByLibrary.simpleMessage("Date"),
         "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "DeleteCustomer":
+            MessageLookupByLibrary.simpleMessage("Delete Customer"),
+        "DeleteCustomerMsg": MessageLookupByLibrary.simpleMessage(
+            "Are you sure want Delete this Customer ?"),
         "DeleteEmployee":
             MessageLookupByLibrary.simpleMessage("Delete Employee"),
         "DeleteEmployeeMsg": MessageLookupByLibrary.simpleMessage(
@@ -49,7 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "EmployeeSalaryValidation":
             MessageLookupByLibrary.simpleMessage("Enter Employee\'s Salary"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("Expenses Type"),
+        "From": MessageLookupByLibrary.simpleMessage("From"),
         "Notes": MessageLookupByLibrary.simpleMessage("Notes"),
+        "OK": MessageLookupByLibrary.simpleMessage("OK"),
         "Package": MessageLookupByLibrary.simpleMessage("Package"),
         "PackageQty": MessageLookupByLibrary.simpleMessage("Package quantity"),
         "Paid": MessageLookupByLibrary.simpleMessage("Paid"),
@@ -73,7 +86,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "please Enter correct supplier Phone"),
         "SupplierPhoneValidator":
             MessageLookupByLibrary.simpleMessage("please Enter supplier Phone"),
+        "To": MessageLookupByLibrary.simpleMessage("To"),
         "Total": MessageLookupByLibrary.simpleMessage("Total Amount"),
+        "TotalBills": MessageLookupByLibrary.simpleMessage("Total Bills"),
         "UnitPrice": MessageLookupByLibrary.simpleMessage("Unit Price"),
         "User": MessageLookupByLibrary.simpleMessage("User"),
         "UserName": MessageLookupByLibrary.simpleMessage("UserName"),

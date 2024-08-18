@@ -20,7 +20,8 @@ class HomeDrawerSec extends StatelessWidget {
         HomeUserNameSec(),
         Gap(8),
         Divider(height: 16, indent: 24, endIndent: 24),
-        HomeDraweOptionsSec()
+        HomeDraweOptionsSec(),
+        Gap(8),
       ]),
     ));
   }

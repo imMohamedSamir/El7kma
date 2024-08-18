@@ -31,6 +31,7 @@ class _LoginSecState extends State<LoginSec> {
                     .copyWith(color: Colors.white)),
             const SizedBox(height: 8),
             CustomTextField(
+              filled: true,
               hintText: S.of(context).usernNameHint,
             ),
             const SizedBox(height: 24),
@@ -39,6 +40,7 @@ class _LoginSecState extends State<LoginSec> {
                     .copyWith(color: Colors.white)),
             const SizedBox(height: 8),
             CustomTextField(
+              filled: true,
               hintText: S.of(context).passwordHint,
               maxLines: 1,
               secure: secure,

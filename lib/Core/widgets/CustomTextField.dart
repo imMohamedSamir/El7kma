@@ -27,6 +27,7 @@ class CustomTextField extends StatelessWidget {
     this.label,
     this.enabled = true,
     this.isEGP = false,
+    this.filled = false,
   });
   final String? hintText;
   final TextInputType? keyboardType;
@@ -48,7 +49,7 @@ class CustomTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final bool? enabled;
   final bool isEGP;
-
+  final bool filled;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,6 +57,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         textDirection:
             AppLang.isArabic() ? TextDirection.rtl : TextDirection.ltr,
+
         maxLines: maxLines,
         focusNode: focusNode,
         autovalidateMode: autovalidateMode,
@@ -75,6 +77,8 @@ class CustomTextField extends StatelessWidget {
         textInputAction: textInputAction,
         enabled: enabled,
         decoration: InputDecoration(
+          filled: filled,
+          fillColor: Colors.white,
           suffixIconConstraints: suffixIconConstraints,
           suffixIcon: isEGP
               ? Padding(
@@ -188,6 +192,57 @@ class CustomSearchTextField extends StatelessWidget {
             bottom: 18,
             right: AppLang.isArabic() ? 20 : 0),
       ),
+    );
+  }
+}
+
+class CustomDateTextField extends StatelessWidget {
+  const CustomDateTextField(
+      {super.key,
+      this.suffixIcon,
+      this.prefixIcon,
+      this.label,
+      this.onTap,
+      this.controller,
+      this.maxline,
+      this.hint});
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final String? label, hint;
+  final void Function()? onTap;
+  final TextEditingController? controller;
+  final int? maxline;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: TextField(
+          controller: controller,
+          onTap: onTap,
+          readOnly: true,
+          maxLines: maxline,
+          decoration: InputDecoration(
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
+            label: label != null ? Text(label!) : null,
+            labelStyle: AppLang.isArabic()
+                ? AppStyles.styleSemiBold16(context).copyWith(color: pKcolor)
+                : AppStyles.styleMedium16(context),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: scColor, width: 2.5)),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Color(0xff9E9D9D))),
+            hintText: hint,
+            hintStyle: AppStyles.styleMedium16(context)
+                .copyWith(color: const Color(0xff9E9D9D)),
+            contentPadding: EdgeInsets.only(
+                left: AppLang.isArabic() ? 0 : 20,
+                top: 18,
+                bottom: 18,
+                right: AppLang.isArabic() ? 20 : 0),
+          )),
     );
   }
 }

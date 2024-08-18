@@ -35,7 +35,7 @@ class El7kmaApp extends StatelessWidget {
               locale: state,
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
-              home: const HomeView(),
+              home: const AuthView(),
             );
           },
         ));

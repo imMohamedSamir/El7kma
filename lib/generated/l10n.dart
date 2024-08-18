@@ -529,6 +529,116 @@ class S {
       args: [],
     );
   }
+
+  /// `From`
+  String get From {
+    return Intl.message(
+      'From',
+      name: 'From',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To`
+  String get To {
+    return Intl.message(
+      'To',
+      name: 'To',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get OK {
+    return Intl.message(
+      'OK',
+      name: 'OK',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get Date {
+    return Intl.message(
+      'Date',
+      name: 'Date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Bills`
+  String get TotalBills {
+    return Intl.message(
+      'Total Bills',
+      name: 'TotalBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Customer`
+  String get DeleteCustomer {
+    return Intl.message(
+      'Delete Customer',
+      name: 'DeleteCustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure want Delete this Customer ?`
+  String get DeleteCustomerMsg {
+    return Intl.message(
+      'Are you sure want Delete this Customer ?',
+      name: 'DeleteCustomerMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer Bills`
+  String get CustomerBills {
+    return Intl.message(
+      'Customer Bills',
+      name: 'CustomerBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Customer`
+  String get AddCustomer {
+    return Intl.message(
+      'Add Customer',
+      name: 'AddCustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Customer details`
+  String get AddCustomerMsg {
+    return Intl.message(
+      'Add Customer details',
+      name: 'AddCustomerMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Customer's name`
+  String get CustomerNameValidation {
+    return Intl.message(
+      'Enter Customer\'s name',
+      name: 'CustomerNameValidation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

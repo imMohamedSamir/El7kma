@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AddCustomer": MessageLookupByLibrary.simpleMessage("إضافة زبون"),
+        "AddCustomerMsg":
+            MessageLookupByLibrary.simpleMessage("إضافة تفاصيل الزبون"),
         "AddEmployee": MessageLookupByLibrary.simpleMessage("إضافة موظف"),
         "AddEmployeeMsg":
             MessageLookupByLibrary.simpleMessage("إضافة تفاصيل الموظف"),
@@ -31,7 +34,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "BillNo": MessageLookupByLibrary.simpleMessage("رقم الفاتورة"),
         "Cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "Code": MessageLookupByLibrary.simpleMessage("الرمز"),
+        "CustomerBills": MessageLookupByLibrary.simpleMessage("فواتير الزبون"),
         "CustomerName": MessageLookupByLibrary.simpleMessage("اسم العميل"),
+        "CustomerNameValidation":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم الزبون"),
+        "Date": MessageLookupByLibrary.simpleMessage("التاريخ"),
+        "Delete": MessageLookupByLibrary.simpleMessage("حذف"),
+        "DeleteCustomer": MessageLookupByLibrary.simpleMessage("حذف الزبون"),
+        "DeleteCustomerMsg": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من حذف هذا الزبون؟"),
+        "DeleteEmployee": MessageLookupByLibrary.simpleMessage("حذف الموظف"),
+        "DeleteEmployeeMsg": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من حذف هذا الموظف؟"),
+        "DeleteItem": MessageLookupByLibrary.simpleMessage("حذف المنتج"),
+        "DeleteItemMsg": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من حذف هذا المنتج ؟"),
         "EGP": MessageLookupByLibrary.simpleMessage("ج.م"),
         "EmployeeName": MessageLookupByLibrary.simpleMessage("اسم الموظف"),
         "EmployeeNameValidation":
@@ -41,7 +58,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "EmployeeSalaryValidation":
             MessageLookupByLibrary.simpleMessage("أدخل راتب الموظف"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("نوع المصروفات"),
+        "From": MessageLookupByLibrary.simpleMessage("من"),
         "Notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
+        "OK": MessageLookupByLibrary.simpleMessage("موافق"),
         "Package": MessageLookupByLibrary.simpleMessage("حزمة"),
         "PackageQty": MessageLookupByLibrary.simpleMessage("كمية الحزمة"),
         "Paid": MessageLookupByLibrary.simpleMessage("مدفوع"),
@@ -52,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء إدخال رقم الهاتف الصحيح"),
         "PhoneNumberValidator":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال رقم الهاتف"),
+        "Price": MessageLookupByLibrary.simpleMessage("السعر"),
         "Product": MessageLookupByLibrary.simpleMessage("المنتج"),
         "Qty": MessageLookupByLibrary.simpleMessage("الكمية"),
         "Reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
@@ -64,7 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "الرجاء إدخال رقم هاتف المورد الصحيح"),
         "SupplierPhoneValidator": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال رقم هاتف المورد"),
+        "To": MessageLookupByLibrary.simpleMessage("إلى"),
         "Total": MessageLookupByLibrary.simpleMessage("الإجمالي الكلى"),
+        "TotalBills": MessageLookupByLibrary.simpleMessage("إجمالي الفواتير"),
         "UnitPrice": MessageLookupByLibrary.simpleMessage("سعر الوحدة"),
         "User": MessageLookupByLibrary.simpleMessage("مستخدم"),
         "UserName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),

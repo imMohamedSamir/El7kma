@@ -15,6 +15,7 @@ AppBar homeAppBar(BuildContext context, {required String title}) {
   return AppBar(
     backgroundColor: pKcolor,
     centerTitle: true,
+    automaticallyImplyLeading: false,
     title: Text(title,
         style: AppStyles.styleBold32(context).copyWith(color: Colors.white)),
     actions: [

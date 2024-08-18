@@ -9,6 +9,14 @@ class Assets {
   /// assets/images/auth.png
   static const String imagesAuth = "assets/images/auth.png";
 
+  /// Assets for imagesCustomerIcon
+  /// assets/images/CustomerIcon.png
+  static const String imagesCustomerIcon = "assets/images/CustomerIcon.png";
+
+  /// Assets for imagesDashboardIcon
+  /// assets/images/DashboardIcon.png
+  static const String imagesDashboardIcon = "assets/images/DashboardIcon.png";
+
   /// Assets for imagesElhekmaLogo
   /// assets/images/ElhekmaLogo.png
   static const String imagesElhekmaLogo = "assets/images/ElhekmaLogo.png";

@@ -47,7 +47,18 @@
     "Price":"Price",
     "DeleteItem":"Delete Item",
     "DeleteItemMsg":"Are you sure want Delete this Item ?",
-    "Delete":"Delete"
+    "Delete":"Delete",
+    "From":"From",
+    "To":"To",
+    "OK":"OK",
+    "Date":"Date",
+    "TotalBills":"Total Bills",
+    "DeleteCustomer":"Delete Customer",
+    "DeleteCustomerMsg":"Are you sure want Delete this Customer ?",
+    "CustomerBills":"Customer Bills",
+    "AddCustomer":"Add Customer",
+    "AddCustomerMsg":"Add Customer details",
+    "CustomerNameValidation":"Enter Customer's name"
 
     
 

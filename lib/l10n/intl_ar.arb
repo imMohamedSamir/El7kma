@@ -40,6 +40,23 @@
   "EmployeePasswordValdation": "أدخل كلمة مرور الموظف",
   "PasswordValdation": "الرجاء إدخال كلمة مرورك",
   "EmployeeNameValidation": "أدخل اسم الموظف",
-  "EmployeeSalaryValidation": "أدخل راتب الموظف"
+  "EmployeeSalaryValidation": "أدخل راتب الموظف",
+  "DeleteEmployee":"حذف الموظف",
+  "DeleteEmployeeMsg":"هل أنت متأكد من حذف هذا الموظف؟",
+  "Price":"السعر",
+  "DeleteItem":"حذف المنتج",
+  "DeleteItemMsg":"هل أنت متأكد من حذف هذا المنتج ؟",
+  "Delete":"حذف",
+  "From":"من",
+  "To":"إلى",
+  "OK":"موافق",
+  "Date":"التاريخ",
+  "TotalBills":"إجمالي الفواتير",
+  "DeleteCustomer":"حذف الزبون",
+  "DeleteCustomerMsg":"هل أنت متأكد من حذف هذا الزبون؟",
+  "CustomerBills":"فواتير الزبون",
+  "AddCustomer":"إضافة زبون",
+  "AddCustomerMsg":"إضافة تفاصيل الزبون",
+  "CustomerNameValidation":"أدخل اسم الزبون"
 
 }

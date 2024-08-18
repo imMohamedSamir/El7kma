@@ -37,9 +37,7 @@ class _InventoryItemCardState extends State<InventoryItemCard> {
           isEGP: true,
           enabled: isEdit,
         )),
-        InventoryPackageSec(
-          isChecked: true,
-        ),
+        InventoryPackageSec(isChecked: true, isEdit: isEdit),
         Expanded(
             child: CustomTextField(
           enabled: isEdit,
