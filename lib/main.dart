@@ -1,15 +1,23 @@
 import 'package:el7kma/Core/Manager/language_cubit/language_cubit.dart';
+import 'package:el7kma/Core/Utlis/HiveAdapters.dart';
+import 'package:el7kma/Core/Utlis/InitHive.dart';
 import 'package:el7kma/Core/Utlis/blocObs.dart';
+import 'package:el7kma/Core/Utlis/service_locator.dart';
 import 'package:el7kma/Features/AuthView/Presentaion/AuthView.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/HomeView.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-
+  setupServiceLocator();
+  await Hive.initFlutter();
+  await callHiveAdapters();
+  await openHiveBox();
   runApp(const El7kmaApp());
 }
 
@@ -35,7 +43,7 @@ class El7kmaApp extends StatelessWidget {
               locale: state,
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
-              home: const AuthView(),
+              home: const HomeView(),
             );
           },
         ));

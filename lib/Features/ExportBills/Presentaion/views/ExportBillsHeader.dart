@@ -1,5 +1,6 @@
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/ExportBills/Presentaion/views/ExportTotalBillsBuilder.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/views/UserNameDropDownMenu.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class ExportBillsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
+
     return SizedBox(
       // width: AppSizes.getWidth(500, context),
       child: Padding(
@@ -39,10 +41,12 @@ class ExportBillsHeader extends StatelessWidget {
                           controller: controller);
                     },
                   ),
-                  const Gap(16),
+                  const Gap(32)
                 ],
               ),
             ),
+            const Gap(16),
+            ExportTotalBillsBuilder(),
             const Spacer(),
             const Spacer()
           ],

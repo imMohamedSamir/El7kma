@@ -1,6 +1,7 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Core/widgets/customButton.dart';
+import 'package:el7kma/Features/ImportView/Presentaion/views/ImportTotalSec.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/SupplierDropDownMenu.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -31,36 +32,23 @@ class ImportHeaderSec extends StatelessWidget {
                   initialValue: "150",
                 ),
                 const Gap(16),
-                CustomTextField(
-                  label: S.of(context).Paid,
-                  isEGP: true,
-                  keyboardType: TextInputType.number,
+                Row(
+                  children: [
+                    const Gap(12),
+                    const Expanded(flex: 5, child: SupplierDropDownMenu()),
+                    Expanded(
+                      child: Checkbox(
+                        value: false,
+                        onChanged: (value) {},
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
           ),
           const Gap(16),
-          Expanded(
-            child: Column(
-              children: [
-                const SupplierDropDownMenu(),
-                const Gap(16),
-                CustomTextField(
-                  label: S.of(context).Total,
-                  enabled: false,
-                  initialValue: "150 ",
-                  isEGP: true,
-                ),
-                const Gap(16),
-                CustomTextField(
-                  label: S.of(context).Rest,
-                  initialValue: "0.0",
-                  enabled: false,
-                  isEGP: true,
-                ),
-              ],
-            ),
-          ),
+          ImportTotalSec(),
           const Gap(16),
           Expanded(
             child: CustomTextField(

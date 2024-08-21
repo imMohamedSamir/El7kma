@@ -1,4 +1,5 @@
 import 'package:el7kma/Core/Utlis/AppAssets.dart';
+import 'package:el7kma/Core/Utlis/TokenManger.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/manager/cubit/choose_page_cubit.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/views/HomeDrawerOptionsCard.dart';
 import 'package:el7kma/Features/HomeView/data/models/DrawerOptionsModel.dart';
@@ -13,25 +14,46 @@ class HomeDraweOptionsSec extends StatefulWidget {
 }
 
 class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
-  int selectedIndex = 1;
+  int selectedIndex = 7;
+  late List<DrawerOptionsModel> options;
   @override
   void initState() {
     super.initState();
+    _checkRole();
     BlocProvider.of<ChoosePageCubit>(context).choosePage(page: selectedIndex);
   }
 
-  List<DrawerOptionsModel> options = [
-    DrawerOptionsModel(title: "الادارة", img: Assets.imagesDashboardIcon),
-    DrawerOptionsModel(title: "البيع", img: Assets.imagesSellIcon),
-    DrawerOptionsModel(title: "المصاريف", img: Assets.imagesExpnesesIcon),
-    DrawerOptionsModel(title: "المخزن", img: Assets.imagesInventory),
-    DrawerOptionsModel(title: "الوارد", img: Assets.imagesImportIcon),
-    DrawerOptionsModel(
-        title: "فواتير الواردات", img: Assets.imagesImportsBills),
-    DrawerOptionsModel(title: "فواتير البيع", img: Assets.imagesExportBills),
-    DrawerOptionsModel(title: "الموظفين", img: Assets.imagesEmployeesIcon),
-    DrawerOptionsModel(title: "العملاء", img: Assets.imagesCustomerIcon),
-  ];
+  void _checkRole() async {
+    if (5 > 0) {
+      options = [
+        DrawerOptionsModel(title: "الادارة", img: Assets.imagesDashboardIcon),
+        DrawerOptionsModel(title: "البيع", img: Assets.imagesSellIcon),
+        DrawerOptionsModel(title: "المصاريف", img: Assets.imagesExpnesesIcon),
+        DrawerOptionsModel(title: "المخزن", img: Assets.imagesInventory),
+        DrawerOptionsModel(title: "الوارد", img: Assets.imagesImportIcon),
+        DrawerOptionsModel(
+            title: "فواتير الواردات", img: Assets.imagesImportsBills),
+        DrawerOptionsModel(
+            title: "فواتير البيع", img: Assets.imagesExportBills),
+        DrawerOptionsModel(title: "الموظفين", img: Assets.imagesEmployeesIcon),
+        DrawerOptionsModel(title: "العملاء", img: Assets.imagesCustomerIcon),
+      ];
+    } else {
+      options = [
+        DrawerOptionsModel(title: "البيع", img: Assets.imagesSellIcon),
+        DrawerOptionsModel(title: "المصاريف", img: Assets.imagesExpnesesIcon),
+        DrawerOptionsModel(title: "المخزن", img: Assets.imagesInventory),
+        // DrawerOptionsModel(title: "الوارد", img: Assets.imagesImportIcon),
+        // DrawerOptionsModel(
+        //     title: "فواتير الواردات", img: Assets.imagesImportsBills),
+        // DrawerOptionsModel(
+        //     title: "فواتير البيع", img: Assets.imagesExportBills),
+        // DrawerOptionsModel(title: "الموظفين", img: Assets.imagesEmployeesIcon),
+        // DrawerOptionsModel(title: "العملاء", img: Assets.imagesCustomerIcon),
+      ];
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();

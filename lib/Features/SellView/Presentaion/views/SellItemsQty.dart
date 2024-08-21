@@ -25,7 +25,7 @@ class _SellItemsQtyState extends State<SellItemsQty> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),

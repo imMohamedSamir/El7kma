@@ -79,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "Rest": MessageLookupByLibrary.simpleMessage("Rest"),
         "Salary": MessageLookupByLibrary.simpleMessage("Salary"),
+        "Sale": MessageLookupByLibrary.simpleMessage("Sale"),
         "SupplierName": MessageLookupByLibrary.simpleMessage("Supplier Name"),
         "SupplierNameValidator":
             MessageLookupByLibrary.simpleMessage("please Enter supplier Name"),
@@ -99,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordHint":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
         "totalAmount": MessageLookupByLibrary.simpleMessage("total"),
+        "userNameValidator":
+            MessageLookupByLibrary.simpleMessage("Enter your UserName"),
         "usernNameHint":
             MessageLookupByLibrary.simpleMessage("Enter yout UserName")
       };

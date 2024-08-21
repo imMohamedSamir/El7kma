@@ -8,40 +8,36 @@ class SellItemRowSec extends StatelessWidget {
   final void Function()? onDelete;
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: UniqueKey(),
-      background: Container(
-        decoration: BoxDecoration(
-            color: Colors.red, borderRadius: BorderRadius.circular(16)),
-        child: const Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.delete, color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Dismissible(
+        key: UniqueKey(),
+        background: Container(
+          decoration: BoxDecoration(
+              color: Colors.red, borderRadius: BorderRadius.circular(16)),
+          child: const Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(Icons.delete, color: Colors.white),
+            ),
           ),
         ),
-      ),
-      direction: DismissDirection.startToEnd,
-      onDismissed: (direction) {
-        if (onDelete != null) {
-          onDelete!();
-        }
-      },
-      child: Row(
-        children: [
-          const SellDropDownMenu(),
-          const SellDropDownMenu(),
-          Expanded(
-              child: CustomTextField(
-            isEGP: true,
-          )),
-          const SellItemsQty(),
-          Expanded(
-              child: CustomTextField(
-            isEGP: true,
-            enabled: false,
-          )),
-        ],
+        direction: DismissDirection.startToEnd,
+        onDismissed: (direction) {
+          if (onDelete != null) {
+            onDelete!();
+          }
+        },
+        child: Row(
+          children: [
+            const SellDropDownMenu(),
+            const SellDropDownMenu(),
+            Expanded(child: CustomTextField(isEGP: true)),
+            const SellItemsQty(),
+            Expanded(child: CustomTextField(isEGP: true, enabled: false)),
+          ],
+        ),
       ),
     );
   }

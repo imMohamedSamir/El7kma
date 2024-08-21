@@ -639,6 +639,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter your UserName`
+  String get userNameValidator {
+    return Intl.message(
+      'Enter your UserName',
+      name: 'userNameValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sale`
+  String get Sale {
+    return Intl.message(
+      'Sale',
+      name: 'Sale',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

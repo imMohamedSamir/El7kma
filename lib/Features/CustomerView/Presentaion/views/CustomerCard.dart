@@ -1,11 +1,12 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/CustomerView/data/models/CustomerModel.dart';
 import 'package:flutter/material.dart';
 
 class CustomerCard extends StatefulWidget {
-  const CustomerCard({super.key});
-
+  const CustomerCard({super.key, required this.customer});
+  final CustomerModel customer;
   @override
   State<CustomerCard> createState() => _CustomerCardState();
 }
@@ -16,42 +17,50 @@ class _CustomerCardState extends State<CustomerCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: CustomTextField(
-          enabled: isEdit,
-          maxLines: 1,
-        )),
-        Expanded(
-            child: CustomTextField(
-          enabled: isEdit,
-        )),
-        Expanded(
-            child: CustomTextField(
-          enabled: isEdit,
-          isEGP: true,
-        )),
-        Expanded(
-            child: CustomTextField(
-          isEGP: true,
-          enabled: isEdit,
-        )),
-        Expanded(
-            child: CustomTextField(
-          enabled: isEdit,
-          isEGP: true,
-        )),
-        if (!isEdit)
-          Row(
-            children: [editIcon(context), viewIcon(context)],
-          )
-        else
-          Row(
-            children: [saveIcon(context), deleteIcon(context)],
-          ),
-        // deleteIcon(context)
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Row(
+        children: [
+          Expanded(
+              child: CustomTextField(
+            enabled: isEdit,
+            maxLines: 1,
+            initialValue: widget.customer.customerName,
+          )),
+          Expanded(
+              child: CustomTextField(
+            enabled: isEdit,
+            initialValue: widget.customer.customerPhone,
+          )),
+          Expanded(
+              child: CustomTextField(
+            enabled: isEdit,
+            isEGP: true,
+            initialValue: widget.customer.total,
+          )),
+          Expanded(
+              child: CustomTextField(
+            isEGP: true,
+            enabled: isEdit,
+            initialValue: widget.customer.paid,
+          )),
+          Expanded(
+              child: CustomTextField(
+            enabled: isEdit,
+            isEGP: true,
+            initialValue: widget.customer.rest,
+          )),
+          if (!isEdit)
+            Row(
+              children: [editIcon(context), viewIcon(context)],
+            )
+          else
+            Row(
+              children: [saveIcon(context), deleteIcon(context)],
+            ),
+          // deleteIcon(context)
+        ],
+      ),
     );
   }
 

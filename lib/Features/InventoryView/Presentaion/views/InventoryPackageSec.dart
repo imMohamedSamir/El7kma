@@ -1,24 +1,32 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/InventoryView/Presentaion/manager/edit_item_cubit/edit_item_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InventoryPackageSec extends StatefulWidget {
   const InventoryPackageSec(
       {super.key,
       this.isChecked = false,
       this.isEdit = false,
-      this.isUser = false});
+      this.isUser = false,
+      required this.packageQty});
   final bool isChecked, isEdit, isUser;
-
+  final int packageQty;
   @override
   State<InventoryPackageSec> createState() => _InventoryPackageSecState();
 }
 
 class _InventoryPackageSecState extends State<InventoryPackageSec> {
   bool checked = false;
+  late EditItemCubit cubit;
+
   @override
   void initState() {
     checked = widget.isChecked;
+    cubit = BlocProvider.of<EditItemCubit>(context);
+    cubit.savedItem.isPackage = checked;
+
     super.initState();
   }
 
@@ -40,21 +48,32 @@ class _InventoryPackageSecState extends State<InventoryPackageSec> {
                 : (value) {
                     setState(() {
                       checked = !checked;
+                      cubit.savedItem.isPackage = checked;
                     });
                   },
           )),
           if (widget.isUser)
-            const Expanded(
+            Expanded(
                 child: CustomTextField(
               enabled: false,
-              initialValue: "",
+              initialValue: widget.packageQty.toString(),
+              onSaved: (p0) {
+                if (int.tryParse(p0!) is num) {
+                  cubit.savedItem.packageQty = int.parse(p0);
+                }
+              },
             ))
           else
             Expanded(
                 child: CustomTextField(
-              enabled: widget.isEdit,
-              keyboardType: TextInputType.number,
-            )),
+                    initialValue: widget.packageQty.toString(),
+                    enabled: widget.isEdit,
+                    keyboardType: TextInputType.number,
+                    onSaved: (p0) {
+                      if (int.tryParse(p0!) is num) {
+                        cubit.savedItem.packageQty = int.parse(p0);
+                      }
+                    })),
         ],
       ),
     );

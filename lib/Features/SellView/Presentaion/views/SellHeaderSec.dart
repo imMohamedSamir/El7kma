@@ -51,9 +51,18 @@ class SellHeaderSec extends StatelessWidget {
           SellTotalSec(),
           const Gap(16),
           Expanded(
-            child: CustomTextField(
-              hintText: S.of(context).Notes,
-              maxLines: 7,
+            child: Column(
+              children: [
+                CustomTextField(
+                  hintText: S.of(context).Notes,
+                  maxLines: 4,
+                ),
+                const Gap(16),
+                CustomTextField(
+                  hintText: S.of(context).Sale,
+                  isEGP: true,
+                ),
+              ],
             ),
           ),
           const Gap(16),

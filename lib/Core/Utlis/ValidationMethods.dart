@@ -12,6 +12,14 @@ abstract class Validationmethods {
     return null;
   }
 
+  static String? userName(BuildContext context, {required String value}) {
+    if (value.isEmpty || value.trim().isEmpty) {
+      return S.of(context).userNameValidator;
+    }
+
+    return null;
+  }
+
   static String? passWord(BuildContext context, {required String value}) {
     if (value.isEmpty || value.trim().isEmpty) {
       return S.of(context).PasswordValdation;

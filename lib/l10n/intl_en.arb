@@ -41,7 +41,6 @@
     "PasswordValdation":"please Enter your password",
     "EmployeeNameValidation":"Enter Employee's name",
     "EmployeeSalaryValidation":"Enter Employee's Salary",
-
     "DeleteEmployee":"Delete Employee",
     "DeleteEmployeeMsg":"Are you sure want Delete this Employee ?",
     "Price":"Price",
@@ -58,7 +57,10 @@
     "CustomerBills":"Customer Bills",
     "AddCustomer":"Add Customer",
     "AddCustomerMsg":"Add Customer details",
-    "CustomerNameValidation":"Enter Customer's name"
+    "CustomerNameValidation":"Enter Customer's name",
+    
+    "userNameValidator":"Enter your UserName",
+    "Sale":"Sale"
 
     
 

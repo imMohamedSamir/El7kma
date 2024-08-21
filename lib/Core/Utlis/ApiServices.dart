@@ -1,11 +1,11 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 
-class YallaNowServices {
+class ElhekmaServices {
   String _baseUrl = 'https://yallanow.runasp.net/api/';
 
   final Dio _dio;
-  YallaNowServices(this._dio);
+  ElhekmaServices(this._dio);
 
   Future<dynamic> get(
       {required String endPoint, String? token, bool isMart = false}) async {
@@ -24,6 +24,23 @@ class YallaNowServices {
 
   Future<dynamic> post({required String endPoint, body, String? token}) async {
     var response = await _dio.post('$_baseUrl$endPoint',
+        data: body,
+        options: Options(headers: {
+          'accept': '*/*',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }));
+    if (response.statusCode == 200) {
+      dynamic responseData = response.data;
+      return responseData;
+    } else {
+      // Handle HTTP error status codes
+    }
+    return response.data;
+  }
+
+  Future<dynamic> put({required String endPoint, body, String? token}) async {
+    var response = await _dio.put('$_baseUrl$endPoint',
         data: body,
         options: Options(headers: {
           'accept': '*/*',
