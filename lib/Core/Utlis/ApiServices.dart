@@ -2,17 +2,17 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 class ElhekmaServices {
-  String _baseUrl = 'https://yallanow.runasp.net/api/';
+  String _baseUrl = 'https://elhekmamain.runasp.net/api/';
 
   final Dio _dio;
   ElhekmaServices(this._dio);
 
   Future<dynamic> get(
-      {required String endPoint, String? token, bool isMart = false}) async {
-    if (isMart) {
-      _baseUrl = "https://yallanow.runasp.net/";
+      {required String endPoint, String? token, bool isLogin = false}) async {
+    if (isLogin) {
+      _baseUrl = "https://elhekmamain.runasp.net/";
     } else {
-      _baseUrl = 'https://yallanow.runasp.net/api/';
+      _baseUrl = 'https://elhekmamain.runasp.net/api/';
     }
     var response = await _dio.get('$_baseUrl$endPoint',
         options: Options(headers: {
@@ -22,7 +22,16 @@ class ElhekmaServices {
     return response.data;
   }
 
-  Future<dynamic> post({required String endPoint, body, String? token}) async {
+  Future<dynamic> post(
+      {required String endPoint,
+      body,
+      String? token,
+      bool isLogin = false}) async {
+    if (isLogin) {
+      _baseUrl = "https://elhekmamain.runasp.net/";
+    } else {
+      _baseUrl = 'https://elhekmamain.runasp.net/api/';
+    }
     var response = await _dio.post('$_baseUrl$endPoint',
         data: body,
         options: Options(headers: {

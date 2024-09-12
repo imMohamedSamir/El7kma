@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Employee\'s Salary"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("Expenses Type"),
         "From": MessageLookupByLibrary.simpleMessage("From"),
+        "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "LogoutMsg": MessageLookupByLibrary.simpleMessage("Are you sure ?"),
         "Notes": MessageLookupByLibrary.simpleMessage("Notes"),
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
         "Package": MessageLookupByLibrary.simpleMessage("Package"),
@@ -79,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "Rest": MessageLookupByLibrary.simpleMessage("Rest"),
         "Salary": MessageLookupByLibrary.simpleMessage("Salary"),
+        "SalaryCorrect":
+            MessageLookupByLibrary.simpleMessage("please enter correct Salary"),
         "Sale": MessageLookupByLibrary.simpleMessage("Sale"),
         "SupplierName": MessageLookupByLibrary.simpleMessage("Supplier Name"),
         "SupplierNameValidator":
@@ -95,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "UserName": MessageLookupByLibrary.simpleMessage("UserName"),
         "add": MessageLookupByLibrary.simpleMessage("add"),
         "admin": MessageLookupByLibrary.simpleMessage("Admin"),
+        "invalidAuth": MessageLookupByLibrary.simpleMessage(
+            "Invalide UserName or password"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
         "password": MessageLookupByLibrary.simpleMessage("password"),
         "passwordHint":

@@ -1,6 +1,7 @@
 class SavedUserDetails {
   String? token;
   String? role;
+  String? userName;
 
-  SavedUserDetails({required this.token, required this.role});
+  SavedUserDetails({this.token, this.role, this.userName});
 }

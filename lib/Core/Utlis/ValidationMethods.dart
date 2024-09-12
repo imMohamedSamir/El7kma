@@ -54,10 +54,13 @@ abstract class Validationmethods {
   }
 
   static String? employeeSalary(BuildContext context, {required String value}) {
+    double salary = double.tryParse(value) ?? 0;
     if (value.isEmpty || value.trim().isEmpty) {
       return S.of(context).EmployeeSalaryValidation;
     }
-
+    if (salary == 0) {
+      return S.of(context).SalaryCorrect;
+    }
     return null;
   }
 }

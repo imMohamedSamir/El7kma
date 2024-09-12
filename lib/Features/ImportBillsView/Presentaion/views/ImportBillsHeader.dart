@@ -1,6 +1,6 @@
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
-import 'package:el7kma/Features/ExportBills/Presentaion/views/UserNameDropDownMenu.dart';
+import 'package:el7kma/Features/ImportBillsView/Presentaion/views/ImportTotalBuilder.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/SupplierDropDownMenu.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -19,29 +19,18 @@ class ImportBillsHeader extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Expanded(
+            Expanded(
               child: Column(
                 children: [
-                  SupplierDropDownMenu(isBill: true),
-                  Gap(16),
-                  UserNameDropDownMenu(),
+                  const SupplierDropDownMenu(isBill: true),
+                  const Gap(16),
+                  CustomTextField(label: S.of(context).BillNo),
                 ],
               ),
             ),
             const Gap(16),
-            Expanded(
-              child: Column(
-                children: [
-                  CustomTextField(label: S.of(context).BillNo),
-                  const Gap(16),
-                  CustomTextField(
-                    label: S.of(context).TotalBills,
-                    enabled: false,
-                    initialValue: "10",
-                  ),
-                ],
-              ),
-            ),
+            const ImportTotalBuilder(),
+            const Spacer(),
             Expanded(
               child: CustomDateTextField(
                 controller: controller,
@@ -52,8 +41,6 @@ class ImportBillsHeader extends StatelessWidget {
                 },
               ),
             ),
-            const Spacer(),
-            const Spacer()
           ],
         ),
       ),

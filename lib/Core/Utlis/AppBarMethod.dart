@@ -1,5 +1,6 @@
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
+import 'package:el7kma/Core/widgets/LogoutSec.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
@@ -45,5 +46,6 @@ AppBar homeAppBar(BuildContext context, {required String title}) {
       ),
       const Gap(16),
     ],
+    leading: const LogoutSec(),
   );
 }

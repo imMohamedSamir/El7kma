@@ -13,6 +13,25 @@ abstract class TokenManager {
     await _storage.write(key: savedRole, value: userDetails.role);
   }
 
+  static Future<SavedUserDetails> getUserDetails() async {
+    SavedUserDetails userDetails = SavedUserDetails();
+    String? token = await _storage.read(key: savedToken);
+
+    if (!tokenIsExp(token)) {
+      userDetails.userName = JwtDecoder.decode(token!)["sub"];
+
+      userDetails.role = JwtDecoder.decode(token)[kRoleJwt];
+      if (userDetails.role == employeeRole) {
+        userDetails.role = "موظف";
+      } else {
+        userDetails.role = "مدير";
+      }
+      return userDetails;
+    } else {
+      return userDetails;
+    }
+  }
+
   static Future<String?> getUserToken() async {
     return await _storage.read(key: savedToken);
   }

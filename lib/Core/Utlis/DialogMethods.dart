@@ -96,22 +96,6 @@ abstract class Dialogmethods {
           title: Text(S.of(context).AddEmployee,
               style: AppStyles.styleSemiBold18(context)),
           content: const EmployeeForm(),
-          actions: [
-            DialogBtn(
-              text: S.of(context).add,
-              txtColor: Colors.white,
-              btnColor: pKcolor,
-              onPressed: () {},
-            ),
-            DialogBtn(
-              text: S.of(context).Cancel,
-              txtColor: pKcolor,
-              btnColor: Colors.white,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
         );
       },
     );

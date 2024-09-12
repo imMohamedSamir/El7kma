@@ -4,6 +4,8 @@ import 'package:el7kma/Core/Utlis/InitHive.dart';
 import 'package:el7kma/Core/Utlis/blocObs.dart';
 import 'package:el7kma/Core/Utlis/service_locator.dart';
 import 'package:el7kma/Features/AuthView/Presentaion/AuthView.dart';
+import 'package:el7kma/Features/EmployeesView/Presentaion/manager/add_employee_cubit/add_employee_cubit.dart';
+import 'package:el7kma/Features/EmployeesView/data/repo/EmployeeRepoImpl.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/HomeView.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -24,28 +26,34 @@ void main() async {
 class El7kmaApp extends StatelessWidget {
   const El7kmaApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => LanguageCubit(),
-        child: BlocBuilder<LanguageCubit, Locale>(
-          builder: (context, state) {
-            return MaterialApp(
-              theme:
-                  ThemeData(scaffoldBackgroundColor: const Color(0xffEFF1F2)),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              locale: state,
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              home: const HomeView(),
-            );
-          },
-        ));
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LanguageCubit()),
+        BlocProvider(
+            create: (context) =>
+                AddEmployeeCubit(getIt.get<EmployeeRepoImpl>()))
+        // BlocProvider(create: (context) => AnotherCubit()),
+        // BlocProvider(create: (context) => YetAnotherCubit()),
+      ],
+      child: BlocBuilder<LanguageCubit, Locale>(
+        builder: (context, state) {
+          return MaterialApp(
+            theme: ThemeData(scaffoldBackgroundColor: const Color(0xffEFF1F2)),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            locale: state,
+            supportedLocales: S.delegate.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            home: const AuthView(),
+          );
+        },
+      ),
+    );
   }
 }

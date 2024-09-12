@@ -18,6 +18,7 @@ class ExportBillsHeader extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Column(
@@ -29,26 +30,18 @@ class ExportBillsHeader extends StatelessWidget {
               ),
             ),
             const Gap(16),
+            const ExportTotalBillsBuilder(),
+            const Spacer(),
             Expanded(
-              child: Column(
-                children: [
-                  CustomDateTextField(
-                    controller: controller,
-                    hint: S.of(context).Date,
-                    maxline: 2,
-                    onTap: () {
-                      Dialogmethods.dateTimeDialog(context,
-                          controller: controller);
-                    },
-                  ),
-                  const Gap(32)
-                ],
+              child: CustomDateTextField(
+                controller: controller,
+                hint: S.of(context).Date,
+                maxline: 2,
+                onTap: () {
+                  Dialogmethods.dateTimeDialog(context, controller: controller);
+                },
               ),
             ),
-            const Gap(16),
-            ExportTotalBillsBuilder(),
-            const Spacer(),
-            const Spacer()
           ],
         ),
       ),

@@ -19,8 +19,8 @@ class LoginBtnBuillder extends StatelessWidget {
     return BlocConsumer<AuthLoginCubit, AuthLoginState>(
       listener: (context, state) {
         if (state is AuthLoginSuccess) {
-          // NavigateToPage.slideFromBottom(
-          //     context: context, page: const HomeView());
+          NavigateToPage.slideFromRightandRemove(
+              context: context, page: const HomeView());
         }
       },
       builder: (context, state) {
@@ -28,10 +28,14 @@ class LoginBtnBuillder extends StatelessWidget {
           return const Center(
               child: CircularProgressIndicator(color: Colors.white));
         } else if (state is AuthLoginFailure) {
+          String msg = state.errMsg;
+          if (state.errMsg == "Invalid credentials") {
+            msg = S.of(context).invalidAuth;
+          }
           return Column(
             children: [
               Text(
-                state.errMsg,
+                msg,
                 style: AppStyles.styleSemiBold18(context)
                     .copyWith(color: Colors.red),
               ),

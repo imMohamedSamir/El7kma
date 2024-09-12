@@ -659,6 +659,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalide UserName or password`
+  String get invalidAuth {
+    return Intl.message(
+      'Invalide UserName or password',
+      name: 'invalidAuth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get Logout {
+    return Intl.message(
+      'Logout',
+      name: 'Logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure ?`
+  String get LogoutMsg {
+    return Intl.message(
+      'Are you sure ?',
+      name: 'LogoutMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter correct Salary`
+  String get SalaryCorrect {
+    return Intl.message(
+      'please enter correct Salary',
+      name: 'SalaryCorrect',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

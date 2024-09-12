@@ -5,4 +5,7 @@ const Color scColor = Color(0xff1588B2);
 const Color blackdcolor = Color(0xff240301);
 const String savedToken = "savedToken";
 const String savedRole = "savedRole";
+const String employeeRole = "EMPLOYEE";
 const String testItems = "testItems";
+const String kRoleJwt =
+    "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";

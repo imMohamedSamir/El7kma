@@ -60,7 +60,11 @@
     "CustomerNameValidation":"Enter Customer's name",
     
     "userNameValidator":"Enter your UserName",
-    "Sale":"Sale"
+    "Sale":"Sale",
+    "invalidAuth":"Invalide UserName or password",
+    "Logout":"Logout",
+    "LogoutMsg":"Are you sure ?",
+    "SalaryCorrect":"please enter correct Salary"
 
     
 

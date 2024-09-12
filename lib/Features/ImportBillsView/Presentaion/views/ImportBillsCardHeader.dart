@@ -1,10 +1,12 @@
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/ImportBillsView/data/models/ImportBillsModel.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ImportBillsCardHeader extends StatelessWidget {
-  const ImportBillsCardHeader({super.key});
+  const ImportBillsCardHeader({super.key, required this.bill});
+  final ImportBillsModel bill;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +20,15 @@ class ImportBillsCardHeader extends StatelessWidget {
             child: Column(
               children: [
                 CustomTextField(
-                    label: S.of(context).UserName,
-                    enabled: false,
-                    initialValue: "ahmed"),
-                const Gap(16),
-                CustomTextField(
                   label: S.of(context).BillNo,
                   enabled: false,
-                  initialValue: "150",
+                  initialValue: bill.billNo,
+                ),
+                const Gap(16),
+                CustomTextField(
+                  label: S.of(context).SupplierName,
+                  enabled: false,
+                  initialValue: bill.supplierName,
                 ),
               ],
             ),
@@ -35,16 +38,17 @@ class ImportBillsCardHeader extends StatelessWidget {
             child: Column(
               children: [
                 CustomTextField(
-                  label: S.of(context).SupplierName,
+                  label: S.of(context).Total,
                   enabled: false,
-                  initialValue: "ali",
+                  initialValue: bill.totalAmount,
+                  isEGP: true,
                 ),
                 const Gap(16),
                 CustomTextField(
-                  label: S.of(context).Total,
-                  enabled: false,
-                  initialValue: "150 ",
+                  label: S.of(context).Paid,
                   isEGP: true,
+                  enabled: false,
+                  initialValue: bill.paid,
                 ),
               ],
             ),
@@ -53,16 +57,9 @@ class ImportBillsCardHeader extends StatelessWidget {
             child: Column(
               children: [
                 CustomTextField(
-                  label: S.of(context).Paid,
-                  isEGP: true,
-                  enabled: false,
-                  initialValue: "150 ",
-                ),
-                const Gap(16),
-                CustomTextField(
                   label: S.of(context).Rest,
                   enabled: false,
-                  initialValue: "150 ",
+                  initialValue: bill.rest,
                   isEGP: true,
                 ),
               ],
@@ -74,6 +71,7 @@ class ImportBillsCardHeader extends StatelessWidget {
               hintText: S.of(context).Notes,
               enabled: false,
               maxLines: 4,
+              initialValue: bill.notes,
             ),
           ),
         ],

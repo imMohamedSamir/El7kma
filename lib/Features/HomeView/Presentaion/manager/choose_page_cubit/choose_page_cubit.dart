@@ -8,15 +8,16 @@ import 'package:el7kma/Features/ImportBillsView/Presentaion/ImportBillsView.dart
 import 'package:el7kma/Features/ImportView/Presentaion/ImportView.dart';
 import 'package:el7kma/Features/InventoryView/Presentaion/InventoryView.dart';
 import 'package:el7kma/Features/SellView/Presentaion/SellView.dart';
+import 'package:el7kma/Features/SuppliersView/Presentaion/SuppliersView.dart';
 import 'package:flutter/material.dart';
 
 part 'choose_page_state.dart';
 
 class ChoosePageCubit extends Cubit<ChoosePageState> {
   ChoosePageCubit() : super(ChoosePageInitial());
-  void choosePage({required int page}) {
+  void choosePage({required int page, bool isAdmin = false}) {
     emit(ChoosePageInitial());
-    if (5 > 0) {
+    if (isAdmin) {
       switch (page) {
         case 0:
           emit(ChoosePageChoosed(page: const DashboardView()));
@@ -46,7 +47,9 @@ class ChoosePageCubit extends Cubit<ChoosePageState> {
         case 8:
           emit(ChoosePageChoosed(page: const CustomerView()));
           break;
-
+        case 9:
+          emit(ChoosePageChoosed(page: const SuppliersView()));
+          break;
         default:
       }
     } else {

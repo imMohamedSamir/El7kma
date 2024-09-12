@@ -26,9 +26,10 @@ class DrawerHeaderSec extends StatelessWidget {
               child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Image.asset(
-              Assets.imagesStationeryLogo,
-              height: AppSizes.getHeight(55, context),
-              width: AppSizes.getWidth(55, context),
+              Assets.imagesLogo,
+              height: AppSizes.getHeight(65, context),
+              width: AppSizes.getWidth(65, context),
+              fit: BoxFit.contain,
             ),
           ))
         ],

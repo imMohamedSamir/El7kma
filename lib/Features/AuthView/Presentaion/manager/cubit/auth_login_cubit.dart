@@ -1,6 +1,6 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
+import 'package:el7kma/Core/Utlis/TokenManger.dart';
+import 'package:el7kma/Features/AuthView/data/models/SavedUserDetails.dart';
 import 'package:el7kma/Features/AuthView/data/repo/AuthRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -16,13 +16,19 @@ class AuthLoginCubit extends Cubit<AuthLoginState> {
     emit(AuthLoginLoading());
     if (key.currentState!.validate()) {
       key.currentState!.save();
-      log("$userName ||| $password");
-      emit(AuthLoginSuccess());
+      var result =
+          await _authRepo.login(userName: userName, password: password);
+      result.fold((fail) {
+        emit(AuthLoginFailure(errMsg: fail.errMessage));
+      }, (result) async {
+        await TokenManager.saveUserToken(
+            userDetails: SavedUserDetails(
+                role: result.roles?.first, token: result.token));
+
+        emit(AuthLoginSuccess());
+      });
     } else {
-      emit(AuthLoginFailure(errMsg: "fail.errMessage"));
+      emit(AuthLoginInitial());
     }
-    // var result = await _authRepo.login(userName: userName, password: password);
-    // result.fold((fail) => emit(AuthLoginFailure(errMsg: fail.errMessage)),
-    //     (response) => emit(AuthLoginSuccess()));
   }
 }

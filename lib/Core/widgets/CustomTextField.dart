@@ -89,7 +89,7 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: prefixIcon,
           label: label != null ? Text(label!) : null,
           labelStyle: AppLang.isArabic()
-              ? AppStyles.styleSemiBold16(context).copyWith(color: pKcolor)
+              ? AppStyles.styleSemiBold18(context).copyWith(color: pKcolor)
               : AppStyles.styleMedium16(context),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
