@@ -31,9 +31,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "AddSupplier": MessageLookupByLibrary.simpleMessage("Add Supplier"),
         "AddSupplierMsg":
             MessageLookupByLibrary.simpleMessage("Enter supplier details"),
+        "Address": MessageLookupByLibrary.simpleMessage("Address"),
+        "AddressMsg":
+            MessageLookupByLibrary.simpleMessage("enter customer\'s Address"),
         "BillNo": MessageLookupByLibrary.simpleMessage("Bill Number"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Code": MessageLookupByLibrary.simpleMessage("Code"),
+        "CustomerAddedMsg":
+            MessageLookupByLibrary.simpleMessage("Customer added successfully"),
         "CustomerBills": MessageLookupByLibrary.simpleMessage("Customer Bills"),
         "CustomerName": MessageLookupByLibrary.simpleMessage("Customer Name"),
         "CustomerNameValidation":
@@ -51,7 +56,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "DeleteItem": MessageLookupByLibrary.simpleMessage("Delete Item"),
         "DeleteItemMsg": MessageLookupByLibrary.simpleMessage(
             "Are you sure want Delete this Item ?"),
+        "DeleteSupplier":
+            MessageLookupByLibrary.simpleMessage("Delete Supplier"),
+        "DeleteSupplierMsg": MessageLookupByLibrary.simpleMessage(
+            "Are you sure want Delete this Supplier ?"),
         "EGP": MessageLookupByLibrary.simpleMessage("EGP"),
+        "EmployeeAddedMsg":
+            MessageLookupByLibrary.simpleMessage("Employee added successfully"),
+        "EmployeeDeletedMsg": MessageLookupByLibrary.simpleMessage(
+            "Employee deleted successfully"),
+        "EmployeeEditedMsg": MessageLookupByLibrary.simpleMessage(
+            "Employee Edited successfully"),
         "EmployeeName": MessageLookupByLibrary.simpleMessage("Employee Name"),
         "EmployeeNameValidation":
             MessageLookupByLibrary.simpleMessage("Enter Employee\'s name"),
@@ -59,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Employee\'s password"),
         "EmployeeSalaryValidation":
             MessageLookupByLibrary.simpleMessage("Enter Employee\'s Salary"),
+        "ErrorMsg":
+            MessageLookupByLibrary.simpleMessage("There is an error Occurred"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("Expenses Type"),
         "From": MessageLookupByLibrary.simpleMessage("From"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),

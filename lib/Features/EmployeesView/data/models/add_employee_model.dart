@@ -3,6 +3,7 @@ class AddEmployeeModel {
   String? email;
   String? password;
   String? name;
+  String? phoneNumber;
   DateTime? dateOfBirth;
   double? salary;
   int? shiftHours;
@@ -10,6 +11,7 @@ class AddEmployeeModel {
   AddEmployeeModel({
     this.userName,
     this.email,
+    this.phoneNumber,
     this.password,
     this.name,
     this.dateOfBirth,
@@ -22,6 +24,7 @@ class AddEmployeeModel {
       userName: json['userName'] as String?,
       email: json['email'] as String?,
       password: json['password'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
       name: json['name'] as String?,
       dateOfBirth: json['dateOfBirth'] == null
           ? null
@@ -34,6 +37,7 @@ class AddEmployeeModel {
   Map<String, dynamic> toJson() => {
         'userName': userName,
         'email': email,
+        'phoneNumber': phoneNumber,
         'password': password,
         'name': name,
         'dateOfBirth': dateOfBirth?.toIso8601String(),

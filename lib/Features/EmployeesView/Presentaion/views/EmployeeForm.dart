@@ -54,6 +54,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
             },
             onSaved: (value) {
               cubit.employeeModel.email = value!.trim();
+              cubit.employeeModel.phoneNumber = value.trim();
             },
           ),
           const Gap(16),

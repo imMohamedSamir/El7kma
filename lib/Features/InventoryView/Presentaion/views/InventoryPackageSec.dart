@@ -1,6 +1,6 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
-import 'package:el7kma/Features/InventoryView/Presentaion/manager/edit_item_cubit/edit_item_cubit.dart';
+import 'package:el7kma/Features/InventoryView/Presentaion/manager/inventory_items_cubit/inventory_items_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,12 +19,12 @@ class InventoryPackageSec extends StatefulWidget {
 
 class _InventoryPackageSecState extends State<InventoryPackageSec> {
   bool checked = false;
-  late EditItemCubit cubit;
+  late InventoryItemsCubit cubit;
 
   @override
   void initState() {
     checked = widget.isChecked;
-    cubit = BlocProvider.of<EditItemCubit>(context);
+    cubit = BlocProvider.of<InventoryItemsCubit>(context);
     cubit.savedItem.isPackage = checked;
 
     super.initState();
@@ -59,7 +59,7 @@ class _InventoryPackageSecState extends State<InventoryPackageSec> {
               initialValue: widget.packageQty.toString(),
               onSaved: (p0) {
                 if (int.tryParse(p0!) is num) {
-                  cubit.savedItem.packageQty = int.parse(p0);
+                  // cubit.savedItem.packageQty = int.parse(p0);
                 }
               },
             ))
@@ -71,7 +71,7 @@ class _InventoryPackageSecState extends State<InventoryPackageSec> {
                     keyboardType: TextInputType.number,
                     onSaved: (p0) {
                       if (int.tryParse(p0!) is num) {
-                        cubit.savedItem.packageQty = int.parse(p0);
+                        // cubit.savedItem.packageQty = int.parse(p0);
                       }
                     })),
         ],

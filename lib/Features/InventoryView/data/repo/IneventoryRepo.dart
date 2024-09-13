@@ -4,5 +4,8 @@ import 'package:el7kma/Features/InventoryView/data/models/InventoryItemsModel.da
 
 abstract class IneventoryRepo {
   Future<Either<Failure, List<Inventoryitemsmodel>>> getItems(
-      {String code, String name});
+      {String code, String name, int pageNumber});
+  Future<Either<Failure, dynamic>> editItems(
+      {required Inventoryitemsmodel item});
+  Future<Either<Failure, dynamic>> deleteItems({required String id});
 }

@@ -64,7 +64,17 @@
     "invalidAuth":"Invalide UserName or password",
     "Logout":"Logout",
     "LogoutMsg":"Are you sure ?",
-    "SalaryCorrect":"please enter correct Salary"
+    "SalaryCorrect":"please enter correct Salary",
+    "DeleteSupplier":"Delete Supplier",
+    "DeleteSupplierMsg":"Are you sure want Delete this Supplier ?",
+    "Address":"Address",
+    "AddressMsg":"enter customer's Address",
+    "CustomerAddedMsg":"Customer added successfully",
+    "EmployeeAddedMsg":"Employee added successfully",
+    "EmployeeEditedMsg":"Employee Edited successfully",
+    "EmployeeDeletedMsg":"Employee deleted successfully",
+    "ErrorMsg":"There is an error Occurred"
+
 
     
 

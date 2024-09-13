@@ -1,16 +1,34 @@
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
+import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/ValidationMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Core/widgets/customButton.dart';
+import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
+import 'package:el7kma/Features/CustomerView/Presentaion/views/AddCustomerBtn.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-class CustomerForm extends StatelessWidget {
+class CustomerForm extends StatefulWidget {
   const CustomerForm({super.key});
+
+  @override
+  State<CustomerForm> createState() => _CustomerFormState();
+}
+
+class _CustomerFormState extends State<CustomerForm> {
+  late AddCustomerCubit cubit;
+  @override
+  void initState() {
+    cubit = BlocProvider.of<AddCustomerCubit>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: cubit.key,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,12 +41,35 @@ class CustomerForm extends StatelessWidget {
             validator: (value) {
               return Validationmethods.customerName(context, value: value!);
             },
+            onSaved: (value) {
+              cubit.customerModel.name = value!.trim();
+            },
           ),
           const Gap(16),
           CustomTextField(
-            label: S.of(context).PhoneNumber,
-            validator: (value) {
-              return Validationmethods.phoneNumber(context, value: value!);
+              label: S.of(context).PhoneNumber,
+              validator: (value) {
+                return Validationmethods.phoneNumber(context, value: value!);
+              },
+              onSaved: (value) {
+                cubit.customerModel.phoneNumber = value!.trim();
+              }),
+          const Gap(16),
+          CustomTextField(
+              label: S.of(context).Address,
+              hintText: S.of(context).AddressMsg,
+              onSaved: (value) {
+                cubit.customerModel.address = value?.trim();
+              }),
+          const Gap(16),
+          const AddCustomerBtn(),
+          const Gap(16),
+          CustomButton(
+            text: S.of(context).Cancel,
+            txtcolor: pKcolor,
+            btncolor: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
             },
           ),
         ],

@@ -1,8 +1,11 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/data/models/EmployeeModel.dart';
+import 'package:el7kma/Features/EmployeesView/data/models/add_employee_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmployeeCard extends StatefulWidget {
   const EmployeeCard({super.key, required this.employeeModel});
@@ -15,9 +18,10 @@ class EmployeeCard extends StatefulWidget {
 class _EmployeeCardState extends State<EmployeeCard> {
   bool isEdit = false;
   bool secure = true;
+  AddEmployeeModel employee = AddEmployeeModel();
   @override
   void initState() {
-    // TODO: implement initState
+    initiatData();
     super.initState();
   }
 
@@ -25,6 +29,15 @@ class _EmployeeCardState extends State<EmployeeCard> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+  }
+
+  void initiatData() {
+    employee.name = widget.employeeModel.employeeName;
+    employee.userName = widget.employeeModel.employeeName;
+    employee.phoneNumber = widget.employeeModel.employeePhone;
+    employee.password = widget.employeeModel.employeePassword;
+    employee.salary = widget.employeeModel.employeeSalary;
+    employee.shiftHours = widget.employeeModel.shiftHours;
   }
 
   @override
@@ -37,17 +50,27 @@ class _EmployeeCardState extends State<EmployeeCard> {
               child: CustomTextField(
             enabled: isEdit,
             initialValue: widget.employeeModel.employeeName,
+            onChanged: (value) {
+              employee.name = value.trim();
+              employee.userName = value.trim();
+            },
           )),
           Expanded(
               child: CustomTextField(
             enabled: isEdit,
             initialValue: widget.employeeModel.employeePhone,
+            onChanged: (value) {
+              employee.phoneNumber = value.trim();
+            },
           )),
           Expanded(
               child: CustomTextField(
             enabled: isEdit,
             maxLines: 1,
             initialValue: widget.employeeModel.employeePassword,
+            onChanged: (value) {
+              employee.password = value.trim();
+            },
             secure: secure,
             suffixIcon: IconButton(
               icon: Icon(secure == true
@@ -61,10 +84,12 @@ class _EmployeeCardState extends State<EmployeeCard> {
           )),
           Expanded(
               child: CustomTextField(
-            isEGP: true,
-            enabled: isEdit,
-            initialValue: widget.employeeModel.employeeSalary,
-          )),
+                  isEGP: true,
+                  enabled: isEdit,
+                  initialValue: widget.employeeModel.employeeSalary.toString(),
+                  onChanged: (value) {
+                    employee.salary = double.tryParse(value.trim());
+                  })),
           if (!isEdit) editIcon(context) else saveIcon(context),
           deleteIcon(context)
         ],
@@ -98,6 +123,8 @@ class _EmployeeCardState extends State<EmployeeCard> {
         setState(() {
           isEdit = false;
         });
+        BlocProvider.of<EmployeeCubit>(context)
+            .edit(employee: employee, id: widget.employeeModel.id ?? "");
       },
       child: Container(
         padding: const EdgeInsets.all(14),
@@ -115,7 +142,7 @@ class _EmployeeCardState extends State<EmployeeCard> {
   Widget deleteIcon(BuildContext context) {
     return InkWell(
       onTap: () {
-        Dialogmethods.deleteEmployee(context);
+        Dialogmethods.deleteEmployee(context, widget.employeeModel.id ?? "");
       },
       child: Container(
         padding: const EdgeInsets.all(14),

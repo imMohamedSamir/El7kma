@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:el7kma/Core/Errors/Failurs.dart';
@@ -12,35 +14,59 @@ class InvenetoryRepoImpl implements IneventoryRepo {
 
   @override
   Future<Either<Failure, List<Inventoryitemsmodel>>> getItems(
-      {String? code, String? name}) async {
+      {String? code, String? name, int? pageNumber}) async {
     try {
-      const endPoint = "";
-      // final response = await _elhekmaServices.get(endPoint: endPoint);
+      final endPoint =
+          "Items?name=$name&code=$code&page=${pageNumber ?? 0}&pageSize=10";
+      final response = await _elhekmaServices.get(endPoint: endPoint);
       List<Inventoryitemsmodel> items = [];
-      items.add(Inventoryitemsmodel(
-          code: "152",
-          product: "ورق",
-          qty: 5,
-          price: 520,
-          isPackage: true,
-          packageQty: 200,
-          unitPrice: 1));
-      items.add(Inventoryitemsmodel(
-          code: "153",
-          product: "اقلام",
-          qty: 4,
-          price: 36,
-          isPackage: true,
-          packageQty: 12,
-          unitPrice: 3));
-      // for (var item in response) {
-      //   items.add(Inventoryitemsmodel.fromJson(item));
-      // }
+
+      for (var item in response['data']) {
+        items.add(Inventoryitemsmodel.fromJson(item));
+      }
       return right(items);
     } catch (e) {
+      log(e.toString());
       if (e is DioException) {
         return left(
             ServerFailure.fromResponse(e.response?.statusCode, e.response));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> deleteItems({required String id}) async {
+    try {
+      final endPoint = "Items/$id";
+      final response = await _elhekmaServices.delete(endPoint: endPoint);
+
+      return right(response);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(ServerFailure(e.response.toString()));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> editItems(
+      {required Inventoryitemsmodel item}) async {
+    try {
+      final endPoint = "Items/${item.id}";
+      log(item.toJson().toString());
+      final response =
+          await _elhekmaServices.put(endPoint: endPoint, body: item.toJson());
+
+      return right(response);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        log(e.response.toString());
+        return left(ServerFailure(e.response.toString()));
       }
       return left(ServerFailure(e.toString()));
     }

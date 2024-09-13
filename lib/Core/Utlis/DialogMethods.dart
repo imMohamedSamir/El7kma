@@ -5,10 +5,13 @@ import 'package:el7kma/Core/widgets/CustomDateTimeWidget.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Core/widgets/DialogBtn.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/views/CustomerForm.dart';
+import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/views/EmployeeForm.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/views/ExportBillstTable.dart';
+import 'package:el7kma/Features/InventoryView/Presentaion/manager/inventory_items_cubit/inventory_items_cubit.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 abstract class Dialogmethods {
@@ -111,28 +114,12 @@ abstract class Dialogmethods {
           title: Text(S.of(context).AddCustomer,
               style: AppStyles.styleSemiBold18(context)),
           content: const CustomerForm(),
-          actions: [
-            DialogBtn(
-              text: S.of(context).add,
-              txtColor: Colors.white,
-              btnColor: pKcolor,
-              onPressed: () {},
-            ),
-            DialogBtn(
-              text: S.of(context).Cancel,
-              txtColor: pKcolor,
-              btnColor: Colors.white,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
         );
       },
     );
   }
 
-  static void deleteEmployee(BuildContext context) {
+  static void deleteEmployee(BuildContext context, String id) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -147,6 +134,40 @@ abstract class Dialogmethods {
               text: S.of(context).Delete,
               txtColor: Colors.white,
               btnColor: const Color.fromARGB(255, 182, 14, 14),
+              onPressed: () {
+                BlocProvider.of<EmployeeCubit>(context).delete(id: id);
+                Navigator.of(context).pop();
+              },
+            ),
+            DialogBtn(
+              text: S.of(context).Cancel,
+              txtColor: pKcolor,
+              btnColor: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void deleteSupplier(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(S.of(context).DeleteSupplier,
+              style: AppStyles.styleSemiBold18(context)),
+          content: Text(S.of(context).DeleteSupplierMsg,
+              style: AppStyles.styleMedium18(context)),
+          actions: [
+            DialogBtn(
+              text: S.of(context).Delete,
+              txtColor: Colors.white,
+              btnColor: const Color.fromARGB(255, 182, 14, 14),
               onPressed: () {},
             ),
             DialogBtn(
@@ -163,7 +184,7 @@ abstract class Dialogmethods {
     );
   }
 
-  static void deleteItem(BuildContext context) {
+  static void deleteItem(BuildContext context, String id) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -178,7 +199,10 @@ abstract class Dialogmethods {
               text: S.of(context).Delete,
               txtColor: Colors.white,
               btnColor: const Color.fromARGB(255, 182, 14, 14),
-              onPressed: () {},
+              onPressed: () {
+                BlocProvider.of<InventoryItemsCubit>(context).delete(id: id);
+                Navigator.pop(context);
+              },
             ),
             DialogBtn(
               text: S.of(context).Cancel,

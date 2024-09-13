@@ -2,33 +2,30 @@ import 'package:el7kma/Core/Utlis/AppStyles.dart';
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/scaffoldMsgMethod.dart';
 import 'package:el7kma/Core/widgets/customButton.dart';
-import 'package:el7kma/Features/EmployeesView/Presentaion/manager/add_employee_cubit/add_employee_cubit.dart';
-import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
+import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-class AddEmployeeBtn extends StatelessWidget {
-  const AddEmployeeBtn({
+class AddCustomerBtn extends StatelessWidget {
+  const AddCustomerBtn({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddEmployeeCubit, AddEmployeeState>(
+    return BlocConsumer<AddCustomerCubit, AddCustomerState>(
       listener: (context, state) {
-        if (state is AddEmployeeSuccess) {
+        if (state is AddCustomerSuccess) {
           ScaffoldMsgMethod.showMsg(context,
-              msg: S.of(context).EmployeeAddedMsg);
-          Navigator.pop(context);
-          BlocProvider.of<EmployeeCubit>(context).get();
+              msg: S.of(context).CustomerAddedMsg);
         }
       },
       builder: (context, state) {
-        if (state is AddEmployeeLoading) {
+        if (state is AddCustomerLoading) {
           return const Center(child: CircularProgressIndicator(color: pKcolor));
-        } else if (state is AddEmployeeFailure) {
+        } else if (state is AddCustomerFailure) {
           String msg = state.errMsg;
 
           return Column(
@@ -42,22 +39,21 @@ class AddEmployeeBtn extends StatelessWidget {
               CustomButton(
                 text: S.of(context).add,
                 txtcolor: Colors.white,
-                btncolor: scColor,
+                btncolor: pKcolor,
                 onPressed: () {
-                  BlocProvider.of<AddEmployeeCubit>(context).add();
+                  BlocProvider.of<AddCustomerCubit>(context).add();
                 },
               )
             ],
           );
         }
         return CustomButton(
-          text: S.of(context).add,
-          txtcolor: Colors.white,
-          btncolor: scColor,
-          onPressed: () {
-            BlocProvider.of<AddEmployeeCubit>(context).add();
-          },
-        );
+            text: S.of(context).add,
+            txtcolor: Colors.white,
+            btncolor: pKcolor,
+            onPressed: () {
+              BlocProvider.of<AddCustomerCubit>(context).add();
+            });
       },
     );
   }

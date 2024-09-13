@@ -23,9 +23,9 @@ class CustomerTableBody extends StatelessWidget {
             ],
           );
         } else if (state is CustomerLaoding) {
-          return EmployeeLoadingBuilder();
+          return const EmployeeLoadingBuilder();
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

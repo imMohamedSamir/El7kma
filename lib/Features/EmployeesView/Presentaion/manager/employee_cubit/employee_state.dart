@@ -13,4 +13,8 @@ final class EmployeeSuccess extends EmployeeState {
   EmployeeSuccess({required this.employees});
 }
 
+final class EmployeeEdited extends EmployeeState {}
+
+final class EmployeeDeleted extends EmployeeState {}
+
 final class EmployeeFailure extends EmployeeState {}

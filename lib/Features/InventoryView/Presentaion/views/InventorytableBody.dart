@@ -5,7 +5,6 @@ import 'package:el7kma/Features/InventoryView/Presentaion/views/InventoryItemCar
 import 'package:el7kma/Features/InventoryView/Presentaion/views/InventoryLoading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class InventorytableBody extends StatelessWidget {
   const InventorytableBody({super.key});

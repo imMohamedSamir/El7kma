@@ -699,6 +699,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete Supplier`
+  String get DeleteSupplier {
+    return Intl.message(
+      'Delete Supplier',
+      name: 'DeleteSupplier',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure want Delete this Supplier ?`
+  String get DeleteSupplierMsg {
+    return Intl.message(
+      'Are you sure want Delete this Supplier ?',
+      name: 'DeleteSupplierMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get Address {
+    return Intl.message(
+      'Address',
+      name: 'Address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `enter customer's Address`
+  String get AddressMsg {
+    return Intl.message(
+      'enter customer\'s Address',
+      name: 'AddressMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer added successfully`
+  String get CustomerAddedMsg {
+    return Intl.message(
+      'Customer added successfully',
+      name: 'CustomerAddedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee added successfully`
+  String get EmployeeAddedMsg {
+    return Intl.message(
+      'Employee added successfully',
+      name: 'EmployeeAddedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee Edited successfully`
+  String get EmployeeEditedMsg {
+    return Intl.message(
+      'Employee Edited successfully',
+      name: 'EmployeeEditedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee deleted successfully`
+  String get EmployeeDeletedMsg {
+    return Intl.message(
+      'Employee deleted successfully',
+      name: 'EmployeeDeletedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is an error Occurred`
+  String get ErrorMsg {
+    return Intl.message(
+      'There is an error Occurred',
+      name: 'ErrorMsg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

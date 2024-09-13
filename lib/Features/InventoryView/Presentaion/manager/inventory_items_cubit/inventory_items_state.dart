@@ -13,4 +13,8 @@ final class InventoryItemsSuccess extends InventoryItemsState {
   InventoryItemsSuccess({required this.items});
 }
 
-final class InventoryItemsFailure extends InventoryItemsState {}
+final class InventoryItemsFailure extends InventoryItemsState {
+  final String errMsg;
+
+  InventoryItemsFailure({required this.errMsg});
+}

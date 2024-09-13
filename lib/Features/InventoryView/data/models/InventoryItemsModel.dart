@@ -1,13 +1,16 @@
 class Inventoryitemsmodel {
+  String? id;
   String? code;
   String? product;
-  int? qty;
-  double? price;
+  String? categoryId;
+  num? qty;
+  num? price;
   bool? isPackage;
-  int? packageQty;
-  double? unitPrice;
-
+  num? packageQty;
+  num? unitPrice;
+  bool? isDiscount;
   Inventoryitemsmodel({
+    this.id,
     this.code,
     this.product,
     this.qty,
@@ -15,46 +18,30 @@ class Inventoryitemsmodel {
     this.isPackage,
     this.packageQty,
     this.unitPrice,
+    this.isDiscount = false,
   });
 
   Map<String, dynamic> toJson() => {
         'code': code,
-        'product': product,
-        'qty': qty,
+        'itemName': product,
+        'stockQuantity': qty,
         'price': price,
-        'isPackage': isPackage,
-        'packageQty': packageQty,
+        'isPackaged': isPackage,
+        'packageQuantity': packageQty,
         'unitPrice': unitPrice,
+        'isDiscontinued': isDiscount
       };
-  Inventoryitemsmodel copyWith({
-    String? code,
-    String? product,
-    int? qty,
-    double? price,
-    bool? isPackage,
-    int? packageQty,
-    double? unitPrice,
-  }) {
-    return Inventoryitemsmodel(
-      code: code ?? this.code,
-      product: product ?? this.product,
-      qty: qty ?? this.qty,
-      price: price ?? this.price,
-      isPackage: isPackage ?? this.isPackage,
-      packageQty: packageQty ?? this.packageQty,
-      unitPrice: unitPrice ?? this.unitPrice,
-    );
-  }
 
   factory Inventoryitemsmodel.fromJson(Map<String, dynamic> json) {
     return Inventoryitemsmodel(
-      code: json['code'],
-      product: json['product'],
-      qty: json['qty'],
-      price: json['price'],
-      isPackage: json['isPackage'],
-      packageQty: json['packageQty'],
-      unitPrice: json['unitPrice'],
+      id: json['itemId'] as String,
+      code: json['code'] as String,
+      product: json['itemName'] as String,
+      qty: json['stockQuantity'] as num,
+      price: json['price'] as num,
+      isPackage: json['isPackaged'] as bool,
+      packageQty: json['packageQuantity'],
+      unitPrice: json['unitPrice'] as num,
     );
   }
 }

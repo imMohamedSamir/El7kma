@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:el7kma/Core/Errors/Failurs.dart';
 import 'package:el7kma/Core/Utlis/ApiServices.dart';
+import 'package:el7kma/Core/Utlis/TokenManger.dart';
 import 'package:el7kma/Features/CustomerView/data/models/CustomerModel.dart';
+import 'package:el7kma/Features/CustomerView/data/models/add_customer_model.dart';
 import 'package:el7kma/Features/CustomerView/data/repo/CustomerRepo.dart';
 
 class CustomerRepoImpl implements CustomerRepo {
@@ -12,6 +16,8 @@ class CustomerRepoImpl implements CustomerRepo {
 
   @override
   Future<Either<Failure, List<CustomerModel>>> getCustomer() async {
+    const endPoint = "Customers";
+
     try {
       List<CustomerModel> customers = [
         CustomerModel(
@@ -55,6 +61,24 @@ class CustomerRepoImpl implements CustomerRepo {
       if (e is DioException) {
         return left(
             ServerFailure.fromResponse(e.response?.statusCode, e.response));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> addCustomer(
+      {required AddCustomerModel custmerModel}) async {
+    const endPoint = "Customers";
+    try {
+      // String token = await TokenManager.getUserToken() ?? "";
+      final response = await _elhekmaServices.post(
+          endPoint: endPoint, body: custmerModel.toJson());
+      return right(response);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        return left(ServerFailure(e.response.toString()));
       }
       return left(ServerFailure(e.toString()));
     }
