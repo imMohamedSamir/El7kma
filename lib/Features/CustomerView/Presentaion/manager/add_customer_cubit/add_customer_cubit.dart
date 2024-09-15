@@ -12,9 +12,6 @@ class AddCustomerCubit extends Cubit<AddCustomerState> {
   final key = GlobalKey<FormState>();
   AddCustomerModel customerModel = AddCustomerModel();
   void add() async {
-    customerModel.debtAmount = 0;
-    customerModel.email = "mousab300@gmail.com";
-    customerModel.lastPurchaseDate = DateTime.now();
     if (key.currentState!.validate()) {
       key.currentState!.save();
       emit(AddCustomerLoading());
@@ -23,5 +20,14 @@ class AddCustomerCubit extends Cubit<AddCustomerState> {
       result.fold((fail) => emit(AddCustomerFailure(errMsg: fail.errMessage)),
           (response) => emit(AddCustomerSuccess()));
     }
+  }
+
+  void delete({required String id}) async {
+    emit(AddCustomerLoading());
+    var result = await _customerRepo.deleteCustomer(id: id);
+    result.fold((fail) => emit(AddCustomerFailure(errMsg: fail.errMessage)),
+        (customers) {
+      emit(AddCustomerDeleted());
+    });
   }
 }

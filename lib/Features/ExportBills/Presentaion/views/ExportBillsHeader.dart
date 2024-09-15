@@ -38,7 +38,9 @@ class ExportBillsHeader extends StatelessWidget {
                 hint: S.of(context).Date,
                 maxline: 2,
                 onTap: () {
-                  Dialogmethods.dateTimeDialog(context, controller: controller);
+                  Dialogmethods.dateTimeDialog(
+                    context,
+                  );
                 },
               ),
             ),

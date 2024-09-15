@@ -1,6 +1,5 @@
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
-import 'package:el7kma/Core/Utlis/scaffoldMsgMethod.dart';
 import 'package:el7kma/Core/widgets/customButton.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
 import 'package:el7kma/generated/l10n.dart';
@@ -15,13 +14,7 @@ class AddCustomerBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddCustomerCubit, AddCustomerState>(
-      listener: (context, state) {
-        if (state is AddCustomerSuccess) {
-          ScaffoldMsgMethod.showMsg(context,
-              msg: S.of(context).CustomerAddedMsg);
-        }
-      },
+    return BlocBuilder<AddCustomerCubit, AddCustomerState>(
       builder: (context, state) {
         if (state is AddCustomerLoading) {
           return const Center(child: CircularProgressIndicator(color: pKcolor));

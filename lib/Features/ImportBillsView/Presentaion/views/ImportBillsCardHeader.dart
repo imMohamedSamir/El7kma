@@ -40,7 +40,7 @@ class ImportBillsCardHeader extends StatelessWidget {
                 CustomTextField(
                   label: S.of(context).Total,
                   enabled: false,
-                  initialValue: bill.totalAmount,
+                  initialValue: bill.totalAmount.toString(),
                   isEGP: true,
                 ),
                 const Gap(16),
@@ -48,7 +48,7 @@ class ImportBillsCardHeader extends StatelessWidget {
                   label: S.of(context).Paid,
                   isEGP: true,
                   enabled: false,
-                  initialValue: bill.paid,
+                  initialValue: bill.paid.toString(),
                 ),
               ],
             ),
@@ -59,8 +59,14 @@ class ImportBillsCardHeader extends StatelessWidget {
                 CustomTextField(
                   label: S.of(context).Rest,
                   enabled: false,
-                  initialValue: bill.rest,
+                  initialValue: bill.rest.toString(),
                   isEGP: true,
+                ),
+                const Gap(16),
+                CustomTextField(
+                  label: S.of(context).Date,
+                  enabled: false,
+                  initialValue: bill.date.toString(),
                 ),
               ],
             ),

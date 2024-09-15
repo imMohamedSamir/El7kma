@@ -27,23 +27,22 @@ class ImportBillsItemCard extends StatelessWidget {
               child: CustomTextField(
             enabled: false,
             isEGP: true,
-            initialValue: item.price,
+            initialValue: item.price.toString(),
           )),
           Expanded(
               child: CustomTextField(
             enabled: false,
-            initialValue: item.qty,
+            initialValue: item.qty.toString(),
           )),
           Expanded(
               child: CustomTextField(
             enabled: false,
             isEGP: true,
-            initialValue: item.totalprice,
+            initialValue: item.totalprice.toString(),
           )),
           ImportBillsPackageSec(
-            isChecked: item.package,
-            packageQty: item.packageQty ?? "",
-          ),
+              isChecked: item.package ?? false,
+              packageQty: item.packageQty.toString()),
         ],
       ),
     );

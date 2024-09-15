@@ -28,6 +28,7 @@ class CustomTextField extends StatelessWidget {
     this.enabled = true,
     this.isEGP = false,
     this.filled = false,
+    this.onFieldSubmitted,
   });
   final String? hintText;
   final TextInputType? keyboardType;
@@ -50,6 +51,7 @@ class CustomTextField extends StatelessWidget {
   final bool? enabled;
   final bool isEGP;
   final bool filled;
+  final void Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,6 +65,7 @@ class CustomTextField extends StatelessWidget {
         autovalidateMode: autovalidateMode,
         controller: controller,
         onTap: onTap,
+        onFieldSubmitted: onFieldSubmitted,
         readOnly: readOnly ?? false,
         // enabled: enabled,
         style: AppStyles.styleMedium18(context)
@@ -205,11 +208,13 @@ class CustomDateTextField extends StatelessWidget {
       this.onTap,
       this.controller,
       this.maxline,
-      this.hint});
+      this.hint,
+      this.onChanged});
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final String? label, hint;
   final void Function()? onTap;
+  final void Function(String)? onChanged;
   final TextEditingController? controller;
   final int? maxline;
   @override
@@ -219,6 +224,7 @@ class CustomDateTextField extends StatelessWidget {
       child: TextField(
           controller: controller,
           onTap: onTap,
+          onChanged: onChanged,
           readOnly: true,
           maxLines: maxline,
           decoration: InputDecoration(

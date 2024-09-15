@@ -1,49 +1,50 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ImportModel.dart';
+part of 'product_detail.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ImportmodelAdapter extends TypeAdapter<Importmodel> {
+class ProductDetailAdapter extends TypeAdapter<ProductDetail> {
   @override
   final int typeId = 0;
 
   @override
-  Importmodel read(BinaryReader reader) {
+  ProductDetail read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Importmodel()
-      ..userName = fields[0] as String?
-      ..supplierName = fields[1] as String?
-      ..billNo = fields[2] as String?
-      ..totalAmount = fields[3] as double?
-      ..paid = fields[4] as double?
-      ..rest = fields[5] as double?
-      ..items = (fields[6] as List?)?.cast<ImportItemsModel>();
+    return ProductDetail(
+      productCode: fields[0] as String?,
+      productName: fields[1] as String?,
+      unitPrice: fields[2] as double?,
+      quantity: fields[3] as int?,
+      totalPrice: fields[4] as double?,
+      packageQuantity: fields[5] as int?,
+      isPackaged: fields[6] as bool?,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, Importmodel obj) {
+  void write(BinaryWriter writer, ProductDetail obj) {
     writer
       ..writeByte(7)
       ..writeByte(0)
-      ..write(obj.userName)
+      ..write(obj.productCode)
       ..writeByte(1)
-      ..write(obj.supplierName)
+      ..write(obj.productName)
       ..writeByte(2)
-      ..write(obj.billNo)
+      ..write(obj.unitPrice)
       ..writeByte(3)
-      ..write(obj.totalAmount)
+      ..write(obj.quantity)
       ..writeByte(4)
-      ..write(obj.paid)
+      ..write(obj.totalPrice)
       ..writeByte(5)
-      ..write(obj.rest)
+      ..write(obj.packageQuantity)
       ..writeByte(6)
-      ..write(obj.items);
+      ..write(obj.isPackaged);
   }
 
   @override
@@ -52,7 +53,7 @@ class ImportmodelAdapter extends TypeAdapter<Importmodel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ImportmodelAdapter &&
+      other is ProductDetailAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

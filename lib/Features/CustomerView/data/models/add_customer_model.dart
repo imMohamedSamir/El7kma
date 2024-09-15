@@ -3,7 +3,7 @@ class AddCustomerModel {
   String? phoneNumber;
   String? email;
   String? address;
-  double? debtAmount;
+  num? debtAmount;
   DateTime? lastPurchaseDate;
 
   AddCustomerModel({

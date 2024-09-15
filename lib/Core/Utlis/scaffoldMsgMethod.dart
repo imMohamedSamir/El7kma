@@ -5,7 +5,7 @@ abstract class ScaffoldMsgMethod {
   static void showMsg(BuildContext context,
       {required String msg, bool isError = false}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
         backgroundColor: isError ? Colors.red : Colors.green,
         content: Text(
           msg,

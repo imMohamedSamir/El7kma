@@ -67,20 +67,10 @@ class _EmployeeCardState extends State<EmployeeCard> {
               child: CustomTextField(
             enabled: isEdit,
             maxLines: 1,
-            initialValue: widget.employeeModel.employeePassword,
+            initialValue: widget.employeeModel.shiftHours.toString(),
             onChanged: (value) {
-              employee.password = value.trim();
+              employee.shiftHours = int.parse(value.trim());
             },
-            secure: secure,
-            suffixIcon: IconButton(
-              icon: Icon(secure == true
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined),
-              onPressed: () {
-                secure = !secure;
-                setState(() {});
-              },
-            ),
           )),
           Expanded(
               child: CustomTextField(

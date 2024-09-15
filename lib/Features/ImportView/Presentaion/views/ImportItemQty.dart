@@ -6,35 +6,31 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ImportItemQty extends StatefulWidget {
-  const ImportItemQty({super.key});
+  const ImportItemQty({
+    super.key,
+    required this.controller,
+  });
+  final TextEditingController controller;
 
   @override
   State<ImportItemQty> createState() => _ImportItemQtyState();
 }
 
 class _ImportItemQtyState extends State<ImportItemQty> {
-  late TextEditingController controller;
   int _quantity = 1;
 
   @override
   void initState() {
     super.initState();
 
-    controller = TextEditingController();
-    controller.text = _quantity.toString();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+    widget.controller.text = _quantity.toString();
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(6),
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -47,7 +43,7 @@ class _ImportItemQtyState extends State<ImportItemQty> {
               onTap: () {
                 setState(() {
                   _quantity++;
-                  controller.text = _quantity.toString();
+                  widget.controller.text = _quantity.toString();
                 });
               },
             ),
@@ -57,10 +53,10 @@ class _ImportItemQtyState extends State<ImportItemQty> {
                 child: TextField(
                   style: AppStyles.styleSemiBold18(context)
                       .copyWith(color: pKcolor),
-                  controller: controller,
+                  controller: widget.controller,
                   onChanged: (value) {
                     setState(() {
-                      _quantity = int.parse(value);
+                      _quantity = int.tryParse(value) ?? 0;
                     });
                   },
                 )),
@@ -70,11 +66,11 @@ class _ImportItemQtyState extends State<ImportItemQty> {
                   ? () {
                       setState(() {
                         _quantity--;
-                        controller.text = _quantity.toString();
+                        widget.controller.text = _quantity.toString();
                       });
                     }
                   : null,
-              isLimit: _quantity == 1 || controller.text.isEmpty,
+              isLimit: _quantity == 1 || widget.controller.text.isEmpty,
             )
           ],
         ),

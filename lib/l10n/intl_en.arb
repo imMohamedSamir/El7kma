@@ -70,10 +70,18 @@
     "Address":"Address",
     "AddressMsg":"enter customer's Address",
     "CustomerAddedMsg":"Customer added successfully",
+    "CustomerDeleteMsg":"Customer deleted successfully",
+    "CustomerEditeMsg":"Customer Edited successfully",
     "EmployeeAddedMsg":"Employee added successfully",
     "EmployeeEditedMsg":"Employee Edited successfully",
     "EmployeeDeletedMsg":"Employee deleted successfully",
-    "ErrorMsg":"There is an error Occurred"
+    "ErrorMsg":"There is an error Occurred",
+    "SupplierAddedMsg":"Supplier added successfully",
+    "SupplierEditedMsg":"Supplier Edited successfully",
+    "SupplierDeletedMsg":"Supplier deleted successfully",
+    "ShiftHours":"ShiftHours",
+    "SupplierInvoiceSuccess":"the invoice has been added successfully"
+
 
 
     

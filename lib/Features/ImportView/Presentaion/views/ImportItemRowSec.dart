@@ -1,11 +1,12 @@
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/ImportItemQty.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/ImportPackageSec.dart';
+import 'package:el7kma/Features/ImportView/data/models/add_supplier_invoice_model/product_detail.dart';
 import 'package:flutter/material.dart';
 
 class ImportItemRowSec extends StatelessWidget {
-  const ImportItemRowSec({super.key});
-
+  const ImportItemRowSec({super.key, required this.product});
+  final ProductDetail product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,20 +15,20 @@ class ImportItemRowSec extends StatelessWidget {
         children: [
           Expanded(
             child: CustomTextField(
-              onChanged: (p0) {},
-            ),
+                initialValue: product.productCode, onChanged: (p0) {}),
           ),
-          const Expanded(child: const CustomTextField()),
-          const Expanded(
+          Expanded(
+              child: CustomTextField(
+            initialValue: product.productName,
+          )),
+          Expanded(
               child: CustomTextField(
             isEGP: true,
+            initialValue: product.unitPrice.toString(),
           )),
-          const ImportItemQty(),
-          const Expanded(
-              child: CustomTextField(
-            isEGP: true,
-          )),
-          const ImportPackageSec(),
+          // const ImportItemQty(controller: null,),
+          Expanded(child: CustomTextField(isEGP: true, enabled: false)),
+          // const ImportPackageSec(),
         ],
       ),
     );

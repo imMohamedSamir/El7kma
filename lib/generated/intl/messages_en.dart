@@ -40,6 +40,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "CustomerAddedMsg":
             MessageLookupByLibrary.simpleMessage("Customer added successfully"),
         "CustomerBills": MessageLookupByLibrary.simpleMessage("Customer Bills"),
+        "CustomerDeleteMsg": MessageLookupByLibrary.simpleMessage(
+            "Customer deleted successfully"),
+        "CustomerEditeMsg": MessageLookupByLibrary.simpleMessage(
+            "Customer Edited successfully"),
         "CustomerName": MessageLookupByLibrary.simpleMessage("Customer Name"),
         "CustomerNameValidation":
             MessageLookupByLibrary.simpleMessage("Enter Customer\'s name"),
@@ -101,6 +105,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "SalaryCorrect":
             MessageLookupByLibrary.simpleMessage("please enter correct Salary"),
         "Sale": MessageLookupByLibrary.simpleMessage("Sale"),
+        "ShiftHours": MessageLookupByLibrary.simpleMessage("ShiftHours"),
+        "SupplierAddedMsg":
+            MessageLookupByLibrary.simpleMessage("Supplier added successfully"),
+        "SupplierDeletedMsg": MessageLookupByLibrary.simpleMessage(
+            "Supplier deleted successfully"),
+        "SupplierEditedMsg": MessageLookupByLibrary.simpleMessage(
+            "Supplier Edited successfully"),
+        "SupplierInvoiceSuccess": MessageLookupByLibrary.simpleMessage(
+            "the invoice has been added successfully"),
         "SupplierName": MessageLookupByLibrary.simpleMessage("Supplier Name"),
         "SupplierNameValidator":
             MessageLookupByLibrary.simpleMessage("please Enter supplier Name"),

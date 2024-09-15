@@ -1,6 +1,7 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
-import 'package:el7kma/Features/SellView/Presentaion/views/CustomerDropDownMenu.dart';
+import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CustomerHeaderSec extends StatelessWidget {
@@ -12,8 +13,17 @@ class CustomerHeaderSec extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          const CustomerDropDownMenu(isCustomer: true),
+          Expanded(
+            child: CustomTextField(
+              label: S.of(context).CustomerName,
+              onChanged: (value) {
+                if (value.trim().isNotEmpty) {
+                } else {}
+              },
+            ),
+          ),
           _addIcon(context),
+          const Spacer(),
           const Spacer(),
           const Spacer(),
         ],

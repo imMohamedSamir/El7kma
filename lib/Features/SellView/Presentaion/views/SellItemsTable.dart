@@ -1,5 +1,4 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
-import 'package:el7kma/Features/ImportView/data/models/ImportItemsModel.dart';
 import 'package:el7kma/Features/SellView/Presentaion/views/SellItemRowSec.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -10,23 +9,24 @@ class SellItemsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final box = Hive.box<ImportItemsModel>(testItems);
-    return ValueListenableBuilder(
-      valueListenable: box.listenable(),
-      builder: (context, value, child) {
-        return Column(
-          children: [
-            ...List.generate(
-                box.length,
-                (index) => SellItemRowSec(
-                      onDelete: () {
-                        box.deleteAt(index);
-                      },
-                    )),
-            SellItemRowSec()
-          ],
-        );
-      },
-    );
+    // final box = Hive.box<ImportItemsModel>(testItems);
+    return SizedBox();
+    // ValueListenableBuilder(
+    //   valueListenable: box.listenable(),
+    //   builder: (context, value, child) {
+    //     return Column(
+    //       children: [
+    //         ...List.generate(
+    //             box.length,
+    //             (index) => SellItemRowSec(
+    //                   onDelete: () {
+    //                     box.deleteAt(index);
+    //                   },
+    //                 )),
+    //         SellItemRowSec()
+    //       ],
+    //     );
+    //   },
+    // );
   }
 }

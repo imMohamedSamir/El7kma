@@ -35,7 +35,7 @@ class ElhekmaServices {
     var response = await _dio.post('$_baseUrl$endPoint',
         data: body,
         options: Options(headers: {
-          'accept': '*/*',
+          'accept': 'text/plain',
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
         }));

@@ -750,6 +750,26 @@ class S {
     );
   }
 
+  /// `Customer deleted successfully`
+  String get CustomerDeleteMsg {
+    return Intl.message(
+      'Customer deleted successfully',
+      name: 'CustomerDeleteMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer Edited successfully`
+  String get CustomerEditeMsg {
+    return Intl.message(
+      'Customer Edited successfully',
+      name: 'CustomerEditeMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Employee added successfully`
   String get EmployeeAddedMsg {
     return Intl.message(
@@ -785,6 +805,56 @@ class S {
     return Intl.message(
       'There is an error Occurred',
       name: 'ErrorMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Supplier added successfully`
+  String get SupplierAddedMsg {
+    return Intl.message(
+      'Supplier added successfully',
+      name: 'SupplierAddedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Supplier Edited successfully`
+  String get SupplierEditedMsg {
+    return Intl.message(
+      'Supplier Edited successfully',
+      name: 'SupplierEditedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Supplier deleted successfully`
+  String get SupplierDeletedMsg {
+    return Intl.message(
+      'Supplier deleted successfully',
+      name: 'SupplierDeletedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ShiftHours`
+  String get ShiftHours {
+    return Intl.message(
+      'ShiftHours',
+      name: 'ShiftHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `the invoice has been added successfully`
+  String get SupplierInvoiceSuccess {
+    return Intl.message(
+      'the invoice has been added successfully',
+      name: 'SupplierInvoiceSuccess',
       desc: '',
       args: [],
     );

@@ -6,6 +6,7 @@ import 'package:el7kma/Core/Utlis/blocObs.dart';
 import 'package:el7kma/Core/Utlis/service_locator.dart';
 import 'package:el7kma/Features/AuthView/Presentaion/AuthView.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
+import 'package:el7kma/Features/CustomerView/Presentaion/manager/customer_cubit/customer_cubit.dart';
 import 'package:el7kma/Features/CustomerView/data/repo/CustomerRepoImpl.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/manager/add_employee_cubit/add_employee_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
@@ -13,6 +14,8 @@ import 'package:el7kma/Features/EmployeesView/data/repo/EmployeeRepoImpl.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/HomeView.dart';
 import 'package:el7kma/Features/InventoryView/Presentaion/manager/inventory_items_cubit/inventory_items_cubit.dart';
 import 'package:el7kma/Features/InventoryView/data/repo/InvenetoryRepoImpl.dart';
+import 'package:el7kma/Features/SuppliersView/Presentaion/manager/SupplierAddDeleteCubit/SupplierAddDeleteCubit.dart';
+import 'package:el7kma/Features/SuppliersView/data/repo/SupplierRepoImpl.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,9 +52,10 @@ class El7kmaApp extends StatelessWidget {
                 AddCustomerCubit(getIt.get<CustomerRepoImpl>())),
         BlocProvider(
             create: (context) =>
-                InventoryItemsCubit(getIt.get<InvenetoryRepoImpl>()))
-        // BlocProvider(create: (context) => AnotherCubit()),
-        // BlocProvider(create: (context) => YetAnotherCubit()),
+                InventoryItemsCubit(getIt.get<InvenetoryRepoImpl>())),
+        BlocProvider(
+            create: (context) =>
+                SupplierAddDeleteCubit(getIt.get<SupplierRpoImpl>()))
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {

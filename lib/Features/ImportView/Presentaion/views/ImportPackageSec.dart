@@ -3,17 +3,16 @@ import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ImportPackageSec extends StatefulWidget {
+class ImportPackageSec extends StatelessWidget {
   const ImportPackageSec({
     super.key,
+    required this.isChecked,
+    this.onChanged,
+    required this.packageController,
   });
-
-  @override
-  State<ImportPackageSec> createState() => _ImportPackageSecState();
-}
-
-class _ImportPackageSecState extends State<ImportPackageSec> {
-  bool isChecked = false;
+  final bool isChecked;
+  final void Function(bool?)? onChanged;
+  final TextEditingController packageController;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -24,14 +23,12 @@ class _ImportPackageSecState extends State<ImportPackageSec> {
               child: Checkbox(
             activeColor: pKcolor,
             value: isChecked,
-            onChanged: (value) {
-              setState(() {
-                isChecked = value!;
-              });
-            },
+            onChanged: onChanged,
           )),
           Expanded(
               child: CustomTextField(
+            controller: packageController,
+            maxLines: 1,
             enabled: isChecked,
             keyboardType: TextInputType.number,
           )),

@@ -1,10 +1,12 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Core/widgets/customButton.dart';
+import 'package:el7kma/Features/ImportView/Presentaion/manager/cubit/import_item_cubit.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/ImportTotalSec.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/SupplierDropDownMenu.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class ImportHeaderSec extends StatelessWidget {
@@ -22,28 +24,18 @@ class ImportHeaderSec extends StatelessWidget {
             child: Column(
               children: [
                 CustomTextField(
-                    label: S.of(context).UserName,
-                    enabled: false,
-                    initialValue: "ahmed"),
-                const Gap(16),
-                CustomTextField(
                   label: S.of(context).BillNo,
-                  enabled: false,
-                  initialValue: "150",
+                  enabled: true,
+                  onChanged: (value) {
+                    if (value.isNotEmpty) {
+                      BlocProvider.of<ImportItemCubit>(context)
+                          .invoice
+                          .invoiceNumber = value.trim();
+                    }
+                  },
                 ),
                 const Gap(16),
-                Row(
-                  children: [
-                    const Gap(12),
-                    const Expanded(flex: 5, child: SupplierDropDownMenu()),
-                    Expanded(
-                      child: Checkbox(
-                        value: false,
-                        onChanged: (value) {},
-                      ),
-                    )
-                  ],
-                ),
+                const SupplierDropDownMenu(),
               ],
             ),
           ),
@@ -52,9 +44,14 @@ class ImportHeaderSec extends StatelessWidget {
           const Gap(16),
           Expanded(
             child: CustomTextField(
-              hintText: S.of(context).Notes,
-              maxLines: 7,
-            ),
+                hintText: S.of(context).Notes,
+                maxLines: 7,
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    BlocProvider.of<ImportItemCubit>(context).invoice.notes =
+                        value.trim();
+                  }
+                }),
           ),
           const Gap(16),
           Expanded(
@@ -64,12 +61,18 @@ class ImportHeaderSec extends StatelessWidget {
                   txtcolor: Colors.white,
                   btncolor: pKcolor,
                   text: S.of(context).add,
+                  onPressed: () {
+                    BlocProvider.of<ImportItemCubit>(context).addInvoice();
+                  },
                 ),
                 const Gap(16),
                 CustomButton(
                   txtcolor: Colors.white,
                   btncolor: pKcolor,
                   text: S.of(context).Reset,
+                  onPressed: () {
+                    BlocProvider.of<ImportItemCubit>(context).clear();
+                  },
                 )
               ],
             ),

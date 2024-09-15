@@ -11,7 +11,7 @@ class EmployeesTableHeader extends StatelessWidget {
     final List headers = [
       S.of(context).EmployeeName,
       S.of(context).PhoneNumber,
-      S.of(context).password,
+      S.of(context).ShiftHours,
       S.of(context).Salary,
     ];
     return Row(

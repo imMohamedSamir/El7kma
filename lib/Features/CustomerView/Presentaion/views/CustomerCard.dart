@@ -1,8 +1,10 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/CustomerView/Presentaion/manager/customer_cubit/customer_cubit.dart';
 import 'package:el7kma/Features/CustomerView/data/models/CustomerModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomerCard extends StatefulWidget {
   const CustomerCard({super.key, required this.customer});
@@ -14,6 +16,24 @@ class CustomerCard extends StatefulWidget {
 class _CustomerCardState extends State<CustomerCard> {
   bool isEdit = false;
   bool secure = true;
+  late CustomerCubit cubit;
+  @override
+  void initState() {
+    cubit = BlocProvider.of<CustomerCubit>(context);
+    _getData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  void _getData() {
+    cubit.editedCustomer.name = widget.customer.customerName;
+    cubit.editedCustomer.phoneNumber = widget.customer.customerPhone;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,27 +46,33 @@ class _CustomerCardState extends State<CustomerCard> {
             enabled: isEdit,
             maxLines: 1,
             initialValue: widget.customer.customerName,
+            onChanged: (value) {
+              cubit.editedCustomer.name = value.trim();
+            },
           )),
           Expanded(
               child: CustomTextField(
             enabled: isEdit,
             initialValue: widget.customer.customerPhone,
+            onChanged: (value) {
+              cubit.editedCustomer.phoneNumber = value.trim();
+            },
           )),
           Expanded(
               child: CustomTextField(
-            enabled: isEdit,
+            enabled: false,
             isEGP: true,
             initialValue: widget.customer.total,
           )),
           Expanded(
               child: CustomTextField(
             isEGP: true,
-            enabled: isEdit,
+            enabled: false,
             initialValue: widget.customer.paid,
           )),
           Expanded(
               child: CustomTextField(
-            enabled: isEdit,
+            enabled: false,
             isEGP: true,
             initialValue: widget.customer.rest,
           )),
@@ -58,7 +84,6 @@ class _CustomerCardState extends State<CustomerCard> {
             Row(
               children: [saveIcon(context), deleteIcon(context)],
             ),
-          // deleteIcon(context)
         ],
       ),
     );
@@ -90,6 +115,8 @@ class _CustomerCardState extends State<CustomerCard> {
         setState(() {
           isEdit = false;
         });
+        BlocProvider.of<CustomerCubit>(context)
+            .edit(id: widget.customer.id ?? "");
       },
       child: Container(
         padding: const EdgeInsets.all(14),
@@ -107,7 +134,7 @@ class _CustomerCardState extends State<CustomerCard> {
   Widget deleteIcon(BuildContext context) {
     return InkWell(
       onTap: () {
-        Dialogmethods.deleteCustomer(context);
+        Dialogmethods.deleteCustomer(context, id: widget.customer.id ?? "");
       },
       child: Container(
         padding: const EdgeInsets.all(14),

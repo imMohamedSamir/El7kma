@@ -1,9 +1,10 @@
-import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/ImportBillsView/Presentaion/manager/import_bills_cubit/import_bills_cubit.dart';
+import 'package:el7kma/Features/ImportBillsView/Presentaion/views/ImportDateFilterSec.dart';
 import 'package:el7kma/Features/ImportBillsView/Presentaion/views/ImportTotalBuilder.dart';
-import 'package:el7kma/Features/ImportView/Presentaion/views/SupplierDropDownMenu.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class ImportBillsHeader extends StatelessWidget {
@@ -11,7 +12,6 @@ class ImportBillsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
     return SizedBox(
       // width: AppSizes.getWidth(500, context),
       child: Padding(
@@ -22,25 +22,35 @@ class ImportBillsHeader extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  const SupplierDropDownMenu(isBill: true),
+                  CustomTextField(
+                    label: S.of(context).SupplierName,
+                    onChanged: (value) {
+                      if (value.trim().isNotEmpty) {
+                        BlocProvider.of<ImportBillsCubit>(context)
+                            .get(supplierName: value.trim());
+                      } else {
+                        BlocProvider.of<ImportBillsCubit>(context).get();
+                      }
+                    },
+                  ),
                   const Gap(16),
-                  CustomTextField(label: S.of(context).BillNo),
+                  CustomTextField(
+                      label: S.of(context).BillNo,
+                      onChanged: (value) {
+                        if (value.trim().isNotEmpty) {
+                          BlocProvider.of<ImportBillsCubit>(context)
+                              .get(billNo: value.trim());
+                        } else {
+                          BlocProvider.of<ImportBillsCubit>(context).get();
+                        }
+                      }),
                 ],
               ),
             ),
             const Gap(16),
             const ImportTotalBuilder(),
             const Spacer(),
-            Expanded(
-              child: CustomDateTextField(
-                controller: controller,
-                hint: S.of(context).Date,
-                maxline: 2,
-                onTap: () {
-                  Dialogmethods.dateTimeDialog(context, controller: controller);
-                },
-              ),
-            ),
+            const ImportDateFilterSec(),
           ],
         ),
       ),

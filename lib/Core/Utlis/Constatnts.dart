@@ -7,5 +7,8 @@ const String savedToken = "savedToken";
 const String savedRole = "savedRole";
 const String employeeRole = "EMPLOYEE";
 const String testItems = "testItems";
+const String supplierInvoices = "supplierInvoices";
+const String supplierInvoicesNumber = "supplierInvoicesNumber";
+const String productDetails = "productDetails";
 const String kRoleJwt =
     "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";

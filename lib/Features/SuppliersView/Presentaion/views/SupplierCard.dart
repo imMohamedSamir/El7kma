@@ -1,11 +1,14 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
+import 'package:el7kma/Features/SuppliersView/Presentaion/manager/suppliers_cubit/suppliers_cubit.dart';
+import 'package:el7kma/Features/SuppliersView/data/models/suppliers_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SupplierCard extends StatefulWidget {
-  const SupplierCard({super.key});
-
+  const SupplierCard({super.key, required this.supplier});
+  final SuppliersModel supplier;
   @override
   State<SupplierCard> createState() => _SupplierCardState();
 }
@@ -13,6 +16,18 @@ class SupplierCard extends StatefulWidget {
 class _SupplierCardState extends State<SupplierCard> {
   bool isEdit = false;
   bool secure = true;
+  late SuppliersCubit cubit;
+  @override
+  void initState() {
+    cubit = BlocProvider.of<SuppliersCubit>(context);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +37,36 @@ class _SupplierCardState extends State<SupplierCard> {
         children: [
           Expanded(
               child: CustomTextField(
+            initialValue: widget.supplier.supplierName,
             enabled: isEdit,
             maxLines: 1,
+            onChanged: (value) {
+              cubit.editedSupplier.supplierName = value.trim();
+            },
           )),
           Expanded(
               child: CustomTextField(
-            enabled: isEdit,
-          )),
+                  initialValue: widget.supplier.contactInfo,
+                  enabled: isEdit,
+                  onChanged: (value) {
+                    cubit.editedSupplier.contactInfo = value.trim();
+                  })),
           Expanded(
               child: CustomTextField(
-            enabled: isEdit,
+            initialValue: widget.supplier.totalAmount.toString(),
+            enabled: false,
             isEGP: true,
           )),
           Expanded(
               child: CustomTextField(
+            initialValue: widget.supplier.paid.toString(),
             isEGP: true,
-            enabled: isEdit,
+            enabled: false,
           )),
           Expanded(
               child: CustomTextField(
-            enabled: isEdit,
+            initialValue: widget.supplier.rest.toString(),
+            enabled: false,
             isEGP: true,
           )),
           if (!isEdit)
@@ -64,6 +89,7 @@ class _SupplierCardState extends State<SupplierCard> {
         setState(() {
           isEdit = true;
         });
+        cubit.editedSupplier = widget.supplier;
       },
       child: Container(
         padding: const EdgeInsets.all(14),
@@ -84,6 +110,7 @@ class _SupplierCardState extends State<SupplierCard> {
         setState(() {
           isEdit = false;
         });
+        cubit.edit();
       },
       child: Container(
         padding: const EdgeInsets.all(14),
@@ -101,7 +128,7 @@ class _SupplierCardState extends State<SupplierCard> {
   Widget deleteIcon(BuildContext context) {
     return InkWell(
       onTap: () {
-        Dialogmethods.deleteSupplier(context);
+        Dialogmethods.deleteSupplier(context, widget.supplier.supplierId ?? "");
       },
       child: Container(
         padding: const EdgeInsets.all(14),

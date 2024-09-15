@@ -55,7 +55,7 @@ class EmployeeRepoImpl implements EmployeeRepo {
 
   @override
   Future<Either<Failure, dynamic>> deleteEmployee({required String id}) async {
-    String endPoint = "Employees/$id";
+    final endPoint = "Employees/$id";
     try {
       final response = await _elhekmaServices.delete(endPoint: endPoint);
 

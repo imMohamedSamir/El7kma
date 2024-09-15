@@ -14,3 +14,5 @@ final class CustomerSuccess extends CustomerState {
 }
 
 final class CustomerFailure extends CustomerState {}
+
+final class CustomerEdited extends CustomerState {}

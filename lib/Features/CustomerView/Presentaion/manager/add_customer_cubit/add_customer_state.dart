@@ -9,6 +9,8 @@ final class AddCustomerLoading extends AddCustomerState {}
 
 final class AddCustomerSuccess extends AddCustomerState {}
 
+final class AddCustomerDeleted extends AddCustomerState {}
+
 final class AddCustomerFailure extends AddCustomerState {
   final String errMsg;
 
