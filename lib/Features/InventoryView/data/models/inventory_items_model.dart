@@ -1,13 +1,34 @@
+import 'package:hive/hive.dart';
+
+part 'inventory_items_model.g.dart';
+
+@HiveType(typeId: 2)
 class Inventoryitemsmodel {
+  @HiveField(0)
   String? id;
+
+  @HiveField(1)
   String? code;
+
+  @HiveField(2)
   String? product;
-  String? categoryId;
+
+  @HiveField(3)
   num? qty;
+
+  @HiveField(4)
   num? price;
+
+  @HiveField(5)
   bool? isPackage;
+
+  @HiveField(6)
   num? packageQty;
+
+  @HiveField(7)
   num? unitPrice;
+
+  @HiveField(8)
   bool? isDiscount;
   Inventoryitemsmodel({
     this.id,

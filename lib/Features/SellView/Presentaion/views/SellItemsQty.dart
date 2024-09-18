@@ -5,27 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class SellItemsQty extends StatefulWidget {
-  const SellItemsQty({super.key});
-
+  const SellItemsQty({super.key, required this.controller, this.focusNode});
+  final TextEditingController controller;
+  final FocusNode? focusNode;
   @override
   State<SellItemsQty> createState() => _SellItemsQtyState();
 }
 
 class _SellItemsQtyState extends State<SellItemsQty> {
-  late TextEditingController controller;
+  int _quantity = 1;
+
   @override
   void initState() {
-    controller = TextEditingController();
-    controller.text = _quantity.toString();
     super.initState();
+
+    widget.controller.text = _quantity.toString();
   }
 
-  int _quantity = 1;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        padding: const EdgeInsets.all(6),
         margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -38,7 +39,7 @@ class _SellItemsQtyState extends State<SellItemsQty> {
               onTap: () {
                 setState(() {
                   _quantity++;
-                  controller.text = _quantity.toString();
+                  widget.controller.text = _quantity.toString();
                 });
               },
             ),
@@ -46,12 +47,13 @@ class _SellItemsQtyState extends State<SellItemsQty> {
             SizedBox(
                 width: AppSizes.getWidth(20, context),
                 child: TextField(
+                  focusNode: widget.focusNode,
                   style: AppStyles.styleSemiBold18(context)
                       .copyWith(color: pKcolor),
-                  controller: controller,
+                  controller: widget.controller,
                   onChanged: (value) {
                     setState(() {
-                      _quantity = int.parse(value);
+                      _quantity = int.tryParse(value) ?? 0;
                     });
                   },
                 )),
@@ -61,11 +63,11 @@ class _SellItemsQtyState extends State<SellItemsQty> {
                   ? () {
                       setState(() {
                         _quantity--;
-                        controller.text = _quantity.toString();
+                        widget.controller.text = _quantity.toString();
                       });
                     }
                   : null,
-              isLimit: _quantity == 1 || controller.text.isEmpty,
+              isLimit: _quantity == 1 || widget.controller.text.isEmpty,
             )
           ],
         ),

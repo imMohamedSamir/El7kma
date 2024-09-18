@@ -650,11 +650,11 @@ class S {
     );
   }
 
-  /// `Sale`
-  String get Sale {
+  /// `Discount`
+  String get Discount {
     return Intl.message(
-      'Sale',
-      name: 'Sale',
+      'Discount',
+      name: 'Discount',
       desc: '',
       args: [],
     );
@@ -855,6 +855,46 @@ class S {
     return Intl.message(
       'the invoice has been added successfully',
       name: 'SupplierInvoiceSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expenses`
+  String get expneses {
+    return Intl.message(
+      'Expenses',
+      name: 'expneses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `expneses Name`
+  String get expnesesName {
+    return Intl.message(
+      'expneses Name',
+      name: 'expnesesName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Damaged & Return`
+  String get DamagedAndReturn {
+    return Intl.message(
+      'Damaged & Return',
+      name: 'DamagedAndReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get Type {
+    return Intl.message(
+      'Type',
+      name: 'Type',
       desc: '',
       args: [],
     );

@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "CustomerName": MessageLookupByLibrary.simpleMessage("Customer Name"),
         "CustomerNameValidation":
             MessageLookupByLibrary.simpleMessage("Enter Customer\'s name"),
+        "DamagedAndReturn":
+            MessageLookupByLibrary.simpleMessage("Damaged & Return"),
         "Date": MessageLookupByLibrary.simpleMessage("Date"),
         "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "DeleteCustomer":
@@ -64,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delete Supplier"),
         "DeleteSupplierMsg": MessageLookupByLibrary.simpleMessage(
             "Are you sure want Delete this Supplier ?"),
+        "Discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "EGP": MessageLookupByLibrary.simpleMessage("EGP"),
         "EmployeeAddedMsg":
             MessageLookupByLibrary.simpleMessage("Employee added successfully"),
@@ -104,7 +107,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "Salary": MessageLookupByLibrary.simpleMessage("Salary"),
         "SalaryCorrect":
             MessageLookupByLibrary.simpleMessage("please enter correct Salary"),
-        "Sale": MessageLookupByLibrary.simpleMessage("Sale"),
         "ShiftHours": MessageLookupByLibrary.simpleMessage("ShiftHours"),
         "SupplierAddedMsg":
             MessageLookupByLibrary.simpleMessage("Supplier added successfully"),
@@ -124,11 +126,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "To": MessageLookupByLibrary.simpleMessage("To"),
         "Total": MessageLookupByLibrary.simpleMessage("Total Amount"),
         "TotalBills": MessageLookupByLibrary.simpleMessage("Total Bills"),
+        "Type": MessageLookupByLibrary.simpleMessage("Type"),
         "UnitPrice": MessageLookupByLibrary.simpleMessage("Unit Price"),
         "User": MessageLookupByLibrary.simpleMessage("User"),
         "UserName": MessageLookupByLibrary.simpleMessage("UserName"),
         "add": MessageLookupByLibrary.simpleMessage("add"),
         "admin": MessageLookupByLibrary.simpleMessage("Admin"),
+        "expneses": MessageLookupByLibrary.simpleMessage("Expenses"),
+        "expnesesName": MessageLookupByLibrary.simpleMessage("expneses Name"),
         "invalidAuth": MessageLookupByLibrary.simpleMessage(
             "Invalide UserName or password"),
         "login": MessageLookupByLibrary.simpleMessage("login"),

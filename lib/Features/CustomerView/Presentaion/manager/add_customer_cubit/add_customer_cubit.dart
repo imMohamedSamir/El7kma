@@ -18,7 +18,7 @@ class AddCustomerCubit extends Cubit<AddCustomerState> {
       final result =
           await _customerRepo.addCustomer(custmerModel: customerModel);
       result.fold((fail) => emit(AddCustomerFailure(errMsg: fail.errMessage)),
-          (response) => emit(AddCustomerSuccess()));
+          (response) => emit(AddCustomerSuccess(id: response.toString())));
     }
   }
 

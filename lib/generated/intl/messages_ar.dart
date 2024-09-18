@@ -31,10 +31,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "AddSupplier": MessageLookupByLibrary.simpleMessage("إضافة مورد"),
         "AddSupplierMsg":
             MessageLookupByLibrary.simpleMessage("أدخل تفاصيل المورد"),
+        "Address": MessageLookupByLibrary.simpleMessage("العنوان"),
+        "AddressMsg": MessageLookupByLibrary.simpleMessage("أدخل عنوان العميل"),
         "BillNo": MessageLookupByLibrary.simpleMessage("رقم الفاتورة"),
         "Cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "Code": MessageLookupByLibrary.simpleMessage("الرمز"),
+        "CustomerAddedMsg":
+            MessageLookupByLibrary.simpleMessage("تم إضافة العميل بنجاح"),
         "CustomerBills": MessageLookupByLibrary.simpleMessage("فواتير الزبون"),
+        "CustomerDeleteMsg":
+            MessageLookupByLibrary.simpleMessage("تم حذف العميل بنجاح"),
+        "CustomerEditeMsg":
+            MessageLookupByLibrary.simpleMessage("تم تعديل العميل بنجاح"),
         "CustomerName": MessageLookupByLibrary.simpleMessage("اسم العميل"),
         "CustomerNameValidation":
             MessageLookupByLibrary.simpleMessage("أدخل اسم الزبون"),
@@ -49,7 +57,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "DeleteItem": MessageLookupByLibrary.simpleMessage("حذف المنتج"),
         "DeleteItemMsg": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد من حذف هذا المنتج ؟"),
+        "DeleteSupplier": MessageLookupByLibrary.simpleMessage("حذف المورد"),
+        "DeleteSupplierMsg": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من حذف هذا المورد؟"),
+        "Discount": MessageLookupByLibrary.simpleMessage("خصم"),
         "EGP": MessageLookupByLibrary.simpleMessage("ج.م"),
+        "EmployeeAddedMsg":
+            MessageLookupByLibrary.simpleMessage("تم إضافة الموظف بنجاح"),
+        "EmployeeDeletedMsg":
+            MessageLookupByLibrary.simpleMessage("تم حذف الموظف بنجاح"),
+        "EmployeeEditedMsg":
+            MessageLookupByLibrary.simpleMessage("تم تعديل الموظف بنجاح"),
         "EmployeeName": MessageLookupByLibrary.simpleMessage("اسم الموظف"),
         "EmployeeNameValidation":
             MessageLookupByLibrary.simpleMessage("أدخل اسم الموظف"),
@@ -57,8 +75,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل كلمة مرور الموظف"),
         "EmployeeSalaryValidation":
             MessageLookupByLibrary.simpleMessage("أدخل راتب الموظف"),
+        "ErrorMsg": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("نوع المصروفات"),
         "From": MessageLookupByLibrary.simpleMessage("من"),
+        "Logout": MessageLookupByLibrary.simpleMessage("خروج"),
+        "LogoutMsg": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
         "Notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "OK": MessageLookupByLibrary.simpleMessage("موافق"),
         "Package": MessageLookupByLibrary.simpleMessage("حزمة"),
@@ -77,6 +98,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
         "Rest": MessageLookupByLibrary.simpleMessage("باقي"),
         "Salary": MessageLookupByLibrary.simpleMessage("الراتب"),
+        "SalaryCorrect":
+            MessageLookupByLibrary.simpleMessage("أدخل الراتب الصحيح"),
+        "ShiftHours": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
+        "SupplierAddedMsg":
+            MessageLookupByLibrary.simpleMessage("تم إضافة المورد بنجاح"),
+        "SupplierDeletedMsg":
+            MessageLookupByLibrary.simpleMessage("تم حذف المورد بنجاح"),
+        "SupplierEditedMsg":
+            MessageLookupByLibrary.simpleMessage("تم تعديل المورد بنجاح"),
+        "SupplierInvoiceSuccess":
+            MessageLookupByLibrary.simpleMessage("تم إضافة الفاتورة بنجاح"),
         "SupplierName": MessageLookupByLibrary.simpleMessage("إسم المورد"),
         "SupplierNameValidator":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال اسم المورد"),
@@ -92,11 +124,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "UserName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "add": MessageLookupByLibrary.simpleMessage("إضافة"),
         "admin": MessageLookupByLibrary.simpleMessage("مدير"),
+        "invalidAuth": MessageLookupByLibrary.simpleMessage(
+            "اسم المستخدم أو كلمة المرور غير صالحة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordHint":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
         "totalAmount": MessageLookupByLibrary.simpleMessage("الإجمالي"),
+        "userNameValidator":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم الموظف"),
         "usernNameHint":
             MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم")
       };

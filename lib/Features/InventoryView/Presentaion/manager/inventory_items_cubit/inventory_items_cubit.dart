@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:el7kma/Features/InventoryView/data/models/InventoryItemsModel.dart';
+import 'package:el7kma/Features/InventoryView/data/models/inventory_items_model.dart';
 import 'package:el7kma/Features/InventoryView/data/repo/IneventoryRepo.dart';
 import 'package:meta/meta.dart';
 

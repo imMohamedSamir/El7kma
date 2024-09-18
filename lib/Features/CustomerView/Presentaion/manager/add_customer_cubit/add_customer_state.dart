@@ -7,7 +7,11 @@ final class AddCustomerInitial extends AddCustomerState {}
 
 final class AddCustomerLoading extends AddCustomerState {}
 
-final class AddCustomerSuccess extends AddCustomerState {}
+final class AddCustomerSuccess extends AddCustomerState {
+  final String id;
+
+  AddCustomerSuccess({required this.id});
+}
 
 final class AddCustomerDeleted extends AddCustomerState {}
 

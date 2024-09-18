@@ -26,18 +26,18 @@ class ExportbillcardItem extends StatelessWidget {
               child: CustomTextField(
             isEGP: true,
             enabled: false,
-            initialValue: item.price,
+            initialValue: item.price.toString(),
           )),
           Expanded(
               child: CustomTextField(
             enabled: false,
-            initialValue: item.qty,
+            initialValue: item.qty.toString(),
           )),
           Expanded(
               child: CustomTextField(
             isEGP: true,
             enabled: false,
-            initialValue: item.totalprice,
+            initialValue: item.totalprice.toString(),
           )),
         ],
       ),

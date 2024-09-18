@@ -3,7 +3,7 @@ import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Features/InventoryView/Presentaion/manager/inventory_items_cubit/inventory_items_cubit.dart';
 import 'package:el7kma/Features/InventoryView/Presentaion/views/InventoryPackageSec.dart';
-import 'package:el7kma/Features/InventoryView/data/models/InventoryItemsModel.dart';
+import 'package:el7kma/Features/InventoryView/data/models/inventory_items_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

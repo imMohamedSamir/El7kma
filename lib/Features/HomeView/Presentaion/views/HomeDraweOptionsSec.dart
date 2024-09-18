@@ -8,25 +8,26 @@ import 'package:el7kma/Features/HomeView/data/models/DrawerOptionsModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeDraweOptionsSec extends StatefulWidget {
-  const HomeDraweOptionsSec({super.key});
+class HomeDrawerOptionsSec extends StatefulWidget {
+  const HomeDrawerOptionsSec({super.key});
 
   @override
-  State<HomeDraweOptionsSec> createState() => _HomeDraweOptionsSecState();
+  _HomeDrawerOptionsSecState createState() => _HomeDrawerOptionsSecState();
 }
 
-class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
-  int selectedIndex = 8;
+class _HomeDrawerOptionsSecState extends State<HomeDrawerOptionsSec> {
+  int selectedIndex = 0;
   bool isAdmin = false;
+
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ChoosePageCubit>(context).choosePage(page: selectedIndex);
+    _updateSelectedPage(selectedIndex);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  void _updateSelectedPage(int index) {
+    BlocProvider.of<ChoosePageCubit>(context)
+        .choosePage(page: index, isAdmin: isAdmin);
   }
 
   @override
@@ -34,22 +35,11 @@ class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
     return BlocBuilder<UserDetailsCubit, UserDetailsState>(
       builder: (context, state) {
         if (state is UserDetailsSuccess) {
-          final List<DrawerOptionsModel> options = getOptions(role: state.role);
-          return Column(
-            children: List.generate(
-                options.length,
-                (index) => HomeDrawerOptionsCard(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = index;
-                          BlocProvider.of<ChoosePageCubit>(context)
-                              .choosePage(page: index, isAdmin: isAdmin);
-                        });
-                      },
-                      optionsModel: options[index],
-                      isActive: selectedIndex == index,
-                    )),
-          );
+          final List<DrawerOptionsModel> options =
+              _getOptionsForRole(state.role);
+          _updateSelectedPage(selectedIndex);
+
+          return _buildDrawerOptions(options);
         } else {
           return const OptionsLoding();
         }
@@ -57,14 +47,35 @@ class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
     );
   }
 
-  List<DrawerOptionsModel> getOptions({required String role}) {
-    List<DrawerOptionsModel> options = [];
-    if (role != employeeRole || role != "موظف") {
-      isAdmin = true;
-      options = [
+  // Build the list of drawer options dynamically
+  Widget _buildDrawerOptions(List<DrawerOptionsModel> options) {
+    return Column(
+      children: List.generate(
+        options.length,
+        (index) => HomeDrawerOptionsCard(
+          onTap: () {
+            setState(() {
+              selectedIndex = index;
+              _updateSelectedPage(index);
+            });
+          },
+          optionsModel: options[index],
+          isActive: selectedIndex == index,
+        ),
+      ),
+    );
+  }
+
+  // Return the list of options based on the user's role
+  List<DrawerOptionsModel> _getOptionsForRole(String role) {
+    // isAdmin = role != employeeRole && role != "موظف";
+    isAdmin = true;
+    if (isAdmin) {
+      return [
         DrawerOptionsModel(title: "الادارة", img: Assets.imagesDashboardIcon),
         DrawerOptionsModel(title: "البيع", img: Assets.imagesSellIcon),
-        DrawerOptionsModel(title: "المصاريف", img: Assets.imagesExpnesesIcon),
+        DrawerOptionsModel(
+            title: "عمليات اخرى", img: Assets.imagesExpnesesIcon),
         DrawerOptionsModel(title: "المخزن", img: Assets.imagesInventory),
         DrawerOptionsModel(title: "الوارد", img: Assets.imagesImportIcon),
         DrawerOptionsModel(
@@ -76,13 +87,12 @@ class _HomeDraweOptionsSecState extends State<HomeDraweOptionsSec> {
         DrawerOptionsModel(title: "الموردين", img: Assets.imagesSupplierIcon),
       ];
     } else {
-      isAdmin = true;
-      options = [
+      return [
         DrawerOptionsModel(title: "البيع", img: Assets.imagesSellIcon),
-        DrawerOptionsModel(title: "المصاريف", img: Assets.imagesExpnesesIcon),
+        DrawerOptionsModel(
+            title: "عمليات اخرى", img: Assets.imagesExpnesesIcon),
         DrawerOptionsModel(title: "المخزن", img: Assets.imagesInventory),
       ];
     }
-    return options;
   }
 }

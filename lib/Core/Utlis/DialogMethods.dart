@@ -55,7 +55,9 @@ abstract class Dialogmethods {
         return AlertDialog(
           title: Text(S.of(context).AddCustomer,
               style: AppStyles.styleSemiBold18(context)),
-          content: const CustomerForm(),
+          content: CustomerForm(
+            controller: controller,
+          ),
         );
       },
     );

@@ -58,9 +58,8 @@
     "AddCustomer":"Add Customer",
     "AddCustomerMsg":"Add Customer details",
     "CustomerNameValidation":"Enter Customer's name",
-    
     "userNameValidator":"Enter your UserName",
-    "Sale":"Sale",
+    "Discount":"Discount",
     "invalidAuth":"Invalide UserName or password",
     "Logout":"Logout",
     "LogoutMsg":"Are you sure ?",
@@ -80,7 +79,14 @@
     "SupplierEditedMsg":"Supplier Edited successfully",
     "SupplierDeletedMsg":"Supplier deleted successfully",
     "ShiftHours":"ShiftHours",
-    "SupplierInvoiceSuccess":"the invoice has been added successfully"
+    "SupplierInvoiceSuccess":"the invoice has been added successfully",
+
+    "expneses":"Expenses",
+    "expnesesName":"expneses Name",
+    "DamagedAndReturn":"Damaged & Return",
+    "Type":"Type"
+
+    
 
 
 

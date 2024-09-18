@@ -31,6 +31,7 @@ class SupplierDropDownMenu extends StatelessWidget {
   Widget buildDropdownMenu(BuildContext context,
       {List<SuppliersModel>? suppliers}) {
     return DropdownMenu(
+      enableFilter: true,
       menuStyle: MenuStyle(
         shape: WidgetStateProperty.all<OutlinedBorder>(
           const RoundedRectangleBorder(

@@ -12,6 +12,7 @@ import 'package:el7kma/Features/EmployeesView/Presentaion/manager/add_employee_c
 import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/data/repo/EmployeeRepoImpl.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/HomeView.dart';
+import 'package:el7kma/Features/HomeView/Presentaion/manager/UserDetailsCubit/user_details_cubit.dart';
 import 'package:el7kma/Features/InventoryView/Presentaion/manager/inventory_items_cubit/inventory_items_cubit.dart';
 import 'package:el7kma/Features/InventoryView/data/repo/InvenetoryRepoImpl.dart';
 import 'package:el7kma/Features/SuppliersView/Presentaion/manager/SupplierAddDeleteCubit/SupplierAddDeleteCubit.dart';
@@ -24,7 +25,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  windowSize();
 
   Bloc.observer = SimpleBlocObserver();
   setupServiceLocator();
@@ -52,10 +52,16 @@ class El7kmaApp extends StatelessWidget {
                 AddCustomerCubit(getIt.get<CustomerRepoImpl>())),
         BlocProvider(
             create: (context) =>
-                InventoryItemsCubit(getIt.get<InvenetoryRepoImpl>())),
+                CustomerCubit(getIt.get<CustomerRepoImpl>())..get()),
         BlocProvider(
             create: (context) =>
-                SupplierAddDeleteCubit(getIt.get<SupplierRpoImpl>()))
+                InventoryItemsCubit(getIt.get<InvenetoryRepoImpl>())..get()),
+        BlocProvider(
+            create: (context) =>
+                SupplierAddDeleteCubit(getIt.get<SupplierRpoImpl>())),
+        BlocProvider(
+          create: (context) => UserDetailsCubit()..get(),
+        ),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
         builder: (context, state) {
@@ -70,7 +76,7 @@ class El7kmaApp extends StatelessWidget {
             locale: state,
             supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
-            home: const AuthView(),
+            home: const HomeView(),
           );
         },
       ),

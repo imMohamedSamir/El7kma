@@ -1,5 +1,5 @@
 import 'package:el7kma/Features/ExpansesView/Presentaion/views/ExpansesItemTable.dart';
-import 'package:el7kma/Features/SellView/Presentaion/views/SellItemsHeader.dart';
+import 'package:el7kma/Features/ExpansesView/Presentaion/views/ExpensesItemHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -18,7 +18,7 @@ class ExpansesItemSec extends StatelessWidget {
             borderRadius: BorderRadius.circular(16)),
         child: const Column(
           children: [
-            SellItemsHeader(),
+            ExpensesItemHeader(),
             ExpansesItemTable(),
             Gap(16),
           ],

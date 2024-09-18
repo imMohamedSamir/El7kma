@@ -51,7 +51,7 @@ class ExportTotalBillsBuilder extends StatelessWidget {
     double totalAmound = 0;
     if (bills.isNotEmpty) {
       for (var bill in bills) {
-        double billPrice = double.parse(bill.totalAmount!);
+        double billPrice = bill.totalAmount!;
         totalAmound += billPrice;
       }
     }

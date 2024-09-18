@@ -72,6 +72,7 @@ class ImportItemCubit extends Cubit<ImportItemState> {
     final result = await _importRepo.add(invoice: invoice);
     result.fold((fail) => emit(ImportItemFailure()), (response) {
       emit(ImportItemSuccess());
+      clear();
     });
   }
 

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/CustomerView.dart';
 import 'package:el7kma/Features/DashboardView/Presentaion/DashboardView.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/EmployeesView.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/ExpensesView.dart';
+import 'package:el7kma/Features/ExpansesView/Presentaion/OthersView.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/ExportBillsView.dart';
 import 'package:el7kma/Features/ImportBillsView/Presentaion/ImportBillsView.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/ImportView.dart';
@@ -26,7 +26,7 @@ class ChoosePageCubit extends Cubit<ChoosePageState> {
           emit(ChoosePageChoosed(page: const SellView()));
           break;
         case 2:
-          emit(ChoosePageChoosed(page: const ExpenesesView()));
+          emit(ChoosePageChoosed(page: const OthersView()));
           break;
         case 3:
           emit(ChoosePageChoosed(page: const InventoryView()));
@@ -58,7 +58,7 @@ class ChoosePageCubit extends Cubit<ChoosePageState> {
           emit(ChoosePageChoosed(page: const SellView()));
           break;
         case 1:
-          emit(ChoosePageChoosed(page: const ExpenesesView()));
+          emit(ChoosePageChoosed(page: const OthersView()));
           break;
         case 2:
           emit(ChoosePageChoosed(page: const InventoryView()));

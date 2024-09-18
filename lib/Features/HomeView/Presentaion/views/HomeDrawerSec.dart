@@ -13,16 +13,28 @@ class HomeDrawerSec extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: Container(
-      color: pKcolor,
-      child: const Column(children: [
-        DrawerHeaderSec(),
-        HomeUserNameSec(),
-        Gap(8),
-        Divider(height: 16, indent: 24, endIndent: 24),
-        HomeDraweOptionsSec(),
-        Gap(8),
-      ]),
-    ));
+      child: Container(
+        color: pKcolor,
+        child: const CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: DrawerHeaderSec(),
+            ),
+            SliverToBoxAdapter(
+              child: HomeUserNameSec(),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(8),
+            ),
+            SliverToBoxAdapter(
+              child: Divider(height: 16, indent: 24, endIndent: 24),
+            ),
+            SliverToBoxAdapter(
+              child: HomeDrawerOptionsSec(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

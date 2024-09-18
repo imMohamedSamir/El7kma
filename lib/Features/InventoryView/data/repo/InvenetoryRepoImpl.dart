@@ -4,8 +4,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:el7kma/Core/Errors/Failurs.dart';
 import 'package:el7kma/Core/Utlis/ApiServices.dart';
-import 'package:el7kma/Features/InventoryView/data/models/InventoryItemsModel.dart';
+import 'package:el7kma/Core/Utlis/Constatnts.dart';
+import 'package:el7kma/Features/InventoryView/data/models/inventory_items_model.dart';
 import 'package:el7kma/Features/InventoryView/data/repo/IneventoryRepo.dart';
+import 'package:hive/hive.dart';
 
 class InvenetoryRepoImpl implements IneventoryRepo {
   final ElhekmaServices _elhekmaServices;
@@ -15,21 +17,29 @@ class InvenetoryRepoImpl implements IneventoryRepo {
   @override
   Future<Either<Failure, List<Inventoryitemsmodel>>> getItems(
       {String? code, String? name, int? pageNumber}) async {
+    List<Inventoryitemsmodel> items = [];
+    final endPoint =
+        "Items?name=$name&code=$code&page=${pageNumber ?? 0}&pageSize=10";
     try {
-      final endPoint =
-          "Items?name=$name&code=$code&page=${pageNumber ?? 0}&pageSize=10";
-      final response = await _elhekmaServices.get(endPoint: endPoint);
-      List<Inventoryitemsmodel> items = [];
+      items = _getItems();
+      if (items.isNotEmpty && name == null && code == null && pageNumber == 0) {
+        return right(items);
+      } else {
+        final response = await _elhekmaServices.get(endPoint: endPoint);
 
-      for (var item in response['data']) {
-        items.add(Inventoryitemsmodel.fromJson(item));
+        for (var item in response['data']) {
+          items.add(Inventoryitemsmodel.fromJson(item));
+        }
+        await _saveItems(items: items);
+
+        return right(items);
       }
-      return right(items);
     } catch (e) {
       log(e.toString());
       if (e is DioException) {
-        return left(
-            ServerFailure.fromResponse(e.response?.statusCode, e.response));
+        log(e.response.toString());
+
+        return left(ServerFailure(e.response.toString()));
       }
       return left(ServerFailure(e.toString()));
     }
@@ -70,5 +80,23 @@ class InvenetoryRepoImpl implements IneventoryRepo {
       }
       return left(ServerFailure(e.toString()));
     }
+  }
+
+  List<Inventoryitemsmodel> _getItems() {
+    final box = Hive.box<Inventoryitemsmodel>(kInventoryItems);
+    box.clear();
+    return box.values.toList();
+  }
+
+  Future<void> _saveItems({required List<Inventoryitemsmodel> items}) async {
+    final box = Hive.box<Inventoryitemsmodel>(kInventoryItems);
+    for (var item in items) {
+      if (!box.values.any((existingItem) =>
+          existingItem.id == item.id || existingItem.code == item.code)) {
+        await box.add(item);
+      }
+    }
+
+    log(box.length.toString());
   }
 }

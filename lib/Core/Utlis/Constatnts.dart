@@ -7,7 +7,12 @@ const String savedToken = "savedToken";
 const String savedRole = "savedRole";
 const String employeeRole = "EMPLOYEE";
 const String testItems = "testItems";
+const String kInventoryItems = "InventoryItems";
 const String supplierInvoices = "supplierInvoices";
+const String kExportInvoices = "ExportInvoices";
+const String kExportItems = "ExportItems";
+const String kExportBillNo = "ExportBillNo ";
+
 const String supplierInvoicesNumber = "supplierInvoicesNumber";
 const String productDetails = "productDetails";
 const String kRoleJwt =

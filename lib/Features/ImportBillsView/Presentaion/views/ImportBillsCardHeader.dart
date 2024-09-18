@@ -1,3 +1,4 @@
+import 'package:el7kma/Core/Utlis/FormatDate.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Features/ImportBillsView/data/models/ImportBillsModel.dart';
 import 'package:el7kma/generated/l10n.dart';
@@ -66,7 +67,7 @@ class ImportBillsCardHeader extends StatelessWidget {
                 CustomTextField(
                   label: S.of(context).Date,
                   enabled: false,
-                  initialValue: bill.date.toString(),
+                  initialValue: fromatDate(value: bill.date ?? ""),
                 ),
               ],
             ),
