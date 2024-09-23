@@ -10,6 +10,7 @@ class ExportBillsCubit extends Cubit<ExportBillsState> {
   final ExportBillsRepo _exportRepo;
   void get({
     String? userName,
+    String? customerName,
     String? billNo,
     String? startDate,
     String? endDate,

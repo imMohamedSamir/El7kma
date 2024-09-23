@@ -899,6 +899,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Out Of Stock`
+  String get OutOfStockItem {
+    return Intl.message(
+      'Out Of Stock',
+      name: 'OutOfStockItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `this item is out of stock`
+  String get OutOfStockItemMsg {
+    return Intl.message(
+      'this item is out of stock',
+      name: 'OutOfStockItemMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get OutOfStockWarning {
+    return Intl.message(
+      'Warning',
+      name: 'OutOfStockWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `this item will be out of stock soon ,it's quantity `
+  String get OutOfStockWarningMsg {
+    return Intl.message(
+      'this item will be out of stock soon ,it\'s quantity ',
+      name: 'OutOfStockWarningMsg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -16,24 +16,21 @@ class InvenetoryRepoImpl implements IneventoryRepo {
 
   @override
   Future<Either<Failure, List<Inventoryitemsmodel>>> getItems(
-      {String? code, String? name, int? pageNumber}) async {
+      {String? code, String? name, int? pageNumber, int? pageSize}) async {
     List<Inventoryitemsmodel> items = [];
     final endPoint =
-        "Items?name=$name&code=$code&page=${pageNumber ?? 0}&pageSize=10";
+        "Items?name=$name&code=$code&page=${pageNumber ?? 0}&pageSize=${pageSize ?? 10}";
     try {
-      items = _getItems();
-      if (items.isNotEmpty && name == null && code == null && pageNumber == 0) {
-        return right(items);
-      } else {
-        final response = await _elhekmaServices.get(endPoint: endPoint);
+      final response = await _elhekmaServices.get(endPoint: endPoint);
 
-        for (var item in response['data']) {
-          items.add(Inventoryitemsmodel.fromJson(item));
-        }
-        await _saveItems(items: items);
-
-        return right(items);
+      for (var item in response['data']) {
+        items.add(Inventoryitemsmodel.fromJson(item));
       }
+      if (name?.isEmpty ??
+          true && (code?.isEmpty ?? true) && (pageNumber == null)) {
+        await _saveItems(items: items);
+      }
+      return right(items);
     } catch (e) {
       log(e.toString());
       if (e is DioException) {
@@ -82,21 +79,23 @@ class InvenetoryRepoImpl implements IneventoryRepo {
     }
   }
 
-  List<Inventoryitemsmodel> _getItems() {
-    final box = Hive.box<Inventoryitemsmodel>(kInventoryItems);
-    box.clear();
-    return box.values.toList();
-  }
-
   Future<void> _saveItems({required List<Inventoryitemsmodel> items}) async {
     final box = Hive.box<Inventoryitemsmodel>(kInventoryItems);
+
     for (var item in items) {
-      if (!box.values.any((existingItem) =>
-          existingItem.id == item.id || existingItem.code == item.code)) {
+      // Check if an existing item has the same id or code
+      int existingItemIndex = box.values.toList().indexWhere((existingItem) =>
+          existingItem.id == item.id || existingItem.code == item.code);
+
+      if (existingItemIndex != -1) {
+        await box.putAt(existingItemIndex, item);
+      } else {
+        // If the item doesn't exist, add it
         await box.add(item);
+        log("New item added: ${item.code}");
       }
     }
 
-    log(box.length.toString());
+    log("Total items in box: ${box.length}");
   }
 }

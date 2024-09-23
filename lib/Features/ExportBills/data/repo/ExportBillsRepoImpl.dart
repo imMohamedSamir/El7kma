@@ -14,6 +14,7 @@ class ExportBillsRepoImpl implements ExportBillsRepo {
   @override
   Future<Either<Failure, List<ExportBillModel>>> getBills({
     String? userName,
+    String? customerName,
     String? billNo,
     String? startDate,
     String? endDate,
@@ -24,7 +25,7 @@ class ExportBillsRepoImpl implements ExportBillsRepo {
     //   endDate = DateTime.now().toIso8601String();
     // }
     final endPoint =
-        "UserInvoice/All?customerName=${userName ?? ""}&startDate=${startDate ?? ""}&endDate=${endDate ?? ""}&withAmountDue=$isPaid&receiptNumber=${billNo ?? ""}&pageNumber=1&pageSize=10";
+        "UserInvoice/All?EmployyeName=${userName ?? ""}&customerName=${customerName ?? ""}&startDate=${startDate ?? ""}&endDate=${endDate ?? ""}&withAmountDue=$isPaid&receiptNumber=${billNo ?? ""}&pageNumber=1&pageSize=10";
     try {
       final response = await _elhekmaServices.get(endPoint: endPoint);
       List<ExportBillModel> bills = [];

@@ -12,3 +12,9 @@ final class ExportInvoiceSuccess extends ExportInvoiceState {}
 final class ExportInvoiceFailure extends ExportInvoiceState {}
 
 final class ExportInvoiceCleared extends ExportInvoiceState {}
+
+final class ExportInvoiceOutOfStock extends ExportInvoiceState {
+  final String itemName;
+
+  ExportInvoiceOutOfStock({required this.itemName});
+}

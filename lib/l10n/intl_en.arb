@@ -80,11 +80,16 @@
     "SupplierDeletedMsg":"Supplier deleted successfully",
     "ShiftHours":"ShiftHours",
     "SupplierInvoiceSuccess":"the invoice has been added successfully",
-
     "expneses":"Expenses",
     "expnesesName":"expneses Name",
     "DamagedAndReturn":"Damaged & Return",
-    "Type":"Type"
+    "Type":"Type",
+    "OutOfStockItem":"Out Of Stock",
+    "OutOfStockItemMsg":"this item is out of stock",
+
+    "OutOfStockWarning":"Warning",
+    "OutOfStockWarningMsg":"this item will be out of stock soon ,it's quantity "
+
 
     
 

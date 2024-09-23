@@ -1,7 +1,6 @@
 import 'package:el7kma/Core/Manager/language_cubit/language_cubit.dart';
 import 'package:el7kma/Core/Utlis/HiveAdapters.dart';
 import 'package:el7kma/Core/Utlis/InitHive.dart';
-import 'package:el7kma/Core/Utlis/WindowSize.dart';
 import 'package:el7kma/Core/Utlis/blocObs.dart';
 import 'package:el7kma/Core/Utlis/service_locator.dart';
 import 'package:el7kma/Features/AuthView/Presentaion/AuthView.dart';

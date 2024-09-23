@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:el7kma/Core/Utlis/ApiServices.dart';
 import 'package:el7kma/Features/AuthView/data/repo/AuthRepoImpl.dart';
 import 'package:el7kma/Features/CustomerView/data/repo/CustomerRepoImpl.dart';
+import 'package:el7kma/Features/DamagedAndReturnView/data/repo/DamagedAndReturnRepoImple.dart';
 import 'package:el7kma/Features/EmployeesView/data/repo/EmployeeRepoImpl.dart';
+import 'package:el7kma/Features/ExpansesView/data/repo/ExpensesRepoImpl.dart';
 import 'package:el7kma/Features/ExportBills/data/repo/ExportBillsRepoImpl.dart';
 import 'package:el7kma/Features/ImportBillsView/data/repo/ImportBillsRepoImpl.dart';
 import 'package:el7kma/Features/ImportView/data/repo/ImportRepoImpl.dart';
@@ -33,4 +35,8 @@ void setupServiceLocator() {
       ImportRepoImpl(getIt.get<ElhekmaServices>()));
   getIt.registerSingleton<ExportRepoImpl>(
       ExportRepoImpl(getIt.get<ElhekmaServices>()));
+  getIt.registerSingleton<ExpensesRepoImpl>(
+      ExpensesRepoImpl(getIt.get<ElhekmaServices>()));
+  getIt.registerSingleton<DamagedAndReturnRepoImpl>(
+      DamagedAndReturnRepoImpl(getIt.get<ElhekmaServices>()));
 }

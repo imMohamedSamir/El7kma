@@ -232,6 +232,57 @@ abstract class Dialogmethods {
     );
   }
 
+  static void outOfStockItemDialog(BuildContext context,
+      {required String msg}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon:
+              const Icon(Icons.warning_rounded, color: Colors.orange, size: 42),
+          title: Text(S.of(context).OutOfStockItem,
+              style: AppStyles.styleSemiBold20(context)),
+          content: Row(
+            children: [
+              Text(msg,
+                  style: AppStyles.styleMedium18(context)
+                      .copyWith(color: Colors.red)),
+              Text(" , ${S.of(context).OutOfStockItemMsg}",
+                  style: AppStyles.styleMedium18(context)),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  static void outOfStockWarningDialog(BuildContext context,
+      {required String item, required int qty}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon:
+              const Icon(Icons.warning_rounded, color: Colors.orange, size: 42),
+          title: Text(S.of(context).OutOfStockWarning,
+              style: AppStyles.styleSemiBold20(context)),
+          content: Row(
+            children: [
+              Text(item,
+                  style: AppStyles.styleMedium18(context)
+                      .copyWith(color: Colors.red)),
+              Text(", ${S.of(context).OutOfStockWarningMsg}",
+                  style: AppStyles.styleMedium18(context)),
+              Text(": ${qty.toString()}",
+                  style: AppStyles.styleMedium18(context)
+                      .copyWith(color: Colors.orange)),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   static void dateTimeDialog(BuildContext context,
       {dynamic Function(Object?)? onSubmit}) {
     showDialog(

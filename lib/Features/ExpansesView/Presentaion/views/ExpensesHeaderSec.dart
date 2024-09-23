@@ -1,15 +1,18 @@
-import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
-import 'package:el7kma/Core/widgets/customButton.dart';
+import 'package:el7kma/Features/ExpansesView/Presentaion/manager/cubit/expenses_cubit.dart';
+import 'package:el7kma/Features/ExpansesView/Presentaion/views/AddExpensesBtn.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ExpensesHeaderSec extends StatelessWidget {
   const ExpensesHeaderSec({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<ExpensesCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Row(
@@ -20,16 +23,23 @@ class ExpensesHeaderSec extends StatelessWidget {
             child: Column(
               children: [
                 CustomTextField(
+                  controller: cubit.billNoController,
                   label: S.of(context).BillNo,
                   enabled: false,
-                  initialValue: "150",
                 ),
-                Gap(16),
-                CustomTextField(
-                  label: S.of(context).Total,
-                  enabled: false,
-                  initialValue: "150 ",
-                  isEGP: true,
+                const Gap(16),
+                ValueListenableBuilder(
+                  valueListenable: cubit.box.listenable(),
+                  builder:
+                      (BuildContext context, dynamic value, Widget? child) {
+                    cubit.updateTotalAmount();
+                    return CustomTextField(
+                      controller: cubit.totalController,
+                      label: S.of(context).Total,
+                      enabled: false,
+                      isEGP: true,
+                    );
+                  },
                 ),
               ],
             ),
@@ -37,22 +47,13 @@ class ExpensesHeaderSec extends StatelessWidget {
           const Gap(16),
           Expanded(
             child: CustomTextField(
+              controller: cubit.notesController,
               label: S.of(context).Notes,
               maxLines: 4,
             ),
           ),
           const Spacer(),
-          Expanded(
-            child: Column(
-              children: [
-                CustomButton(
-                  txtcolor: Colors.white,
-                  btncolor: pKcolor,
-                  text: S.of(context).add,
-                ),
-              ],
-            ),
-          )
+          AddExpensesBtn(cubit: cubit)
         ],
       ),
     );

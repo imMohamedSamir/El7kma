@@ -1,44 +1,37 @@
 import 'package:el7kma/Core/Utlis/AppSizes.dart';
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
-import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/manager/customer_cubit/customer_cubit.dart';
 import 'package:el7kma/Features/CustomerView/data/models/CustomerModel.dart';
-import 'package:el7kma/Features/SellView/Presentaion/manager/cubit/export_invoice_cubit.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomerDropDownMenu extends StatelessWidget {
-  const CustomerDropDownMenu({super.key});
-
+  const CustomerDropDownMenu(
+      {super.key, this.onSelected, this.controller, this.isBill = false});
+  final void Function(Object?)? onSelected;
+  final TextEditingController? controller;
+  final bool isBill;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddCustomerCubit, AddCustomerState>(
-      listener: (context, state) {
-        if (state is AddCustomerSuccess) {
-          BlocProvider.of<ExportInvoiceCubit>(context).invoice.customerId =
-              state.id;
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: BlocBuilder<CustomerCubit, CustomerState>(
-          builder: (context, state) {
-            if (state is CustomerSuccess) {
-              final customers = state.customers;
-              return buildDropdownMenu(context, customers: customers);
-            } else {
-              return buildDropdownMenu(context);
-            }
-          },
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: BlocBuilder<CustomerCubit, CustomerState>(
+        builder: (context, state) {
+          if (state is CustomerSuccess) {
+            final customers = state.customers;
+            return buildDropdownMenu(context, customers: customers);
+          } else {
+            return buildDropdownMenu(context);
+          }
+        },
       ),
     );
   }
 
   Widget buildDropdownMenu(BuildContext context,
       {List<CustomerModel>? customers}) {
-    return DropdownMenu(
+    return DropdownMenu<dynamic>(
       enableFilter: true,
       menuStyle: MenuStyle(
         shape: WidgetStateProperty.all<OutlinedBorder>(
@@ -49,8 +42,7 @@ class CustomerDropDownMenu extends StatelessWidget {
           ),
         ),
       ),
-      controller:
-          BlocProvider.of<ExportInvoiceCubit>(context).customerController,
+      controller: controller,
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: AppStyles.styleSemiBold18(context),
         border: OutlineInputBorder(
@@ -58,16 +50,13 @@ class CustomerDropDownMenu extends StatelessWidget {
         ),
       ),
       label: Text(S.of(context).CustomerName),
-      onSelected: (value) {
-        BlocProvider.of<ExportInvoiceCubit>(context).invoice.customerId =
-            value.toString();
-      },
+      onSelected: onSelected,
       width: AppSizes.getWidth(310, context),
       dropdownMenuEntries: customers != null
           ? customers.map((customer) {
               return DropdownMenuEntry(
                 label: customer.customerName ?? "",
-                value: customer.id,
+                value: isBill ? customer.customerName : customer.id,
               );
             }).toList()
           : const [],

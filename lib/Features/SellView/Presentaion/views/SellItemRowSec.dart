@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
+import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Features/InventoryView/data/models/inventory_items_model.dart';
 import 'package:el7kma/Features/SellView/Presentaion/manager/cubit/export_invoice_cubit.dart';
@@ -26,13 +27,13 @@ class _SellItemRowSecState extends State<SellItemRowSec> {
   Inventoryitemsmodel item = Inventoryitemsmodel();
   TextEditingController codeController = TextEditingController();
   TextEditingController productController = TextEditingController();
-
   TextEditingController priceController = TextEditingController();
   TextEditingController qtyController = TextEditingController();
   TextEditingController totalController = TextEditingController();
   final box = Hive.box<Inventoryitemsmodel>(kInventoryItems);
   FocusNode codeFocusNode = FocusNode();
   FocusNode qtyFocusNode = FocusNode();
+  int? maxQty;
   @override
   void initState() {
     qtyController.addListener(_updateTotalAmount);
@@ -58,6 +59,16 @@ class _SellItemRowSecState extends State<SellItemRowSec> {
       productController.text = item.product ?? "";
       codeController.text = item.code ?? "";
     });
+    log(item.qty.toString());
+    if ((item.qty?.toInt() ?? 0) <= 3) {
+      Dialogmethods.outOfStockWarningDialog(context,
+          item: item.product ?? "", qty: item.qty?.toInt() ?? 0);
+    }
+    if (item.isPackage ?? false) {
+      maxQty = item.packageQty?.toInt() ?? 0;
+    } else {
+      maxQty = item.qty?.toInt() ?? 0;
+    }
   }
 
   void _updateTotalAmount() {
@@ -104,19 +115,23 @@ class _SellItemRowSecState extends State<SellItemRowSec> {
           focusNode: FocusNode(),
           autofocus: true,
           onKeyEvent: (event) {
+            final product = widget.itemModel ?? ExportItemModel();
+            product.code = codeController.text.trim();
+            product.product = productController.text.trim();
+            product.unitPrice =
+                double.tryParse(priceController.text.trim()) ?? 0.0;
+            product.quantity = int.tryParse(qtyController.text.trim()) ?? 0;
+            product.totalPrice = double.tryParse(totalController.text) ?? 0;
             if (event is KeyDownEvent &&
                 event.logicalKey == LogicalKeyboardKey.enter) {
-              final product = widget.itemModel ?? ExportItemModel();
-              product.code = codeController.text.trim();
-              product.product = productController.text.trim();
-              product.unitPrice =
-                  double.tryParse(priceController.text.trim()) ?? 0.0;
-              product.quantity = int.tryParse(qtyController.text.trim()) ?? 0;
-              product.totalPrice = double.tryParse(totalController.text) ?? 0;
-
               log(product.toJson().toString());
               BlocProvider.of<ExportInvoiceCubit>(context)
                   .addOrEditItem(product: product);
+            } else if (event is KeyDownEvent &&
+                event.logicalKey == LogicalKeyboardKey.delete) {
+              BlocProvider.of<ExportInvoiceCubit>(context)
+                  .deleteItem(product: product);
+              clearData();
             }
           },
           child: Row(
@@ -139,7 +154,10 @@ class _SellItemRowSecState extends State<SellItemRowSec> {
               Expanded(
                   child: CustomTextField(
                       controller: priceController, isEGP: true)),
-              SellItemsQty(focusNode: qtyFocusNode, controller: qtyController),
+              SellItemsQty(
+                  focusNode: qtyFocusNode,
+                  controller: qtyController,
+                  maxQty: maxQty),
               Expanded(
                   child: CustomTextField(
                       controller: totalController,

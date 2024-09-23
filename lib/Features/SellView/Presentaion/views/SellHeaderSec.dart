@@ -1,8 +1,9 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
-import 'package:el7kma/Core/widgets/customButton.dart';
+import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
 import 'package:el7kma/Features/SellView/Presentaion/manager/cubit/export_invoice_cubit.dart';
+import 'package:el7kma/Features/SellView/Presentaion/views/AddExportBtn.dart';
 import 'package:el7kma/Features/SellView/Presentaion/views/CustomerDropDownMenu.dart';
 import 'package:el7kma/Features/SellView/Presentaion/views/SellTotalSec.dart';
 import 'package:el7kma/generated/l10n.dart';
@@ -16,73 +17,82 @@ class SellHeaderSec extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<ExportInvoiceCubit>(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                CustomTextField(
-                  controller: cubit.billNoController,
-                  label: S.of(context).BillNo,
-                  enabled: false,
-                ),
-                const Gap(16),
-                Row(
-                  children: [
-                    const Expanded(child: CustomerDropDownMenu()),
-                    _addIcon(context, cubit.customerController)
-                  ],
-                ),
-                const Gap(22),
-                CustomTextField(
-                  controller: cubit.discountController,
-                  hintText: S.of(context).Discount,
-                  isEGP: true,
-                  onChanged: (value) {
-                    cubit.updateDiscountedTotal();
-                  },
-                ),
-              ],
+    return BlocListener<AddCustomerCubit, AddCustomerState>(
+      listener: (context, state) {
+        if (state is AddCustomerSuccess) {
+          BlocProvider.of<ExportInvoiceCubit>(context).invoice.customerId =
+              state.id;
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  CustomTextField(
+                    controller: cubit.billNoController,
+                    label: S.of(context).BillNo,
+                    enabled: false,
+                  ),
+                  const Gap(16),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: CustomerDropDownMenu(
+                        controller: cubit.customerController,
+                        onSelected: (value) {
+                          BlocProvider.of<ExportInvoiceCubit>(context)
+                              .invoice
+                              .customerId = value.toString();
+                        },
+                      )),
+                      _addIcon(context, cubit.customerController)
+                    ],
+                  ),
+                  const Gap(22),
+                  CustomTextField(
+                    controller: cubit.discountController,
+                    hintText: S.of(context).Discount,
+                    isEGP: true,
+                    onChanged: (value) {
+                      cubit.updateDiscountedTotal();
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Gap(16),
-          SellTotalSec(),
-          const Gap(16),
-          Expanded(
-            child: Column(
-              children: [
-                CustomTextField(
-                  hintText: S.of(context).Notes,
-                  maxLines: 4,
-                  onChanged: (value) {
-                    if (value.trim().isNotEmpty) {
-                      cubit.invoice.notes = value.trim();
-                    }
-                  },
-                ),
-              ],
+            const Gap(16),
+            SellTotalSec(),
+            const Gap(16),
+            Expanded(
+              child: Column(
+                children: [
+                  CustomTextField(
+                    hintText: S.of(context).Notes,
+                    maxLines: 4,
+                    onChanged: (value) {
+                      if (value.trim().isNotEmpty) {
+                        cubit.invoice.notes = value.trim();
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Gap(16),
-          Expanded(
-            child: Column(
-              children: [
-                CustomButton(
-                  txtcolor: Colors.white,
-                  btncolor: pKcolor,
-                  text: S.of(context).add,
-                  onPressed: () {
-                    cubit.addInvoice();
-                  },
-                ),
-              ],
-            ),
-          )
-        ],
+            const Gap(16),
+            Expanded(
+              child: Column(
+                children: [
+                  AddExportBtn(cubit: cubit),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

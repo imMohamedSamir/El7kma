@@ -12,6 +12,12 @@ const String supplierInvoices = "supplierInvoices";
 const String kExportInvoices = "ExportInvoices";
 const String kExportItems = "ExportItems";
 const String kExportBillNo = "ExportBillNo ";
+const String kExpensesBillNo = "ExpensesBillNo ";
+const String kdamagedRetrunBillNo = "returnBillNo ";
+const String kExpensesInvoce = "ExpensesInvoce ";
+const String kExpensesItem = "ExpensesItem ";
+const String kdamagedRetrunInvoice = "damagedRetrunInvoice ";
+const String kdamagedRetrunItem = "damagedRetrunItem ";
 
 const String supplierInvoicesNumber = "supplierInvoicesNumber";
 const String productDetails = "productDetails";

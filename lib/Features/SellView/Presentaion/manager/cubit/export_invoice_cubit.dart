@@ -29,6 +29,43 @@ class ExportInvoiceCubit extends Cubit<ExportInvoiceState> {
     _initialBillNo();
   }
 
+  void deleteItem({required ExportItemModel product}) {
+    final box = Hive.box<ExportInvoiceModel>(kExportInvoices);
+
+    if (box.isEmpty) {
+      log("No invoice found to delete from!");
+      return;
+    }
+
+    // Retrieve the first invoice from the box
+    ExportInvoiceModel? invoice = box.getAt(0);
+
+    if (invoice != null) {
+      // Initialize the items list if it's null
+      invoice.items ??= [];
+
+      // Find the index of the product with the same product code
+      int productIndex = invoice.items!.indexWhere(
+          (existingProduct) => existingProduct.code == product.code);
+
+      if (productIndex != -1) {
+        // If the product exists, delete it
+        invoice.items!.removeAt(productIndex);
+        log("Product deleted: ${product.code}");
+
+        // Save the updated invoice back to the Hive box
+        box.putAt(0, invoice);
+      } else {
+        log("Product not found: ${product.code}");
+      }
+
+      // Log the updated length of the items list
+      log("Product count: ${invoice.items?.length.toString() ?? "empty"}");
+    } else {
+      log("Invoice not found!");
+    }
+  }
+
   void addOrEditItem({required ExportItemModel product}) {
     final box = Hive.box<ExportInvoiceModel>(kExportInvoices);
 
@@ -67,13 +104,29 @@ class ExportInvoiceCubit extends Cubit<ExportInvoiceState> {
     }
   }
 
-  void addInvoice() {
+  void addInvoice() async {
+    emit(ExportInvoiceLoading());
     _getItems();
     invoice.date = DateTime.now();
     invoice.rest = double.tryParse(restController.text) ?? 0;
     invoice.totalPrice = double.tryParse(totalController.text) ?? 0;
     invoice.paid = double.tryParse(paidController.text) ?? 0;
     invoice.discount = double.tryParse(discountController.text) ?? 0;
+    invoice.billNo = billNoController.text;
+    invoice.notes ??= "";
+    final result = await _exportRepo.add(invoice: invoice);
+    result.fold((fail) {
+      if (fail.errMessage.contains("Insufficient stock")) {
+        emit(ExportInvoiceOutOfStock(
+            itemName: _extractItemName(fail.errMessage)));
+      } else {
+        emit(ExportInvoiceFailure());
+      }
+    }, (response) {
+      emit(ExportInvoiceSuccess());
+      _generateBillNo();
+      clear();
+    });
   }
 
   void _getItems() {
@@ -108,13 +161,24 @@ class ExportInvoiceCubit extends Cubit<ExportInvoiceState> {
   void _generateBillNo() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     int billNo = preferences.getInt(kExportBillNo) ?? 0;
-    preferences.setInt(kExportBillNo, billNo++);
-    billNoController.text = preferences.getInt(kExportBillNo).toString();
+    billNo++;
+    preferences.setInt(kExportBillNo, billNo);
+    billNoController.text = billNo.toString();
   }
 
   void _initialBillNo() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     billNoController.text = preferences.getInt(kExportBillNo).toString();
+  }
+
+  String _extractItemName(String errorMessage) {
+    final regex = RegExp(r"'(.*?)'");
+    final match = regex.firstMatch(errorMessage);
+    if (match != null) {
+      return match.group(1) ?? "";
+    } else {
+      return "";
+    }
   }
 
   double _getTotalPrice() {

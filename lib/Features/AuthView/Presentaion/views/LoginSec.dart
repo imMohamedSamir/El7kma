@@ -18,10 +18,18 @@ class LoginSec extends StatefulWidget {
 class _LoginSecState extends State<LoginSec> {
   bool secure = true;
   late AuthLoginCubit cubit;
+  FocusNode focusNode = FocusNode();
   @override
   void initState() {
     cubit = BlocProvider.of<AuthLoginCubit>(context);
+    focusNode.requestFocus();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override

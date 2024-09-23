@@ -43,4 +43,15 @@ class ExportInvoiceModel {
     this.discount,
     this.items,
   });
+  Map<String, dynamic> toJson() => {
+        'receiptNumber': billNo,
+        'customerId': customerId,
+        'paymentDate': date?.toIso8601String(),
+        'totalAmount': totalPrice,
+        'amountPaid': paid,
+        'amountDue': rest,
+        'discount': discount,
+        'notes': notes,
+        'items': items?.map((e) => e.toJson()).toList(),
+      };
 }

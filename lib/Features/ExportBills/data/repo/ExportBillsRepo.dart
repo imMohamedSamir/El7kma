@@ -8,5 +8,6 @@ abstract class ExportBillsRepo {
       String? billNo,
       String? startDate,
       String? endDate,
+      String? customerName,
       bool? isPaid = false});
 }

@@ -89,6 +89,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "LogoutMsg": MessageLookupByLibrary.simpleMessage("Are you sure ?"),
         "Notes": MessageLookupByLibrary.simpleMessage("Notes"),
         "OK": MessageLookupByLibrary.simpleMessage("OK"),
+        "OutOfStockItem": MessageLookupByLibrary.simpleMessage("Out Of Stock"),
+        "OutOfStockItemMsg":
+            MessageLookupByLibrary.simpleMessage("this item is out of stock"),
+        "OutOfStockWarning": MessageLookupByLibrary.simpleMessage("Warning"),
+        "OutOfStockWarningMsg": MessageLookupByLibrary.simpleMessage(
+            "this item will be out of stock soon ,it\'s quantity "),
         "Package": MessageLookupByLibrary.simpleMessage("Package"),
         "PackageQty": MessageLookupByLibrary.simpleMessage("Package quantity"),
         "Paid": MessageLookupByLibrary.simpleMessage("Paid"),

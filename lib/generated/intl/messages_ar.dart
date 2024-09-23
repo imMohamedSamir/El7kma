@@ -46,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "CustomerName": MessageLookupByLibrary.simpleMessage("اسم العميل"),
         "CustomerNameValidation":
             MessageLookupByLibrary.simpleMessage("أدخل اسم الزبون"),
+        "DamagedAndReturn":
+            MessageLookupByLibrary.simpleMessage("التالف والمرتجع"),
         "Date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "Delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "DeleteCustomer": MessageLookupByLibrary.simpleMessage("حذف الزبون"),
@@ -82,6 +84,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "LogoutMsg": MessageLookupByLibrary.simpleMessage("هل أنت متأكد؟"),
         "Notes": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "OK": MessageLookupByLibrary.simpleMessage("موافق"),
+        "OutOfStockItem":
+            MessageLookupByLibrary.simpleMessage("المنتج غير متوفر"),
+        "OutOfStockItemMsg":
+            MessageLookupByLibrary.simpleMessage("هذا المنتج غير متوفر"),
+        "OutOfStockWarning": MessageLookupByLibrary.simpleMessage("تحذير"),
+        "OutOfStockWarningMsg": MessageLookupByLibrary.simpleMessage(
+            "هذا المنتج سينفد قريباً ,كميته"),
         "Package": MessageLookupByLibrary.simpleMessage("حزمة"),
         "PackageQty": MessageLookupByLibrary.simpleMessage("كمية الحزمة"),
         "Paid": MessageLookupByLibrary.simpleMessage("مدفوع"),
@@ -119,11 +128,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "To": MessageLookupByLibrary.simpleMessage("إلى"),
         "Total": MessageLookupByLibrary.simpleMessage("الإجمالي الكلى"),
         "TotalBills": MessageLookupByLibrary.simpleMessage("إجمالي الفواتير"),
+        "Type": MessageLookupByLibrary.simpleMessage("النوع"),
         "UnitPrice": MessageLookupByLibrary.simpleMessage("سعر الوحدة"),
         "User": MessageLookupByLibrary.simpleMessage("مستخدم"),
         "UserName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "add": MessageLookupByLibrary.simpleMessage("إضافة"),
         "admin": MessageLookupByLibrary.simpleMessage("مدير"),
+        "expneses": MessageLookupByLibrary.simpleMessage("المصروفات"),
+        "expnesesName": MessageLookupByLibrary.simpleMessage("اسم المصروف"),
         "invalidAuth": MessageLookupByLibrary.simpleMessage(
             "اسم المستخدم أو كلمة المرور غير صالحة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),

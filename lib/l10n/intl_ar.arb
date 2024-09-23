@@ -79,6 +79,14 @@
   "SupplierEditedMsg": "تم تعديل المورد بنجاح",
   "SupplierDeletedMsg": "تم حذف المورد بنجاح",
   "ShiftHours": "ساعات العمل",
-  "SupplierInvoiceSuccess": "تم إضافة الفاتورة بنجاح"
+  "SupplierInvoiceSuccess": "تم إضافة الفاتورة بنجاح",
+  "expneses": "المصروفات",
+  "expnesesName": "اسم المصروف",
+  "DamagedAndReturn": "التالف والمرتجع",
+  "Type": "النوع",
+  "OutOfStockItem": "المنتج غير متوفر",
+  "OutOfStockItemMsg": "هذا المنتج غير متوفر",
+  "OutOfStockWarning": "تحذير",
+  "OutOfStockWarningMsg": "هذا المنتج سينفد قريباً ,كميته"
 
 }

@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class SellItemsQty extends StatefulWidget {
-  const SellItemsQty({super.key, required this.controller, this.focusNode});
+  const SellItemsQty(
+      {super.key, required this.controller, this.focusNode, this.maxQty});
   final TextEditingController controller;
   final FocusNode? focusNode;
+  final int? maxQty;
   @override
   State<SellItemsQty> createState() => _SellItemsQtyState();
 }
@@ -20,6 +22,18 @@ class _SellItemsQtyState extends State<SellItemsQty> {
     super.initState();
 
     widget.controller.text = _quantity.toString();
+  }
+
+  bool _checkLimit() {
+    if (widget.maxQty != null) {
+      if (_quantity >= (widget.maxQty?.toInt() ?? 0)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -36,12 +50,15 @@ class _SellItemsQtyState extends State<SellItemsQty> {
           children: [
             QtyWidget(
               isAdd: true,
-              onTap: () {
-                setState(() {
-                  _quantity++;
-                  widget.controller.text = _quantity.toString();
-                });
-              },
+              isLimit: _checkLimit(),
+              onTap: _checkLimit()
+                  ? null
+                  : () {
+                      setState(() {
+                        _quantity++;
+                        widget.controller.text = _quantity.toString();
+                      });
+                    },
             ),
             const Gap(16),
             SizedBox(
