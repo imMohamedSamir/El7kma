@@ -1,5 +1,5 @@
-import 'package:el7kma/Features/ExpansesView/Presentaion/views/ExpansesItemTable.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/views/ExpensesItemHeader.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/views/ExpansesItemTable.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/views/ExpensesItemHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

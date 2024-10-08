@@ -1,20 +1,31 @@
 import 'package:el7kma/Core/Utlis/AppSizes.dart';
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
+import 'package:el7kma/Core/Utlis/service_locator.dart';
 import 'package:el7kma/Core/widgets/CustomDateTimeWidget.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Core/widgets/DialogBtn.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/manager/add_customer_cubit/add_customer_cubit.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/views/CustomerForm.dart';
+import 'package:el7kma/Features/DashboardView/Presentaion/manager/expenses_get_cubit/expenses_get_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/views/EmployeeForm.dart';
+import 'package:el7kma/Features/ExpensesBillsView/Presentaion/views/ExpensesTable.dart';
+import 'package:el7kma/Features/ExportBills/Presentaion/manager/cubit/export_bills_cubit.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/views/ExportBillstTable.dart';
+import 'package:el7kma/Features/ExportBills/Presentaion/views/UserNameDropDownMenu.dart';
+import 'package:el7kma/Features/ExportBills/data/repo/ExportBillsRepoImpl.dart';
+import 'package:el7kma/Features/ImportBillsView/Presentaion/manager/import_bills_cubit/import_bills_cubit.dart';
+import 'package:el7kma/Features/ImportBillsView/Presentaion/views/ImportBillsTable.dart';
+import 'package:el7kma/Features/ImportBillsView/data/repo/ImportBillsRepoImpl.dart';
 import 'package:el7kma/Features/InventoryView/Presentaion/manager/inventory_items_cubit/inventory_items_cubit.dart';
+import 'package:el7kma/Features/OthersView/data/repo/ExpensesRepoImpl.dart';
 import 'package:el7kma/Features/SuppliersView/Presentaion/manager/SupplierAddDeleteCubit/SupplierAddDeleteCubit.dart';
 import 'package:el7kma/Features/SuppliersView/Presentaion/views/AddSupplierForm.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 abstract class Dialogmethods {
   static void addSupplier(
@@ -197,36 +208,131 @@ abstract class Dialogmethods {
     );
   }
 
-  static void showCustomerBills(BuildContext context) {
+  static void showCustomerBills(BuildContext context,
+      {required String customerName}) {
     final TextEditingController controller = TextEditingController();
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(S.of(context).CustomerBills,
-                  style: AppStyles.styleSemiBold18(context)),
-              const Spacer(),
-              Expanded(
-                child: CustomDateTextField(
-                  controller: controller,
-                  hint: S.of(context).Date,
-                  maxline: 2,
-                  onTap: () {
-                    // Dialogmethods.dateTimeDialog(context,
-                    //     controller: controller);
+        return BlocProvider(
+          create: (context) =>
+              ExportBillsCubit(getIt.get<ExportBillsRepoImpl>())
+                ..get(customerName: customerName),
+          child: AlertDialog(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("${S.of(context).CustomerBills} : $customerName",
+                    style: AppStyles.styleSemiBold18(context)),
+                const Spacer(),
+                Expanded(
+                  child: CustomDateTextField(
+                    controller: controller,
+                    hint: S.of(context).Date,
+                    maxline: 2,
+                    onTap: () {
+                      // Dialogmethods.dateTimeDialog(context,
+                      //     controller: controller);
+                    },
+                  ),
+                )
+              ],
+            ),
+            content: SizedBox(
+                height: AppSizes.getHeight(800, context),
+                width: AppSizes.getWidth(1000, context),
+                child: const SingleChildScrollView(child: ExportBillstTable())),
+          ),
+        );
+      },
+    );
+  }
+
+  static void showSupplierBills(BuildContext context,
+      {required String supplierName}) {
+    final TextEditingController controller = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BlocProvider(
+          create: (context) =>
+              ImportBillsCubit(getIt.get<ImportBillsRepoImpl>())
+                ..get(supplierName: supplierName),
+          child: AlertDialog(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(supplierName, style: AppStyles.styleSemiBold18(context)),
+                const Spacer(),
+                Expanded(
+                  child: CustomDateTextField(
+                    controller: controller,
+                    hint: S.of(context).Date,
+                    maxline: 2,
+                    onTap: () {
+                      // Dialogmethods.dateTimeDialog(context,
+                      //     controller: controller);
+                    },
+                  ),
+                )
+              ],
+            ),
+            content: SizedBox(
+                height: AppSizes.getHeight(800, context),
+                width: AppSizes.getWidth(1000, context),
+                child: const SingleChildScrollView(child: ImportBillsTable())),
+          ),
+        );
+      },
+    );
+  }
+
+  static void showExpensesBills(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        // Use dialogContext for the dialog
+        return BlocProvider(
+          create: (context) =>
+              ExpensesGetCubit(getIt.get<ExpensesRepoImpl>())..get(),
+          child: AlertDialog(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Builder(
+                  // Wrap in Builder to get the correct context
+                  builder: (BuildContext blocContext) {
+                    return UserNameDropDownMenu(
+                      onSelected: (value) {
+                        BlocProvider.of<ExpensesGetCubit>(blocContext)
+                            .get(employeeName: value.toString());
+                      },
+                    );
                   },
                 ),
-              )
-            ],
-          ),
-          content: SizedBox(
+                const Spacer(),
+                Expanded(
+                  child: CustomDateTextField(
+                    controller: controller,
+                    hint: S.of(context).Date,
+                    maxline: 2,
+                    onTap: () {
+                      // Dialogmethods.dateTimeDialog(context, controller: controller);
+                    },
+                  ),
+                ),
+              ],
+            ),
+            content: SizedBox(
               height: AppSizes.getHeight(800, context),
               width: AppSizes.getWidth(1000, context),
-              child: const SingleChildScrollView(child: ExportBillstTable())),
+              child: const SingleChildScrollView(child: ExpensesTable()),
+            ),
+          ),
         );
       },
     );
@@ -284,13 +390,15 @@ abstract class Dialogmethods {
   }
 
   static void dateTimeDialog(BuildContext context,
-      {dynamic Function(Object?)? onSubmit}) {
+      {dynamic Function(Object?)? onSubmit,
+      DateRangePickerController? controller}) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return CustomDateTimeWidget(
           onSubmit: onSubmit,
+          controller: controller,
         );
       },
     );

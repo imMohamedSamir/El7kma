@@ -1,7 +1,9 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
+import 'package:el7kma/Core/Utlis/ValidationMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Core/widgets/customButton.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/manager/cubit/import_item_cubit.dart';
+import 'package:el7kma/Features/ImportView/Presentaion/views/AddImportBtn.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/ImportTotalSec.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/views/SupplierDropDownMenu.dart';
 import 'package:el7kma/generated/l10n.dart';
@@ -14,6 +16,7 @@ class ImportHeaderSec extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<ImportItemCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Row(
@@ -21,22 +24,30 @@ class ImportHeaderSec extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Column(
-              children: [
-                CustomTextField(
-                  label: S.of(context).BillNo,
-                  enabled: true,
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      BlocProvider.of<ImportItemCubit>(context)
-                          .invoice
-                          .invoiceNumber = value.trim();
-                    }
-                  },
-                ),
-                const Gap(16),
-                const SupplierDropDownMenu(),
-              ],
+            child: Form(
+              key: cubit.key,
+              child: Column(
+                children: [
+                  CustomTextField(
+                    label: S.of(context).BillNo,
+                    enabled: true,
+                    validator: (value) {
+                      return Validationmethods.billNo(context, value: value!);
+                    },
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        cubit.invoice.invoiceNumber = value.trim();
+                      }
+                    },
+                  ),
+                  const Gap(16),
+                  SupplierDropDownMenu(
+                    onSelected: (value) {
+                      cubit.invoice.supplierid = value.toString();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           const Gap(16),
@@ -48,8 +59,7 @@ class ImportHeaderSec extends StatelessWidget {
                 maxLines: 7,
                 onChanged: (value) {
                   if (value.isNotEmpty) {
-                    BlocProvider.of<ImportItemCubit>(context).invoice.notes =
-                        value.trim();
+                    cubit.invoice.notes = value.trim();
                   }
                 }),
           ),
@@ -57,21 +67,14 @@ class ImportHeaderSec extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                CustomButton(
-                  txtcolor: Colors.white,
-                  btncolor: pKcolor,
-                  text: S.of(context).add,
-                  onPressed: () {
-                    BlocProvider.of<ImportItemCubit>(context).addInvoice();
-                  },
-                ),
+                AddImportBtn(cubit: cubit),
                 const Gap(16),
                 CustomButton(
                   txtcolor: Colors.white,
                   btncolor: pKcolor,
                   text: S.of(context).Reset,
                   onPressed: () {
-                    BlocProvider.of<ImportItemCubit>(context).clear();
+                    cubit.clear();
                   },
                 )
               ],

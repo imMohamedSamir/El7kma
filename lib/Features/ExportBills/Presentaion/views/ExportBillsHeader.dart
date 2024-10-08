@@ -1,6 +1,6 @@
-import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/manager/cubit/export_bills_cubit.dart';
+import 'package:el7kma/Features/ExportBills/Presentaion/views/ExportDateFilterSec.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/views/ExportTotalBillsBuilder.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/views/UserNameDropDownMenu.dart';
 import 'package:el7kma/Features/SellView/Presentaion/views/CustomerDropDownMenu.dart';
@@ -14,8 +14,7 @@ class ExportBillsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-
+    final cubit = BlocProvider.of<ExportBillsCubit>(context);
     return SizedBox(
       // width: AppSizes.getWidth(500, context),
       child: Padding(
@@ -26,17 +25,19 @@ class ExportBillsHeader extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  const UserNameDropDownMenu(),
+                  UserNameDropDownMenu(
+                    controller: cubit.userController,
+                    onSelected: (value) {
+                      BlocProvider.of<ExportBillsCubit>(context)
+                          .get(userName: value.toString());
+                    },
+                  ),
                   const Gap(16),
                   CustomTextField(
+                    controller: cubit.billNoController,
                     label: S.of(context).BillNo,
                     onChanged: (value) {
-                      if (value.trim().isNotEmpty) {
-                        BlocProvider.of<ExportBillsCubit>(context)
-                            .get(billNo: value.trim());
-                      } else {
-                        BlocProvider.of<ExportBillsCubit>(context).get();
-                      }
+                      BlocProvider.of<ExportBillsCubit>(context).get();
                     },
                   ),
                 ],
@@ -47,6 +48,7 @@ class ExportBillsHeader extends StatelessWidget {
               child: Column(
                 children: [
                   CustomerDropDownMenu(
+                    controller: cubit.customerController,
                     isBill: true,
                     onSelected: (value) {
                       BlocProvider.of<ExportBillsCubit>(context)
@@ -59,18 +61,7 @@ class ExportBillsHeader extends StatelessWidget {
             const Gap(16),
             const ExportTotalBillsBuilder(),
             const Spacer(),
-            Expanded(
-              child: CustomDateTextField(
-                controller: controller,
-                hint: S.of(context).Date,
-                maxline: 2,
-                onTap: () {
-                  Dialogmethods.dateTimeDialog(
-                    context,
-                  );
-                },
-              ),
-            ),
+            const ExportDateFilterSec()
           ],
         ),
       ),

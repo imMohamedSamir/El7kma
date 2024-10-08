@@ -22,6 +22,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -59,7 +61,7 @@ class El7kmaApp extends StatelessWidget {
             create: (context) =>
                 SupplierAddDeleteCubit(getIt.get<SupplierRpoImpl>())),
         BlocProvider(
-          create: (context) => UserDetailsCubit()..get(),
+          create: (context) => UserDetailsCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, Locale>(
@@ -72,10 +74,11 @@ class El7kmaApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
+            navigatorKey: navigatorKey,
             locale: state,
             supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
-            home: const HomeView(),
+            home: const AuthView(),
           );
         },
       ),

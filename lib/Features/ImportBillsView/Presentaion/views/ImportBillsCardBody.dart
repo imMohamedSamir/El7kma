@@ -11,10 +11,10 @@ class ImportBillsCardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ImportItemsHeader(),
-        Gap(16),
+        const ImportItemsHeader(),
+        const Gap(16),
         ImportBillsCardTable(items: items),
-        Gap(16)
+        const Gap(16)
       ],
     );
   }

@@ -87,6 +87,8 @@
   "OutOfStockItem": "المنتج غير متوفر",
   "OutOfStockItemMsg": "هذا المنتج غير متوفر",
   "OutOfStockWarning": "تحذير",
-  "OutOfStockWarningMsg": "هذا المنتج سينفد قريباً ,كميته"
+  "OutOfStockWarningMsg": "هذا المنتج سينفد قريباً ,كميته",
+  "ExpensesBills": "فواتير المصروفات",
+  "DamagedRetrunBills": "فواتير التالف والمرتجع"
 
 }

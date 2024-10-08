@@ -153,7 +153,8 @@ class _CustomerCardState extends State<CustomerCard> {
   Widget viewIcon(BuildContext context) {
     return InkWell(
       onTap: () {
-        Dialogmethods.showCustomerBills(context);
+        Dialogmethods.showCustomerBills(context,
+            customerName: widget.customer.customerName ?? "");
       },
       child: Container(
         padding: const EdgeInsets.all(14),

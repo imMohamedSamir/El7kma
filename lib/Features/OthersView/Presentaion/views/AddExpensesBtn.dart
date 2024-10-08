@@ -1,7 +1,7 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
 import 'package:el7kma/Core/Utlis/scaffoldMsgMethod.dart';
 import 'package:el7kma/Core/widgets/customButton.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/manager/cubit/expenses_cubit.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/manager/cubit/expenses_cubit.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

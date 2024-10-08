@@ -48,6 +48,7 @@ class SellDropDownMenu extends StatelessWidget {
       controller: controller,
       enableFilter: true,
       enableSearch: false,
+      menuHeight: AppSizes.getHeight(200, context),
       menuStyle: MenuStyle(
         shape: WidgetStateProperty.all<OutlinedBorder>(
           const RoundedRectangleBorder(

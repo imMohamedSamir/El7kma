@@ -1,8 +1,8 @@
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/manager/cubit/expenses_cubit.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/views/ExpansesItemRowSec.dart';
-import 'package:el7kma/Features/ExpansesView/data/models/expenses_invoice_model.dart';
-import 'package:el7kma/Features/ExpansesView/data/models/expenses_item_model.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/manager/cubit/expenses_cubit.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/views/ExpansesItemRowSec.dart';
+import 'package:el7kma/Features/OthersView/data/models/expenses_invoice_model.dart';
+import 'package:el7kma/Features/OthersView/data/models/expenses_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

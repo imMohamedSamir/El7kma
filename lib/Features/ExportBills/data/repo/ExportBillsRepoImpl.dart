@@ -18,14 +18,13 @@ class ExportBillsRepoImpl implements ExportBillsRepo {
     String? billNo,
     String? startDate,
     String? endDate,
-    bool? isPaid = false,
   }) async {
     // if (startDate == null) {
     //   startDate = DateTime.now().toIso8601String();
     //   endDate = DateTime.now().toIso8601String();
     // }
-    final endPoint =
-        "UserInvoice/All?EmployyeName=${userName ?? ""}&customerName=${customerName ?? ""}&startDate=${startDate ?? ""}&endDate=${endDate ?? ""}&withAmountDue=$isPaid&receiptNumber=${billNo ?? ""}&pageNumber=1&pageSize=10";
+    String endPoint =
+        "UserInvoice/All?employeeName=${userName ?? ""}&customerName=${customerName ?? ""}&startDate=${startDate ?? ""}&endDate=${endDate ?? ""}&receiptNumber=${billNo ?? ""}&pageNumber=1&pageSize=10";
     try {
       final response = await _elhekmaServices.get(endPoint: endPoint);
       List<ExportBillModel> bills = [];

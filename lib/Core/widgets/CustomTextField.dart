@@ -225,7 +225,6 @@ class CustomDateTextField extends StatelessWidget {
           controller: controller,
           onTap: onTap,
           onChanged: onChanged,
-          readOnly: true,
           maxLines: maxline,
           decoration: InputDecoration(
             suffixIcon: suffixIcon,

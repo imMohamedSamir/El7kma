@@ -101,3 +101,56 @@ Widget _buildTabItem(
     text: text,
   );
 }
+
+AppBar dashboardAppBar(BuildContext context, {required String title}) {
+  final ValueNotifier<int> tabIndex = ValueNotifier(0);
+
+  return AppBar(
+    backgroundColor: pKcolor,
+    centerTitle: true,
+    automaticallyImplyLeading: false,
+    title: Text(
+      title,
+      style: AppStyles.styleBold32(context).copyWith(color: Colors.white),
+    ),
+    actions: const [
+      CustomeDateWidget(),
+      Gap(16),
+    ],
+    leading: const LogoutSec(),
+    bottom: TabBar(
+      labelColor: Colors.white,
+      labelStyle: AppStyles.styleSemiBold20(context),
+      unselectedLabelColor: Colors.grey,
+      unselectedLabelStyle: AppStyles.styleSemiBold18(context),
+      automaticIndicatorColorAdjustment: false,
+      indicatorColor: scColor,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicatorWeight: 5,
+      mouseCursor: MouseCursor.uncontrolled,
+      onTap: (value) {
+        tabIndex.value = value;
+      },
+      indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: scColor,
+      ),
+      tabs: <Widget>[
+        _buildTabItem(
+          context,
+          icon: Icons.attach_money_rounded,
+          text: S.of(context).ExpensesBills,
+          tabIndex: tabIndex,
+          index: 0,
+        ),
+        _buildTabItem(
+          context,
+          icon: Icons.dangerous,
+          text: S.of(context).DamagedRetrunBills,
+          tabIndex: tabIndex,
+          index: 1,
+        ),
+      ],
+    ),
+  );
+}

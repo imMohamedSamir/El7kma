@@ -63,4 +63,12 @@ abstract class Validationmethods {
     }
     return null;
   }
+
+  static String? billNo(BuildContext context, {required String value}) {
+    if (value.isEmpty || value.trim().isEmpty) {
+      return S.of(context).BillNoValidateMsg;
+    }
+
+    return null;
+  }
 }

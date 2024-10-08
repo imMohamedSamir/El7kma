@@ -83,22 +83,27 @@ class _ImportItemDefultState extends State<ImportItemDefult> {
           focusNode: FocusNode(),
           autofocus: true,
           onKeyEvent: (event) {
+            final product = widget.product ?? ProductDetail();
+            product.productCode = codeController.text.trim();
+            product.productName = productController.text.trim();
+            product.unitPrice =
+                double.tryParse(unitPriceController.text.trim()) ?? 0.0;
+            product.quantity = int.tryParse(qtyController.text.trim()) ?? 0;
+            product.totalPrice = totalNotifier.value;
+            product.packageQuantity =
+                int.tryParse(packageController.text.trim()) ?? 0;
+            product.isPackaged = isChecked;
+
             if (event is KeyDownEvent &&
                 event.logicalKey == LogicalKeyboardKey.enter) {
-              final product = widget.product ?? ProductDetail();
-              product.productCode = codeController.text.trim();
-              product.productName = productController.text.trim();
-              product.unitPrice =
-                  double.tryParse(unitPriceController.text.trim()) ?? 0.0;
-              product.quantity = int.tryParse(qtyController.text.trim()) ?? 0;
-              product.totalPrice = totalNotifier.value;
-              product.packageQuantity =
-                  int.tryParse(packageController.text.trim()) ?? 0;
-              product.isPackaged = isChecked;
-
               log(product.toJson().toString());
               BlocProvider.of<ImportItemCubit>(context)
                   .addOrEditItem(product: product);
+            } else if (event is KeyDownEvent &&
+                event.logicalKey == LogicalKeyboardKey.delete) {
+              BlocProvider.of<ImportItemCubit>(context)
+                  .deleteItem(product: product);
+              clearData();
             }
           },
           child: Row(

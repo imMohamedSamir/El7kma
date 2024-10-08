@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "AddressMsg":
             MessageLookupByLibrary.simpleMessage("enter customer\'s Address"),
         "BillNo": MessageLookupByLibrary.simpleMessage("Bill Number"),
+        "BillNoValidateMsg":
+            MessageLookupByLibrary.simpleMessage("Enter Bill Number"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Code": MessageLookupByLibrary.simpleMessage("Code"),
         "CustomerAddedMsg":
@@ -49,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Customer\'s name"),
         "DamagedAndReturn":
             MessageLookupByLibrary.simpleMessage("Damaged & Return"),
+        "DamagedRetrunBills":
+            MessageLookupByLibrary.simpleMessage("Damaged & Return Bills"),
         "Date": MessageLookupByLibrary.simpleMessage("Date"),
         "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "DeleteCustomer":
@@ -83,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Employee\'s Salary"),
         "ErrorMsg":
             MessageLookupByLibrary.simpleMessage("There is an error Occurred"),
+        "ExpensesBills": MessageLookupByLibrary.simpleMessage("Expenses Bills"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("Expenses Type"),
         "From": MessageLookupByLibrary.simpleMessage("From"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),

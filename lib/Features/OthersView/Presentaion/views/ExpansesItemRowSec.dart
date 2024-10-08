@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/manager/cubit/expenses_cubit.dart';
-import 'package:el7kma/Features/ExpansesView/data/models/expenses_item_model.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/manager/cubit/expenses_cubit.dart';
+import 'package:el7kma/Features/OthersView/data/models/expenses_item_model.dart';
 import 'package:el7kma/Features/SellView/Presentaion/views/SellItemsQty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

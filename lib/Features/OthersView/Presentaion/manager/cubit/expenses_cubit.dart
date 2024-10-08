@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:el7kma/Core/Utlis/Constatnts.dart';
-import 'package:el7kma/Features/ExpansesView/data/models/expenses_invoice_model.dart';
-import 'package:el7kma/Features/ExpansesView/data/models/expenses_item_model.dart';
-import 'package:el7kma/Features/ExpansesView/data/repo/ExpensesRepo.dart';
+import 'package:el7kma/Features/OthersView/data/models/expenses_invoice_model.dart';
+import 'package:el7kma/Features/OthersView/data/models/expenses_item_model.dart';
+import 'package:el7kma/Features/OthersView/data/repo/ExpensesRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';

@@ -32,8 +32,7 @@ class ImportBillsRepoImpl implements ImportBillsRepo {
 
       if (e is DioException) {
         log(e.response.toString());
-        return left(
-            ServerFailure.fromResponse(e.response?.statusCode, e.response));
+        return left(ServerFailure(e.response.toString()));
       }
       return left(ServerFailure(e.toString()));
     }

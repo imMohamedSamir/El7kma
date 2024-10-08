@@ -4,7 +4,7 @@ import 'package:el7kma/Features/AuthView/data/repo/AuthRepoImpl.dart';
 import 'package:el7kma/Features/CustomerView/data/repo/CustomerRepoImpl.dart';
 import 'package:el7kma/Features/DamagedAndReturnView/data/repo/DamagedAndReturnRepoImple.dart';
 import 'package:el7kma/Features/EmployeesView/data/repo/EmployeeRepoImpl.dart';
-import 'package:el7kma/Features/ExpansesView/data/repo/ExpensesRepoImpl.dart';
+import 'package:el7kma/Features/OthersView/data/repo/ExpensesRepoImpl.dart';
 import 'package:el7kma/Features/ExportBills/data/repo/ExportBillsRepoImpl.dart';
 import 'package:el7kma/Features/ImportBillsView/data/repo/ImportBillsRepoImpl.dart';
 import 'package:el7kma/Features/ImportView/data/repo/ImportRepoImpl.dart';

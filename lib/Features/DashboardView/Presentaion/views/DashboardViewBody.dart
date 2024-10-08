@@ -1,4 +1,3 @@
-import 'package:el7kma/Features/DashboardView/Presentaion/views/DashboardChartsSec.dart';
 import 'package:el7kma/Features/DashboardView/Presentaion/views/DashboardHeaderSec.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -15,7 +14,7 @@ class DashboardViewBody extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [DashboardHeaderSec(), Gap(16), DashboardChartsSec()],
+            children: [DashboardHeaderSec(), Gap(16)],
           ),
         ),
       ),

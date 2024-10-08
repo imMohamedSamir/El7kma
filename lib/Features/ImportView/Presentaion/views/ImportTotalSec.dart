@@ -51,6 +51,7 @@ class ImportTotalSec extends StatelessWidget {
   /// Build the paid field with change listener
   Widget _buildPaidField(BuildContext context, Box<AddSupplierInvoiceModel> box,
       ImportItemCubit cubit) {
+    _handlePaidAmountChanged("0", box, cubit);
     return CustomTextField(
       controller: cubit.paidController,
       label: S.of(context).Paid,

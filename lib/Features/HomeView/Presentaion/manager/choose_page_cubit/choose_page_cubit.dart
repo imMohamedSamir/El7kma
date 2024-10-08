@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:el7kma/Features/CustomerView/Presentaion/CustomerView.dart';
 import 'package:el7kma/Features/DashboardView/Presentaion/DashboardView.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/EmployeesView.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/OthersView.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/OthersView.dart';
 import 'package:el7kma/Features/ExportBills/Presentaion/ExportBillsView.dart';
 import 'package:el7kma/Features/ImportBillsView/Presentaion/ImportBillsView.dart';
 import 'package:el7kma/Features/ImportView/Presentaion/ImportView.dart';

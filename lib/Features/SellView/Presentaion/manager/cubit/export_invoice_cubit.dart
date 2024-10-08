@@ -30,8 +30,6 @@ class ExportInvoiceCubit extends Cubit<ExportInvoiceState> {
   }
 
   void deleteItem({required ExportItemModel product}) {
-    final box = Hive.box<ExportInvoiceModel>(kExportInvoices);
-
     if (box.isEmpty) {
       log("No invoice found to delete from!");
       return;

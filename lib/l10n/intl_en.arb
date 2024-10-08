@@ -86,9 +86,12 @@
     "Type":"Type",
     "OutOfStockItem":"Out Of Stock",
     "OutOfStockItemMsg":"this item is out of stock",
-
     "OutOfStockWarning":"Warning",
-    "OutOfStockWarningMsg":"this item will be out of stock soon ,it's quantity "
+    "OutOfStockWarningMsg":"this item will be out of stock soon ,it's quantity ",
+
+    "ExpensesBills":"Expenses Bills",
+    "DamagedRetrunBills":"Damaged & Return Bills",
+    "BillNoValidateMsg":"Enter Bill Number"
 
 
     

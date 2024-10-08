@@ -1,3 +1,4 @@
+import 'package:el7kma/Features/HomeView/Presentaion/manager/UserDetailsCubit/user_details_cubit.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/manager/choose_page_cubit/choose_page_cubit.dart';
 import 'package:el7kma/Features/HomeView/Presentaion/views/HomeViewBody.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<UserDetailsCubit>(context).get();
     return MultiBlocProvider(
       providers: [
         BlocProvider(

@@ -1,6 +1,6 @@
 import 'package:el7kma/Core/Utlis/AppBarMethod.dart';
 import 'package:el7kma/Features/DamagedAndReturnView/Presentaion/DamagedAndReturnView.dart';
-import 'package:el7kma/Features/ExpansesView/Presentaion/views/ExpensesviewBody.dart';
+import 'package:el7kma/Features/OthersView/Presentaion/views/ExpensesviewBody.dart';
 import 'package:flutter/material.dart';
 
 class OthersView extends StatelessWidget {

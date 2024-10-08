@@ -6,14 +6,17 @@ class CustomDateTimeWidget extends StatelessWidget {
   const CustomDateTimeWidget({
     super.key,
     this.onSubmit,
+    this.controller,
   });
   final dynamic Function(Object?)? onSubmit;
+  final DateRangePickerController? controller;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 550, vertical: 220),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
       child: SfDateRangePicker(
+        controller: controller,
         showActionButtons: true,
         onSelectionChanged: (dateRangePickerSelectionChangedArgs) {},
         selectionMode: DateRangePickerSelectionMode.range,

@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل اسم الزبون"),
         "DamagedAndReturn":
             MessageLookupByLibrary.simpleMessage("التالف والمرتجع"),
+        "DamagedRetrunBills":
+            MessageLookupByLibrary.simpleMessage("فواتير التالف والمرتجع"),
         "Date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "Delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "DeleteCustomer": MessageLookupByLibrary.simpleMessage("حذف الزبون"),
@@ -78,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "EmployeeSalaryValidation":
             MessageLookupByLibrary.simpleMessage("أدخل راتب الموظف"),
         "ErrorMsg": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
+        "ExpensesBills":
+            MessageLookupByLibrary.simpleMessage("فواتير المصروفات"),
         "ExpensesType": MessageLookupByLibrary.simpleMessage("نوع المصروفات"),
         "From": MessageLookupByLibrary.simpleMessage("من"),
         "Logout": MessageLookupByLibrary.simpleMessage("خروج"),

@@ -2,15 +2,14 @@ import 'package:el7kma/Core/Utlis/AppSizes.dart';
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
 import 'package:el7kma/Features/EmployeesView/Presentaion/manager/employee_cubit/employee_cubit.dart';
 import 'package:el7kma/Features/EmployeesView/data/models/EmployeeModel.dart';
-import 'package:el7kma/Features/ExportBills/Presentaion/manager/cubit/export_bills_cubit.dart';
 import 'package:el7kma/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserNameDropDownMenu extends StatelessWidget {
-  const UserNameDropDownMenu({super.key});
-  static TextEditingController controller = TextEditingController();
-
+  const UserNameDropDownMenu({super.key, this.onSelected, this.controller});
+  final TextEditingController? controller;
+  final void Function(Object?)? onSelected;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +29,7 @@ class UserNameDropDownMenu extends StatelessWidget {
 
   Widget buildDropdownMenu(BuildContext context,
       {List<EmployeeModel>? suppliers}) {
-    return DropdownMenu(
+    return DropdownMenu<String>(
       menuStyle: MenuStyle(
         shape: WidgetStateProperty.all<OutlinedBorder>(
           const RoundedRectangleBorder(
@@ -48,16 +47,13 @@ class UserNameDropDownMenu extends StatelessWidget {
         ),
       ),
       label: Text(S.of(context).UserName),
-      onSelected: (value) {
-        BlocProvider.of<ExportBillsCubit>(context)
-            .get(userName: value.toString());
-      },
+      onSelected: onSelected,
       width: AppSizes.getWidth(310, context),
       dropdownMenuEntries: suppliers != null
           ? suppliers.map((supplier) {
               return DropdownMenuEntry(
                 label: supplier.employeeName ?? "",
-                value: supplier.employeeName,
+                value: supplier.employeeName ?? "",
               );
             }).toList()
           : const [],

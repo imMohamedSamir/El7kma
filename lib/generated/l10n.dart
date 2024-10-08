@@ -939,6 +939,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Expenses Bills`
+  String get ExpensesBills {
+    return Intl.message(
+      'Expenses Bills',
+      name: 'ExpensesBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Damaged & Return Bills`
+  String get DamagedRetrunBills {
+    return Intl.message(
+      'Damaged & Return Bills',
+      name: 'DamagedRetrunBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Bill Number`
+  String get BillNoValidateMsg {
+    return Intl.message(
+      'Enter Bill Number',
+      name: 'BillNoValidateMsg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

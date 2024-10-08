@@ -29,12 +29,12 @@ class DashboardHeaderCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(title,
-                  style: AppStyles.styleSemiBold18(context)
+                  style: AppStyles.styleSemiBold20(context)
                       .copyWith(color: Colors.white)),
               const Gap(16),
               Text("$body ${isEgp ? S.of(context).EGP : ""}",
-                  style: AppStyles.styleMedium16(context)
-                      .copyWith(color: Colors.white)),
+                  style: AppStyles.styleMedium18(context)
+                      .copyWith(color: Colors.white, fontSize: 20)),
             ],
           ),
         ),

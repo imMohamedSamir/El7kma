@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:el7kma/Core/Utlis/DialogMethods.dart';
 import 'package:el7kma/Core/widgets/CustomTextField.dart';
 import 'package:el7kma/Features/ImportBillsView/Presentaion/manager/import_bills_cubit/import_bills_cubit.dart';
@@ -21,11 +19,11 @@ class ImportDateFilterSec extends StatefulWidget {
 class _ImportDateFilterSecState extends State<ImportDateFilterSec> {
   late TextEditingController controller;
   late PickerDateRange dateRange;
-
+  late ImportBillsCubit cubit;
   @override
   void initState() {
+    cubit = BlocProvider.of<ImportBillsCubit>(context);
     controller = TextEditingController();
-
     super.initState();
   }
 
@@ -42,8 +40,16 @@ class _ImportDateFilterSecState extends State<ImportDateFilterSec> {
         controller: controller,
         hint: S.of(context).Date,
         maxline: 2,
+        onChanged: (p0) {
+          if (p0.trim().isEmpty) {
+            cubit.dateController.selectedRange = null;
+            controller.clear(); // Clear the text in the controller
+            cubit.get(); // Trigger the cubit to fetch data with no date filter
+          }
+        },
         onTap: () {
           Dialogmethods.dateTimeDialog(
+            controller: cubit.dateController,
             context,
             onSubmit: (p0) {
               if (p0.runtimeType == PickerDateRange) {
@@ -51,12 +57,11 @@ class _ImportDateFilterSecState extends State<ImportDateFilterSec> {
                 String start = DateFormat('EEEE - yyyy/M/d ', 'ar')
                     .format(dateRange.startDate!);
                 String end = DateFormat('EEEE - yyyy/M/d ', 'ar')
-                    .format(dateRange.endDate!);
+                    .format(dateRange.endDate ?? dateRange.startDate!);
                 controller.text = "من :$start \nالى :$end";
-                log(dateRange.startDate.toString());
-                log(dateRange.endDate.toString());
-                // Navigator.pop(context);
-                // BlocProvider.of<ImportBillsCubit>(context).get();
+
+                Navigator.pop(context);
+                cubit.get();
               }
             },
           );

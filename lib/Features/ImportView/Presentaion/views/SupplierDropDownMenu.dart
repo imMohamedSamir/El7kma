@@ -1,6 +1,5 @@
 import 'package:el7kma/Core/Utlis/AppSizes.dart';
 import 'package:el7kma/Core/Utlis/AppStyles.dart';
-import 'package:el7kma/Features/ImportView/Presentaion/manager/cubit/import_item_cubit.dart';
 import 'package:el7kma/Features/SuppliersView/Presentaion/manager/suppliers_cubit/suppliers_cubit.dart';
 import 'package:el7kma/Features/SuppliersView/data/models/suppliers_model.dart';
 import 'package:el7kma/generated/l10n.dart';
@@ -8,9 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SupplierDropDownMenu extends StatelessWidget {
-  const SupplierDropDownMenu({super.key});
-  static TextEditingController controller = TextEditingController();
-
+  const SupplierDropDownMenu(
+      {super.key, this.isBill = false, this.onSelected, this.controller});
+  final bool isBill;
+  final void Function(Object?)? onSelected;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +31,7 @@ class SupplierDropDownMenu extends StatelessWidget {
 
   Widget buildDropdownMenu(BuildContext context,
       {List<SuppliersModel>? suppliers}) {
-    return DropdownMenu(
+    return DropdownMenu<String?>(
       enableFilter: true,
       menuStyle: MenuStyle(
         shape: WidgetStateProperty.all<OutlinedBorder>(
@@ -49,16 +50,13 @@ class SupplierDropDownMenu extends StatelessWidget {
         ),
       ),
       label: Text(S.of(context).SupplierName),
-      onSelected: (value) {
-        BlocProvider.of<ImportItemCubit>(context).invoice.supplierid =
-            value.toString();
-      },
+      onSelected: onSelected,
       width: AppSizes.getWidth(310, context),
       dropdownMenuEntries: suppliers != null
           ? suppliers.map((supplier) {
               return DropdownMenuEntry(
                 label: supplier.supplierName ?? "",
-                value: supplier.supplierId,
+                value: isBill ? supplier.supplierName : supplier.supplierId,
               );
             }).toList()
           : const [],

@@ -1,4 +1,4 @@
-import 'package:el7kma/Features/ExpansesView/data/models/expenses_item_model.dart';
+import 'package:el7kma/Features/OthersView/data/models/expenses_item_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'expenses_invoice_model.g.dart';

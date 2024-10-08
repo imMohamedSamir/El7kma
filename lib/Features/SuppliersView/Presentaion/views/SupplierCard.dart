@@ -146,7 +146,10 @@ class _SupplierCardState extends State<SupplierCard> {
 
   Widget viewIcon(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Dialogmethods.showSupplierBills(context,
+            supplierName: widget.supplier.supplierName ?? "");
+      },
       child: Container(
         padding: const EdgeInsets.all(14),
         margin: const EdgeInsets.only(right: 8),
