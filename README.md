@@ -1,6 +1,6 @@
 # Elhekma Store
 
-Elhekma Store is a powerful management application designed to streamline import, export, and expense transactions. The app efficiently handles damaged or returned products and facilitates billing for both customers and suppliers. Additionally, it supports role-based access control, allowing administrators to manage employees with limited permissions.
+Elhekma Store is a powerful management desktop application designed to streamline import, export, and expense transactions. The app efficiently handles damaged or returned products and facilitates billing for both customers and suppliers. Additionally, it supports role-based access control, allowing administrators to manage employees with limited permissions.
 
 ## Features
 
