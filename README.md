@@ -1,16 +1,47 @@
-# asaad_group
+# Elhekma Store
 
-A new Flutter project.
+Elhekma Store is a powerful management application designed to streamline import, export, and expense transactions. The app efficiently handles damaged or returned products and facilitates billing for both customers and suppliers. Additionally, it supports role-based access control, allowing administrators to manage employees with limited permissions.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Import & Export Management:** Track and manage incoming and outgoing products efficiently.
+- **Expense Tracking:** Monitor business expenses for better financial management.
+- **Damaged & Returned Products:** Record and handle defective or returned items seamlessly.
+- **Billing System:** Generate and manage bills for customers and suppliers.
+- **Employee Management:** Add employees to the system with controlled access based on roles.
+- **Role-Based Access Control:** Secure the system with different roles:
+  - **Admin:** Full access to manage the system.
+  - **Employee:** Limited access based on assigned permissions.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
+- **Flutter** (Cross-platform development)
+- **RESTful APIs** (Backend integration)
+- **Secure Authentication** (Role-based access control)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/imMohamedSamir/El7kma
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd El7kma
+   ```
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+4. Run the app:
+   ```bash
+   flutter run
+   ```
+
+## Contribution
+We welcome contributions! Feel free to open issues or submit pull requests to enhance the app.
+
+## License
+This project is licensed under the MIT License.
+
+## Contact
+For inquiries, please contact: mousabsamir330@gmail.com
