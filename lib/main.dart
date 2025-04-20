@@ -1,4 +1,5 @@
 import 'package:el7kma/Core/Manager/language_cubit/language_cubit.dart';
+import 'package:el7kma/Core/Utlis/App_keys.dart';
 import 'package:el7kma/Core/Utlis/HiveAdapters.dart';
 import 'package:el7kma/Core/Utlis/InitHive.dart';
 import 'package:el7kma/Core/Utlis/blocObs.dart';
@@ -26,7 +27,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await AppKeys.initializeSupabase();
   Bloc.observer = SimpleBlocObserver();
   setupServiceLocator();
   await Hive.initFlutter();

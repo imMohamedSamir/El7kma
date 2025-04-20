@@ -50,4 +50,15 @@ class AddSupplierInvoiceModel {
         'productDetails': productDetails?.map((e) => e.toJson()).toList(),
         'notes': notes,
       };
+  Map<String, dynamic> toJsonSupa() => {
+        'bill_no': invoiceNumber,
+        'supplier_id': supplierid,
+        'date': DateTime.now(),
+        'total': totalAmount,
+        'paid': paidAmount,
+        'rest': remainingAmount,
+        // 'productDetails': productDetails?.map((e) => e.toJson()).toList(),
+        'notes': notes,
+        "transaction_type": "import"
+      };
 }

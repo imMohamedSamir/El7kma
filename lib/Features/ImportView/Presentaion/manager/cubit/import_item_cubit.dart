@@ -105,7 +105,7 @@ class ImportItemCubit extends Cubit<ImportItemState> {
       invoice.date = DateTime.now();
       log(invoice.toJson().toString());
       emit(ImportItemLoadign());
-      final result = await _importRepo.add(invoice: invoice);
+      final result = await _importRepo.addWithSupa(invoice: invoice);
       result.fold((fail) => emit(ImportItemFailure()), (response) {
         emit(ImportItemSuccess());
         clear();

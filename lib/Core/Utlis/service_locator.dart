@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:el7kma/Core/Utlis/ApiServices.dart';
+import 'package:el7kma/Core/Utlis/Supabase_services.dart';
 import 'package:el7kma/Features/AuthView/data/repo/AuthRepoImpl.dart';
 import 'package:el7kma/Features/CustomerView/data/repo/CustomerRepoImpl.dart';
 import 'package:el7kma/Features/DamagedAndReturnView/data/repo/DamagedAndReturnRepoImple.dart';
@@ -16,6 +17,8 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
+  getIt.registerSingleton<SupabaseServices>(SupabaseServices());
+
   getIt.registerSingleton<ElhekmaServices>(ElhekmaServices(Dio()));
   getIt.registerSingleton<AuthRepoImpl>(
       AuthRepoImpl(getIt.get<ElhekmaServices>()));
@@ -31,8 +34,8 @@ void setupServiceLocator() {
       ImportBillsRepoImpl(getIt.get<ElhekmaServices>()));
   getIt.registerSingleton<SupplierRpoImpl>(
       SupplierRpoImpl(getIt.get<ElhekmaServices>()));
-  getIt.registerSingleton<ImportRepoImpl>(
-      ImportRepoImpl(getIt.get<ElhekmaServices>()));
+  getIt.registerSingleton<ImportRepoImpl>(ImportRepoImpl(
+      getIt.get<ElhekmaServices>(), getIt.get<SupabaseServices>()));
   getIt.registerSingleton<ExportRepoImpl>(
       ExportRepoImpl(getIt.get<ElhekmaServices>()));
   getIt.registerSingleton<ExpensesRepoImpl>(

@@ -5,4 +5,6 @@ import 'package:el7kma/Features/ImportView/data/models/add_supplier_invoice_mode
 abstract class ImportRepo {
   Future<Either<Failure, dynamic>> add(
       {required AddSupplierInvoiceModel invoice});
+  Future<Either<Failure, dynamic>> addWithSupa(
+      {required AddSupplierInvoiceModel invoice});
 }
